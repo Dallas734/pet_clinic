@@ -7,7 +7,7 @@ export const NotFoundPage = () => {
         <Page id={'notFoundPage'}>
             <section className='section'>
                 <p>такая страница не найдена!</p>
-                <Link to={'/'}>главная страница</Link>
+                <Link to={'/main'}>главная страница</Link>
             </section>
         </Page>
     );

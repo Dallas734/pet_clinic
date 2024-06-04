@@ -1,9 +1,11 @@
 export enum AppRoutes {
+    LOGIN = 'login',
     MAIN = 'main',
-    REGISTER = 'register',
+
     
     NOT_FOUND = 'not_found',
 }
 
-export const getRouteMain = () => '/';
-export const getRouteRegister = () => '/register';
+export const getRouteLogin = () => '/';
+export const getRouteMain = () => '/main';
+
