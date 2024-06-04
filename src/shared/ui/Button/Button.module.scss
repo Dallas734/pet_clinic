@@ -3,15 +3,39 @@
 .Button {
     @include reset-button;
     cursor: pointer;
-    background-color: var(--theme-button-color);
-    color: var(--select-menu-color);
-    padding: 6px 15px;
 
-
-
-    @include hover {
-        background-color: var(--select-menu-color);
-        color: var(--theme-button-color);
-    };
 }
 
+.square-s {
+    @include square(32px);
+}
+
+.dark-theme,
+.light-theme {
+    position: fixed;
+    bottom: 5px;
+    right: 8px;
+    background-color: var(--theme-button-color);
+    color: var(--select-menu-color);
+    border-radius: var(--border-radius);
+    @include hover {
+        @include square(32px);
+        border: 2px solid var(--select-menu-color);
+    }
+}
+
+.dark-theme::after,
+.light-theme::after {
+    content: '';
+    position: absolute;
+    @include square(14px);
+    @include abs-center;
+}
+
+.dark-theme::after {
+    background: url('../../assets/icons/theme/light.svg') center/cover no-repeat;
+}
+
+.light-theme::after{
+    background: url('../../assets/icons/theme/dark.svg') center/cover no-repeat;
+}
