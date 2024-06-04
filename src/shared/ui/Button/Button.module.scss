@@ -1,0 +1,17 @@
+@import '../../../app/styles/index';
+
+.Button {
+    @include reset-button;
+    cursor: pointer;
+    background-color: var(--theme-button-color);
+    color: var(--select-menu-color);
+    padding: 6px 15px;
+
+
+
+    @include hover {
+        background-color: var(--select-menu-color);
+        color: var(--theme-button-color);
+    };
+}
+

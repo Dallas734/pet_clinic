@@ -1,0 +1,45 @@
+@import './media';
+@import './mixins';
+
+:root {
+    --color-dark: #2C3436;
+    --color-dark-alt: #222f3e;
+    --color-gray: #81858a;
+    --color-light: #ffffff;
+    --color-purple-light: #867AEB;
+    --dark-purple: #584CAE;
+    --color-purple-dark: #4D3DE1;
+    --color-gold-light: #FFDD75;
+    --color-gold-dark: #FABB00;
+    --color-green: #83C93C;
+
+    --border-radius: 5px;
+
+
+    --font-family-base: 'Heebo', 'sans-serif';
+
+    --container-width: 1240px;
+    --container-padding-x: 20px;
+
+    --section-padding-y: 70px;
+
+    --input-height: 60px;
+
+    --button-height: 68px;
+
+    --transition-duration: 0.2s;
+
+    @include calendar-event(event-red, #DF6679, #FFC8D0);
+    @include calendar-event(event-green, #23BA75, #BAF2D8);
+    @include calendar-event(event-yellow, #E3A023, #FFE2AD);
+    @include calendar-event(event-purple, #6E64B9, #D6D0FF);
+    @include calendar-event(event-blue, #249FAF, #BAF7FF);
+
+    @include desktop {
+        --section-padding-y: 50px;
+    }
+
+    @include mobile {
+        --section-padding-y: 30px;
+    }
+}
