@@ -1,0 +1,17 @@
+@import './variables/normalize';
+@import './variables/fonts';
+@import './variables/variables';
+@import './variables/mixins';
+@import './variables/media';
+@import './variables/utils';
+@import './variables/globals';
+
+@import './themes/dark';
+@import './themes/normal';
+
+
+.app {
+    background: var(--bg-color);
+    color: var(--color-theme);
+
+}
