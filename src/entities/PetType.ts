@@ -1,3 +1,3 @@
-interface PetType {
+export interface PetType {
     
 }

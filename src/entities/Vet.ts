@@ -1,3 +1,3 @@
-interface Vet {
+export interface Vet {
     
 }

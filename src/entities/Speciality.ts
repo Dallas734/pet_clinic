@@ -1,4 +1,4 @@
-interface Speciality
+export interface Speciality
 {
 
 }

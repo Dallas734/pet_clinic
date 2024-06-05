@@ -1,3 +1,3 @@
-interface Visit {
+export interface Visit {
     
 }

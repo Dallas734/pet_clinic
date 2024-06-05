@@ -1,3 +1,3 @@
-interface Owner {
+export interface Owner {
     
 }
