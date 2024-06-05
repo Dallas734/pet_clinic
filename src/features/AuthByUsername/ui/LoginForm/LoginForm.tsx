@@ -94,15 +94,15 @@ const LoginForm = memo(() => {
                     value={password}
                     required={true}
                 />
-                <div className={cls.inputWrapper}>
+                <label className={cls.inputWrapper} htmlFor="remember">
                     <Input
                         id='remember'
                         type="checkbox"
                         classes={CheckBoxClasses}
                         required={true}
                     />
-                    <label className={cls.noSelected} htmlFor="remember">Запомнить меня</label>
-                </div>
+                        Запомнить меня
+                </label>
                 <Button
                     type={'submit'}
                     classes={LoginButtonClasses}
