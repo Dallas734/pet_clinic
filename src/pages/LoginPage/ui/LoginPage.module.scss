@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    height: 100vh;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+}
+
+.title {
+    color: var(--color-purple);
+    font-weight: 500;
+    &:not(:last-child)
+    {
+        margin-bottom: 34px;
+    }
+}
+
+.logo:not(:last-child) {
+    margin-bottom: 15px;
+}
+
+.bg {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    margin-block: -10px;
+    background: url(/shared/assets/images/login/background.svg) center/cover no-repeat;
+}

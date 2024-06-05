@@ -7,7 +7,7 @@
     --color-gray: #81858a;
     --color-light: #ffffff;
     --color-purple-light: #867AEB;
-    --dark-purple: #584CAE;
+    --color-purple: #584CAE;
     --color-purple-dark: #4D3DE1;
     --color-gold-light: #FFDD75;
     --color-gold-dark: #FABB00;
@@ -22,11 +22,14 @@
     --container-padding-x: 12px;
     --section-padding-y: 12px;
 
-    --input-height: 26px;
+    --input-height: 34px;
 
     --button-height: 34px;
 
     --transition-duration: 0.2s;
+
+    --font-size-xs: 13px;
+    --font-size-s: 16px;
 
     @include calendar-event(event-red, #DF6679, #FFC8D0);
     @include calendar-event(event-green, #23BA75, #BAF2D8);
