@@ -2,35 +2,71 @@
 
 .Button {
     @include reset-button;
+    padding: 0 16px;
+    height: var(--button-height);
     cursor: pointer;
-
 }
 
 .square-s {
     @include square(32px);
 }
 
+.loginButton {
+    width: 200px;
+    height: 40px;
+    background-color: var(--color-purple-light);
+    border-radius: var(--border-radius);
+    opacity: 0.85;
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    color: var(--color-light);
+
+    @include hover {
+        background-color: var(--color-purple);
+    }
+}
+
+.accountsButton {
+    align-self: flex-end;
+    color: var(--color-purple-light);
+    padding: 0;
+    margin-bottom: -18px;
+    font-size: var(--font-size-xs);
+    padding-left: 20px;
+    background: no-repeat 0px;
+    background-size: 15px;
+    background-image: url(../../assets/icons/buttons/accent.svg);
+
+    @include hover {
+        opacity: 0.7;
+    }
+
+}
+
+
 .dark-theme,
 .light-theme {
     position: fixed;
+    padding: 0;
     bottom: 5px;
     right: 8px;
     background-color: var(--theme-button-color);
-    color: var(--select-menu-color);
+    color: var(--color-theme);
     border-radius: var(--border-radius);
     @include hover {
         @include square(32px);
         border: 2px solid var(--select-menu-color);
     }
+
+    &::after {
+        content: '';
+        position: absolute;
+        @include square(14px);
+        @include abs-center;
+    }
+
 }
 
-.dark-theme::after,
-.light-theme::after {
-    content: '';
-    position: absolute;
-    @include square(14px);
-    @include abs-center;
-}
 
 .dark-theme::after {
     background: url('../../assets/icons/theme/light.svg') center/cover no-repeat;
@@ -38,4 +74,37 @@
 
 .light-theme::after{
     background: url('../../assets/icons/theme/dark.svg') center/cover no-repeat;
+}
+
+.closeModal {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    align-self: flex-end;
+    padding: 5px;
+    margin-top: -15px;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        top: 48%;
+        left: 15%;
+        width: 70%;
+        height: 2px;
+        background-color: var(--color-theme);
+        border-radius: 5px;
+    }
+
+    &::before {
+        rotate: 45deg;
+    }
+
+    &::after {
+        rotate: -45deg;
+    }
+
+    @include hover {
+        opacity: 0.7;
+    }
 }

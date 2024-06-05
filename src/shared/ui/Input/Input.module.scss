@@ -1,25 +1,97 @@
-.placeholder {
-    margin-right: 5px;
+@import '/src/app/styles/index';
+
+.Input {
+  height: var(--input-height);
+  width: 272px;
+  padding: 4px 6px;
+  border: 1px solid var(--Input-border-color);
+  border-radius: var(--border-radius);
+  background-color: transparent;
+  outline: none;
+  color: var(--color-theme);
+
+  @include hover {
+    border-color: var(--color-purple-dark);
+  }
+
+  &:focus {
+    border-color: var(--color-purple-dark);
+  }
 }
 
-.input {
+.checkbox {
+  width: 30px;
+  display: flex;
+  align-items: center;
+  column-gap: 14px;
+  transition-duration: var(--transition-duration);
 
+  &:checked + .emulatorCheckBox::after {
+    display: inline-block;
+  }
+  
+  &:not(:checked) + .emulatorCheckBox::after {
+    display: none;
+  }
+  
+}
+
+.input-m {
+    height: 40px;
+    width: 350px;
+    padding: 6px 12px 6px 34px;
+}
+
+.icon {
+    background: no-repeat 7px;
+    background-size: 20px;
+}
+
+.user {
+    background-image: url('../../assets/icons/inputs/user.svg');
+}
+
+.password {
+    background-image: url('../../assets/icons/inputs/password.svg');
+}
+
+
+.placeholder {
+  margin-right: 5px;
 }
 
 .readonly {
-    opacity: 0.7;
+  opacity: 0.7;
+}
+
+
+.emulatorCheckBox {
+  @include flex-center;
+  @include square(25px);
+
+  position: relative;
+  background-color: transparent;
+  border: 2px solid var(--Input-border-color);
+  border-radius: var(--border-radius);
+
+  &::after {
+      @include abs-center;
+      @include square(15px);
+      content: '';
+      background: url(/shared/assets/icons/inputs/comboBoxChecked.svg) center/cover no-repeat
+  }
 }
 
 @keyframes blink {
-    0% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 0;
+  }
 
-    50% {
-        opacity: 0.01;
-    }
+  50% {
+    opacity: 0.01;
+  }
 
-    100% {
-        opacity: 1;
-    }
+  100% {
+    opacity: 1;
+  }
 }
