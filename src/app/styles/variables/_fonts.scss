@@ -20,3 +20,19 @@
     font-style: normal;
     font-display: swap;
 }
+
+@font-face {
+    font-family: 'OpenSans';
+    src: url(../fonts/OpenSans.ttf) format('ttf');
+    font-weight: 400;
+    line-height: 1.35;
+    font-size: 14px;
+}
+
+@font-face {
+    font-family: 'OpenSansItalic';
+    src: url(../fonts/OpenSansItalic.ttf) format('ttf');
+    font-weight: 400;
+    line-height: 1.35;
+    font-size: 14px;
+}

@@ -1,0 +1,35 @@
+@import '../../../app/styles/index';
+
+.Table {
+    border: 1px solid #4f5c78;
+    border-collapse: collapse;  
+    font-family: 'OpenSans';
+    //min-width: 100vw;
+    width: 1650px;
+    max-width: 10000px;
+}
+
+.table-wrapper {
+    margin-bottom: 25px;
+    border-radius: 6px;
+    background: #fff;
+    overflow: hidden; /* Clips any scrollbars that appear */
+}
+
+ .container {
+     width: 100%;
+     overflow: scroll;
+ }
+
+.head {  
+    overflow: hidden;
+    resize: horizontal;
+    border: 1px solid #4f5c78;
+    font-weight: 600;
+    padding-right: 17px;
+    text-align: left;
+    padding: 10px;
+
+}
+
+

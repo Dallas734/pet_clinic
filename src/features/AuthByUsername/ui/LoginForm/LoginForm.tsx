@@ -1,7 +1,7 @@
-import { memo, useCallback, useState} from 'react';
-import classNames from 'classnames';
-import { Button} from '@/shared/ui/Button';
-import { Input } from '@/shared/ui/Input';
+import { memo, useCallback, useState } from "react";
+import classNames from "classnames";
+import { Button } from "@/shared/ui/Button";
+import { Input } from "@/shared/ui/Input";
 //import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import cls from './LoginForm.module.scss';
 import { Text } from '@/shared/ui/Text';
@@ -10,14 +10,13 @@ import { Modal } from '@/shared/ui/Modal';
 
 
 const LoginForm = memo(() => {
-    //const dispatch = useAppDispatch();
+  //const dispatch = useAppDispatch();
 
     const [username, setUsername] = useState('admin');
     const [password, setPassword] = useState('admin')
     const [modalOpen, setModalOpen] = useState(false);
 
-    const error = false; //потом из апи ошибку будем брать
-
+  const error = false; //потом из апи ошибку будем брать
 
     const onLoginClick = () => {
         //что произойдет после отправки формы
@@ -27,9 +26,9 @@ const LoginForm = memo(() => {
         setModalOpen(prev => !prev);
     }
 
-    const onChangeUsername = useCallback((value: string) => {
-        setUsername(value);
-    }, []);
+  const onChangeUsername = useCallback((value: string) => {
+    setUsername(value);
+  }, []);
 
     const onChangePassword = useCallback((value: string) => {
         setPassword(value);

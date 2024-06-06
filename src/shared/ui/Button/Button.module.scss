@@ -74,6 +74,7 @@
     @include square(32px);
 }
 
+
 .square-m {
     padding: 0;
     @include square(40px);
@@ -103,6 +104,16 @@
         background-image: url(../../assets/icons/buttons/leave.svg);
         @include square(25px);
     }
+
+.clearFilterButton {
+    height: 34px;
+    width: 150px;
+    background-color: var(--color-anti-flash-white);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-xs);
+    color: var(--color-purple-navy);
+    // background-image: url('../../assets/icons/inputs/user.svg') repeat-x left top;
+
 }
 
 .loginButton {
