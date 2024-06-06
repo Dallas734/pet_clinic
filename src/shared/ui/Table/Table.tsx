@@ -21,11 +21,11 @@ export const Table = <T extends Object>(props: TableProps<T>) => {
           className={cn(...classes.map((clsName) => cls[clsName] || clsName))}
         >
           <thead>
-            <td style={{ width: 17 }}></td>
+            <td style={{ width: 10 }}></td>
             {head.map((el) => (
               <td className={cls.head}>{el}</td>
             ))}
-            <td style={{ width: 17 }}></td>
+            <td style={{ width: 10 }}></td>
           </thead>
           <tbody>
             {data.map((el: T) => (
