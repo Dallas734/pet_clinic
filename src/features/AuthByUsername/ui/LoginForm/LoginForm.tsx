@@ -58,6 +58,7 @@ const LoginForm = memo(() => {
     ).split(' ');
 
     const AccountsListButtonClasses = classNames(
+        'icon',
         'accountsButton',
     ).split(' ');
 

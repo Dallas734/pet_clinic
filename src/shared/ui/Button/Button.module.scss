@@ -1,4 +1,4 @@
-@import '../../../app/styles/index';
+@import '/src/app/styles/index.scss';
 
 .Button {
     @include reset-button;
@@ -7,8 +7,102 @@
     cursor: pointer;
 }
 
+.icon {
+    background: no-repeat 0px;
+    background-size: 15px;
+    padding-left: 20px;
+}
+
+.icon-large {
+    background: no-repeat 0px;
+    background-size: 17px;
+    padding-left: 41px;
+}
+
+.icon-center {
+    position: relative;
+    &::after {
+        content: '';
+        position: absolute;
+        @include square(14px);
+        @include abs-center;
+    }
+}
+
+.dropListButton {
+    position: relative;
+    width: 100%;
+    text-align: left;
+    color: var(--color-light);
+    font-weight: 500;
+    font-size: 15px;
+    transition-duration: 0s;
+    border-bottom: 1px solid transparent;
+
+    @include hover {
+        color: var(--button-color);
+        opacity: 0.9;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        @include square(14px);
+        top: calc(var(--button-height) /2);
+        left: 100%;
+        translate: -100% -50%;
+        background-image: url(../../assets/icons/dropArrow/drop-down.svg);
+    }
+}
+
+.navDropListOpen {
+    color: var(--blocked-element-color);
+    border-bottom: 1px solid var(--blocked-element-color);
+
+    @include hover {
+        color: var(--blocked-element-color);
+        opacity: 1;
+    }
+
+    &::after {
+        background-image: url(../../assets/icons/dropArrow/drop-up.svg);
+    }
+}
+
 .square-s {
+    padding: 0;
     @include square(32px);
+}
+
+.square-m {
+    padding: 0;
+    @include square(40px);
+}
+
+.arrowLeftButton {
+    background-color: var(--color-gray);
+
+    @include hover {
+        filter: brightness(1.2);
+    }
+
+    &::after {
+        background-image: url(../../assets/icons/buttons/arrow-left.svg);
+        @include square(20px);
+    }
+}
+
+.leaveButton {
+    background-color: var(--color-purple);
+
+    @include hover {
+        filter: brightness(1.2);
+    }
+
+    &::after {
+        background-image: url(../../assets/icons/buttons/leave.svg);
+        @include square(25px);
+    }
 }
 
 .loginButton {
@@ -29,14 +123,11 @@
 .accountsButton {
     align-self: flex-end;
     color: var(--color-purple-light);
-    padding: 0;
+    padding-block: 0;
+    padding-right: 0;
     margin-bottom: -18px;
     font-size: var(--font-size-xs);
-    padding-left: 20px;
-    background: no-repeat 0px;
-    background-size: 15px;
     background-image: url(../../assets/icons/buttons/accent.svg);
-
     @include hover {
         opacity: 0.7;
     }
@@ -47,33 +138,43 @@
 .dark-theme,
 .light-theme {
     position: fixed;
-    padding: 0;
-    bottom: 5px;
-    right: 8px;
+    bottom: 10px;
+    right: 12px;
     background-color: var(--theme-button-color);
     color: var(--color-theme);
     border-radius: var(--border-radius);
+    transition-duration: 0s;
+
     @include hover {
         @include square(32px);
-        border: 2px solid var(--select-menu-color);
+        border: 2px solid var(--button-accent-hover-color);
     }
-
-    &::after {
-        content: '';
-        position: absolute;
-        @include square(14px);
-        @include abs-center;
-    }
-
 }
 
-
-.dark-theme::after {
-    background: url('../../assets/icons/theme/light.svg') center/cover no-repeat;
+.dark-theme {
+    @include hover {
+        filter: brightness(1.2);
+    }
+    &::after{
+        background: url('../../assets/icons/theme/light.svg') center/cover no-repeat;
+    }
 }
+
 
 .light-theme::after{
     background: url('../../assets/icons/theme/dark.svg') center/cover no-repeat;
+}
+
+.petclinicButton {
+    background-image: url('../../assets/icons/navDropList/petclinic.svg')
+}
+
+.masterDataButton {
+    background-image: url('../../assets/icons/navDropList/masterData.svg')
+}
+
+.adminButton {
+    background-image: url('../../assets/icons/navDropList/admin.svg')
 }
 
 .closeModal {
