@@ -1,0 +1,24 @@
+@import '../../../app/styles/index';
+
+.Table {
+    border: 1px solid #4f5c78;
+    border-collapse: collapse;  
+    font-family: 'OpenSans';
+    min-width: 100vw;
+    width: 1260px;
+}
+
+// .container {
+//     width: 100%;
+//     overflow: scroll;
+// }
+
+.head {  
+    overflow: hidden;
+    resize: horizontal;
+    border: 1px solid #4f5c78;
+    font-weight: 600;
+    padding-right: 17px;
+    text-align: left;
+    padding: 5px;
+}

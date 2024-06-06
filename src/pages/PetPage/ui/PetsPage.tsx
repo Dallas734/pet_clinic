@@ -7,6 +7,7 @@ import InputRange from "react-input-range";
 import 'react-input-range/lib/css/index.css';
 import { Select } from "@/shared/ui/Select";
 import { Button } from "@/shared/ui/Button";
+import { Table } from "@/shared/ui/Table";
 
 const PetsPage: React.FC = () => {
   const [pets, setPets] = useState<Array<Pet>>([]);
@@ -14,6 +15,8 @@ const PetsPage: React.FC = () => {
   const [petType, setPetType] = useState<string>("");
   const [owner, setOwner] =  useState<string>("");
   const [birthday, setBirthday] = useState<number>(1995);
+
+  const head = ['Кличка', 'ID', 'Дата рождения', 'Тип Питомца'];
 
   return (
     <Page id="petsPage">
@@ -38,7 +41,7 @@ const PetsPage: React.FC = () => {
                 <Button children='Очистить фильтр' classes={['clearFilterButton']}/>
             </div>
         </div>
-        <table className={cls.petsTable}>
+        {/* <table className={cls.petsTable}>
         <thead className={cls.headT}>
             <td>Кличка</td>
             <td>ID</td>
@@ -55,7 +58,9 @@ const PetsPage: React.FC = () => {
             </tr>
             ))}
         </tbody>
-        </table>
+        </table> */}
+
+        <Table head={head} data={pets}/>
     </Page>
   );
 };
