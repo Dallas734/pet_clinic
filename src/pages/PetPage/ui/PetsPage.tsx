@@ -1,45 +1,45 @@
-import { ThemeSwitcher } from "@/features/ThemeSwitcher";
 import { Page } from "@/widgets/Page";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "./PetsPage.css";
+import cls from './PetsPage.module.scss';
 import Pet from "@/entities/Pet";
 import { Input } from "@/shared/ui/Input";
-// import Slider from "react-input-slider";
 import InputRange from "react-input-range";
-import Slider from "rc-slider";
 import 'react-input-range/lib/css/index.css';
+import { Select } from "@/shared/ui/Select";
+import { Button } from "@/shared/ui/Button";
 
 const PetsPage: React.FC = () => {
   const [pets, setPets] = useState<Array<Pet>>([]);
   const [identificationNumber, setId] = useState<string>("");
   const [petType, setPetType] = useState<string>("");
   const [owner, setOwner] =  useState<string>("");
-  const [birthday, setBirthday] = useState<number>(2000);
+  const [birthday, setBirthday] = useState<number>(1995);
 
   return (
-    <>
-        <div className="inputFields">
-            <div className="Field">
+    <Page id="petsPage">
+        <div className={cls.inputFields}>
+            <div className={cls.Field}>
                 <label>ID</label>
                 <Input onChange={setId}/>
             </div>
-            <div className="Field">
+            <div className={cls.Field}>
                 <label>Тип питомца</label>
-                <select></select>
+                <Select />
             </div>
-            <div className="Field">
+            <div className={cls.Field}>
                 <label>Владелец</label>
-                <select></select>
+                <Select />
             </div>
-            <div className="Field">
+            <div className={cls.Field}>
                 <label>Родился после</label>
-                {/* <InputRange maxValue={2005} minValue={1995} value={2000} onChange={e => setBirthday(e)}/> */}
-                <input type='range' min='1995' max='2005' step='1' value={birthday} onChange={}/>
+                <InputRange maxValue={2005} minValue={1995} value={birthday} step={1} onChange={e => setBirthday(Number(e.toString()))}/>
+            </div>
+            <div className={cls.Field}>
+                <Button children='Очистить фильтр' classes={['clearFilterButton']}/>
             </div>
         </div>
-        <table className="petsTable">
-        <thead>
+        <table className={cls.petsTable}>
+        <thead className={cls.headT}>
             <td>Кличка</td>
             <td>ID</td>
             <td>Дата рождения</td>
@@ -56,7 +56,7 @@ const PetsPage: React.FC = () => {
             ))}
         </tbody>
         </table>
-    </>
+    </Page>
   );
 };
 

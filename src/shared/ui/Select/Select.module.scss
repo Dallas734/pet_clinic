@@ -1,0 +1,15 @@
+@import '../../../app/styles/index';
+
+.Select {
+    border-radius: var(--border-radius);
+
+    width: 100px;
+    
+    @include hover {
+        border-color: var(--color-purple-dark);
+    }
+    
+    &:focus {
+        border-color: var(--color-purple-dark);
+    }
+}

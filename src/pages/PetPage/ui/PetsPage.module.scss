@@ -4,7 +4,7 @@
     font-family: 'OpenSans';
 }
 
-td {
+.headT td {
     border: 1px solid #4f5c78;
     font-weight: 600;
     width: 950px;
@@ -26,10 +26,6 @@ td {
     gap: 5px; 
 }
 
-label {
+.inputFields label {
     font-family: 'OpenSans';
-}
-
-select {
-    width: 100px;
 }
