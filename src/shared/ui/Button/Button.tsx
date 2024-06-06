@@ -3,7 +3,7 @@ import cnBind from 'classnames/bind';
 import cls from './Button.module.scss';
 
 interface ButtonProps {
-    children: ReactNode;
+    children?: ReactNode;
     classes?: string[];
     type?: "button" | "submit" | "reset";
     onClick?: MouseEventHandler<HTMLButtonElement>;

@@ -18,9 +18,12 @@ interface InputProps extends HTMLInputProps {
     onChange?: (value: string) => void;
     autofocus?: boolean;
     readonly?: boolean;
+    required?: boolean;
+    id?: string;
 }
 
 export const Input = memo((props: InputProps) => {
+
     const cn = cnBind.bind(cls);
     const {
         classes = [],
@@ -30,10 +33,11 @@ export const Input = memo((props: InputProps) => {
         placeholder,
         autofocus,
         readonly,
-        ...otherProps
+        required,
+        id
     } = props;
-    const ref = useRef<HTMLInputElement>(null);
 
+    const ref = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         if (autofocus) {
@@ -44,21 +48,23 @@ export const Input = memo((props: InputProps) => {
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange?.(e.target.value);
     };
-
+    
+    classes.push('Input')
+    
     return (
-        <div className={cn(cls.Input, ...classes.map(clsName => cls[clsName] || clsName))}>
-            <div className={cls.caretWrapper}>
-                <input
-                    ref={ref}
-                    type={type}
-                    value={value}
-                    placeholder={placeholder}
-                    onChange={onChangeHandler}
-                    className={cls.input}
-                    readOnly={readonly}
-                    {...otherProps}
-                />
-            </div>
-        </div>
+        <>
+        <input
+        id={id}
+        ref={ref}
+        type={type}
+        value={value}
+        placeholder={placeholder}
+        onChange={onChangeHandler}
+        className={cn(...classes.map(clsName => cls[clsName] || clsName))}
+        readOnly={readonly}
+        required={required}
+        />
+        {type === 'checkbox' && <span className={cls.emulatorCheckBox}></span>}
+        </>
     );
 });

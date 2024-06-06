@@ -8,6 +8,10 @@ body {
     background-color: var(--bg-color);
 }
 
+body, html {
+    height: 100%;
+}
+
 a,
 button,
 input,
@@ -35,5 +39,5 @@ h3, .h3 {
     @include fluid-text (30, 26)
 }
 h4, .h4 {
-    @include fluid-text (20, 18)
+    @include fluid-text (25, 18)
 }

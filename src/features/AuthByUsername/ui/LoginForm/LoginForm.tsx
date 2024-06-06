@@ -3,66 +3,121 @@ import classNames from "classnames";
 import { Button } from "@/shared/ui/Button";
 import { Input } from "@/shared/ui/Input";
 //import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import cls from "./LoginForm.module.scss";
-import { Text } from "@/shared/ui/Text";
-import { LoginSchema } from "../../model/types/loginSchema";
-import axios from "axios";
+import cls from './LoginForm.module.scss';
+import { Text } from '@/shared/ui/Text';
+import { Modal } from '@/shared/ui/Modal';
+
+
 
 const LoginForm = memo(() => {
   //const dispatch = useAppDispatch();
 
-  const [username, setUsername] = useState("admin");
-  const [password, setPassword] = useState("admin");
+    const [username, setUsername] = useState('admin');
+    const [password, setPassword] = useState('admin')
+    const [modalOpen, setModalOpen] = useState(false);
 
   const error = false; //потом из апи ошибку будем брать
 
-  const onLoginClick = () => {
-    const loginModel : LoginSchema = {
-        username,
-        password,
-        isLoading: false,
-        error: ""
+    const onLoginClick = () => {
+        //что произойдет после отправки формы
     }
-    
-    console.log(loginModel);
-    // const response =        
-    //что произойдет после отправки формы
 
-  };
+    const onModalButtonClick = () => {
+        setModalOpen(prev => !prev);
+    }
 
   const onChangeUsername = useCallback((value: string) => {
     setUsername(value);
   }, []);
 
-  const onChangePassword = useCallback((value: string) => {
-    setPassword(value);
-  }, []);
+    const onChangePassword = useCallback((value: string) => {
+        setPassword(value);
+    }, []);
 
-  return (
-    <form className={classNames(cls.LoginForm)}>
-      {error && (
-        <Text text={"Вы ввели неверный логин или пароль"} classes={["error"]} />
-      )}
-      <Input
-        autofocus
-        type="text"
-        className={cls.input}
-        placeholder={"Введите username"}
-        onChange={onChangeUsername}
-        value={username}
-      />
-      <Input
-        type="password"
-        className={cls.input}
-        placeholder={"Введите пароль"}
-        onChange={onChangePassword}
-        value={password}
-      />
-      <Button type={"submit"} classes={[]} onClick={onLoginClick}>
-        {"Войти"}
-      </Button>
-    </form>
-  );
+
+    const InputClassesUser = classNames(
+        'input-m',
+        'icon',
+        'user'
+    ).split(' ');
+
+    const InputClassesPassword = classNames(
+        'input-m',
+        'icon',
+        'password'
+    ).split(' ');
+
+    const CheckBoxClasses = classNames(
+        'checkbox',
+        'sr-only'
+    ).split(' ');
+
+    const LoginButtonClasses = classNames(
+        'loginButton',
+    ).split(' ');
+
+    const AccountsListButtonClasses = classNames(
+        'accountsButton',
+    ).split(' ');
+
+
+    return (
+        <>
+            <form action="" className={classNames(cls.LoginForm)}>
+                <Button
+                    classes={AccountsListButtonClasses}
+                    onClick={onModalButtonClick}
+                >
+                    {'возможные пользователи'}
+                </Button>
+                {error && (
+                    <Text
+                        text={'Вы ввели неверный логин или пароль'}
+                        classes={['error']}
+                    />
+                )}
+                <Input
+                    autofocus
+                    type="text"
+                    classes={InputClassesUser}
+                    placeholder={'Введите username'}
+                    onChange={onChangeUsername}
+                    value={username}
+                    required={true}
+                />
+                <Input
+                    type="password"
+                    classes={InputClassesPassword}
+                    placeholder={'Введите пароль'}
+                    onChange={onChangePassword}
+                    value={password}
+                    required={true}
+                />
+                <label className={cls.inputWrapper} htmlFor="remember">
+                    <Input
+                        id='remember'
+                        type="checkbox"
+                        classes={CheckBoxClasses}
+                        required={true}
+                    />
+                        Запомнить меня
+                </label>
+                <Button
+                    type={'submit'}
+                    classes={LoginButtonClasses}
+                    onClick={onLoginClick}
+                >
+                    {'Войти'}
+                </Button>
+            </form>
+
+
+
+            <Modal onClose={onModalButtonClick} isOpen={modalOpen} title='возможные пользователи'>
+                содержимое содержимое содержимое содержимое содержимое
+            </Modal>
+        </>
+    );
 });
 
 export default LoginForm;
