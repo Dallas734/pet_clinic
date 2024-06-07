@@ -1,0 +1,17 @@
+.historyNav {
+    display: flex;
+}
+
+.linkItem {
+    width: auto;
+    display: flex;
+    margin-left: 15px;
+}
+
+.linkItem:hover {
+    width: auto;
+    display: flex;
+    margin-left: 15px;
+    border-bottom: 1px solid;
+    border-color: #867aeb;
+}
