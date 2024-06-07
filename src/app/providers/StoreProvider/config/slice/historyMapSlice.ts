@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface lastPath
 {
@@ -15,6 +15,7 @@ export const historyMapSlice = createSlice({
     },
     removePath: (state,action : PayloadAction<lastPath>) => {
       return [...state].filter((item: { path: string; }) => item.path !==action.payload.path);
+
     }
   },
 })
