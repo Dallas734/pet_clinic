@@ -1,10 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
+import historyMapReducer from './slice/historyMapSlice';
+
 
 export const store = configureStore({
   reducer: {
+    historyMap: historyMapReducer,
   }
-})
+});
 
 
-export type AppDispatch = ReturnType<typeof configureStore>['dispatch'];
-export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.dispatch>;
