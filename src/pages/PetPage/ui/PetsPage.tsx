@@ -8,6 +8,7 @@ import 'react-input-range/lib/css/index.css';
 import { Select } from "@/shared/ui/Select";
 import { Button } from "@/shared/ui/Button";
 import { Table } from "@/shared/ui/Table";
+import classNames from "classnames";
 
 const PetsPage: React.FC = () => {
   const [pets, setPets] = useState<Array<Pet>>([]);
@@ -18,9 +19,34 @@ const PetsPage: React.FC = () => {
 
   const head = ['Кличка', 'ID', 'Дата рождения', 'Тип Питомца'];
 
+  const clearFilterButtonClasses = classNames(
+    'icon',
+    'clearFilterButton'
+  ).split(' ');
+
+  const createButtonClasses = classNames(
+    'icon',
+    'createButton'
+  ).split(' ');
+
+  const editButtonClasses = classNames(
+    'icon',
+    'editButton'
+  ).split(' ');
+
+  const deleteButtonClasses = classNames(
+    'icon',
+    'deleteButton'
+  ).split(' ');
+
+  const  excelButtonClasses = classNames(
+    'icon',
+    'excelButton'
+  ).split(' ');
+
   return (
     <Page id="petsPage">
-        <div className={cls.inputFields}>
+        <div className={cls.fieldsBlock}>
             <div className={cls.Field}>
                 <label>ID</label>
                 <Input onChange={setId}/>
@@ -38,28 +64,16 @@ const PetsPage: React.FC = () => {
                 <InputRange maxValue={2005} minValue={1995} value={birthday} step={1} onChange={e => setBirthday(Number(e.toString()))}/>
             </div>
             <div className={cls.Field}>
-                <Button children='Очистить фильтр' classes={['clearFilterButton']}/>
+                <span style={{height: 20}}></span>
+                <Button children='Очистить фильтр' classes={clearFilterButtonClasses}/>
             </div>
         </div>
-        {/* <table className={cls.petsTable}>
-        <thead className={cls.headT}>
-            <td>Кличка</td>
-            <td>ID</td>
-            <td>Дата рождения</td>
-            <td>Тип питомца</td>
-        </thead>
-        <tbody>
-            {pets.map((e) => (
-            <tr>
-                <td>{e.name}</td>
-                <td>{e.identificationNumber}</td>
-                <td>{e.birthday.toISOString()}</td>
-                <td>{e.type.name}</td>
-            </tr>
-            ))}
-        </tbody>
-        </table> */}
-
+        <div className={cls.fieldsBlock}>
+            <Button children='Создать' classes={createButtonClasses} />
+            <Button children='Изменить' classes={editButtonClasses} />
+            <Button children='Удалить' classes={deleteButtonClasses} />
+            <Button children='Excel' classes={excelButtonClasses}/>
+        </div>
         <Table head={head} data={pets}/>
     </Page>
   );

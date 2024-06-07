@@ -5,12 +5,13 @@
     padding: 0 16px;
     height: var(--button-height);
     cursor: pointer;
+    font-weight: bold;
 }
 
 .icon {
-    background: no-repeat 0px;
+    background: no-repeat 10px;
     background-size: 15px;
-    padding-left: 20px;
+    padding-left: 30px;
 }
 
 .icon-large {
@@ -108,13 +109,71 @@
 
 .clearFilterButton {
     height: 34px;
-    width: 150px;
+    width: 160px;
     background-color: var(--color-anti-flash-white);
     border-radius: var(--border-radius);
     font-size: var(--font-size-xs);
+    background-image: url(../../assets/icons/buttons/eraser.svg);
     color: var(--color-purple-navy);
-    // background-image: url('../../assets/icons/inputs/user.svg') repeat-x left top;
+    @include hover {
+        filter: brightness(1.2);
+    }
+}
 
+.createButton {
+    height: 34px;
+    width: 100px;
+    font-weight: 900;
+    background-color: var(--color-purple-light);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-xs);
+    color: var(--color-light);
+    @include hover {
+        filter: brightness(1.2);
+    }
+    background-image: url(../../assets/icons/buttons/blank.svg);    
+}
+
+.editButton {
+    height: 34px;
+    width: 100px;
+    background-color: var(--color-anti-flash-white);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-xs);
+    background-image: url(../../assets/icons/buttons/pencil.svg);
+    color: var(--color-purple-navy);
+    text-align: center;
+    @include hover {
+        filter: brightness(1.2);
+    }
+}
+
+.deleteButton {
+    height: 34px;
+    width: 100px;
+    background-color: var(--color-light-red);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-xs);
+    background-image: url(../../assets/icons/buttons/cross.svg);
+    color: var(--color-light);
+    text-align: center;
+    @include hover {
+        filter: brightness(1.2);
+    }
+}
+
+.excelButton {
+    height: 34px;
+    width: 100px;
+    background-color: var(--color-anti-flash-white);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-xs);
+    background-image: url(../../assets/icons/buttons/excel.svg);
+    color: var(--color-purple-navy);
+    text-align: center;
+    @include hover {
+        filter: brightness(1.2);
+    }
 }
 
 .loginButton {
