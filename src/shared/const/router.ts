@@ -4,6 +4,7 @@ export enum AppRoutes {
     PETS = 'pets',
     OWNERS = 'owners',
     VETERINARIANS = 'veterinarians',
+    SPECIALITIES = 'specialities',
     
     NOT_FOUND = 'not_found',
 }
@@ -13,4 +14,5 @@ export const getRouteMain = () => '/main';
 export const getRoutePets = () => '/pets';
 export const getRouteOwners = () => '/owners';
 export const getRouteVeterinarians = () => '/veterinarians';
+export const getRouteSpecialities = () => '/specialities';
 
