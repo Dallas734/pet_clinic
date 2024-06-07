@@ -41,3 +41,8 @@ h3, .h3 {
 h4, .h4 {
     @include fluid-text (25, 18)
 }
+
+label {
+    font-size: medium;
+    font-family: 'OpenSans', sans-serif;
+}

@@ -3,7 +3,7 @@
 .Table {
     border: 1px solid #4f5c78;
     border-collapse: collapse;  
-    font-family: 'OpenSans';
+    font-family: 'OpenSans', sans-serif;
     //min-width: 100vw;
     width: 100%;
     max-width: 10000px;
@@ -25,7 +25,8 @@
     overflow: hidden;
     resize: horizontal;
     border: 1px solid #4f5c78;
-    font-weight: 600;
+    font-weight: bold;
+    font-size: medium;
     padding-right: 17px;
     text-align: left;
     padding: 10px;

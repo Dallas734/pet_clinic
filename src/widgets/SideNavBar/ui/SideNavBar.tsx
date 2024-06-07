@@ -35,24 +35,24 @@ export const SideNavBar = memo(() => {
     //потом все что ниже в отдельный файл перенесу
 
     const Petclinic: DictionaryListLinks[] = [
-        { "Посещения": "visit" },
+        { "Приемы": "visit" },
         { "Питомцы": "pets" },
-        { "Хозяева": "owners" }
+        { "Владельцы": "owners" }
     ];
 
     const MasterData: DictionaryListLinks[] = [
-        { "Ветеринары": "Veterinarians" },
-        { "специализация": "Specialties" },
-        { "Типы животных": "PetTypes" },
-        { "Пользователи": "Users" }
+        { "Ветеринары": "veterinarians" },
+        { "Специальности": "specialties" },
+        { "Типы питомцев": "petTypes" },
+        { "Пользователи": "users" }
     ];
 
     const Admin: DictionaryListLinks[] = [
-        { "JMX console": "JMXConsole" },
+        { "Консоль JMX": "JMXConsole" },
         { "Забаненные": "Locks" },
-        { "Resource roles": "ResourceRoles" },
-        { "Row-level roles": "Row-levelRoles" },
-        { "Entity inspector": "EntityInspector" }
+        { "Ресурсные роли": "ResourceRoles" },
+        { "Row-level роли": "Row-levelRoles" },
+        { "Инспектор сущностей": "EntityInspector" }
     ];
 
 
@@ -105,7 +105,7 @@ export const SideNavBar = memo(() => {
                     <div className={cls.navList}>
                         <NavDropList isOpen={openNavLists[NavBarListName.Petclinic]} ListType={NavBarListName.Petclinic} onClick={toggleNavDropList} classes={PetclinicButtonClasses} title='Petclinic' ListLinks={Petclinic}></NavDropList>
                         <NavDropList isOpen={openNavLists[NavBarListName.MasterData]} ListType={NavBarListName.MasterData} onClick={toggleNavDropList} classes={MasterDataButtonClasses} title='Master data' ListLinks={MasterData}></NavDropList>
-                        <div className={cls.themeSetting}><Link to={'/themeSetting'}>Theme settings</Link></div>
+                        <div className={cls.themeSetting}><Link to={'/themeSetting'}>Настройки темы</Link></div>
                         <NavDropList isOpen={openNavLists[NavBarListName.Administration]} ListType={NavBarListName.Administration} onClick={toggleNavDropList} classes={AdminButtonClasses} title='Administration' ListLinks={Admin}></NavDropList>
                     </div>
                 </nav>

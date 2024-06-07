@@ -7,16 +7,18 @@ interface ButtonProps {
     classes?: string[];
     type?: "button" | "submit" | "reset";
     onClick?: MouseEventHandler<HTMLButtonElement>;
+    disabled?: boolean;
 }
 
 export const Button = (props: ButtonProps) => {
-    const {children, classes = [], onClick, type = 'button'} = props;
+    const {children, classes = [], onClick, type = 'button', disabled = false} = props;
     const cn = cnBind.bind(cls);
     return (
         <button
             type={type}
             className={cn(cls.Button, ...classes.map(clsName => cls[clsName] || clsName))}
             onClick={onClick}
+            disabled={disabled}
         >
             {children}
         </button>
