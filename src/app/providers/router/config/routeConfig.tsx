@@ -3,6 +3,7 @@ import { MainPage } from '@/pages/MainPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { OwnersPage } from '@/pages/OwnerPage';
 import PetsPage from '@/pages/PetPage/ui/PetsPage';
+import { SpecialitiesPage } from '@/pages/SpecialitiesPage';
 import { VeterinariansPage } from '@/pages/VeterinariansPage';
 import {
     AppRoutes,
@@ -10,6 +11,7 @@ import {
     getRouteMain,
     getRouteOwners,
     getRoutePets,
+    getRouteSpecialities,
     getRouteVeterinarians
 } from '@/shared/const/router';
 import { AppRoutesProps } from '@/shared/types/router';
@@ -38,5 +40,9 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.VETERINARIANS]: {
         path: getRouteVeterinarians(),
         element: <VeterinariansPage />
+    },
+    [AppRoutes.SPECIALITIES]: {
+        path: getRouteSpecialities(),
+        element: <SpecialitiesPage />
     }
 };

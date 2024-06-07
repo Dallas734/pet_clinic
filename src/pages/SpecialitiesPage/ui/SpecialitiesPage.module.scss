@@ -1,0 +1,19 @@
+.fieldsBlock {
+    
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.Field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    gap: 5px; 
+}
+
+.inputFields label {
+    font-family: 'OpenSans';
+}
