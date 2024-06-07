@@ -1,28 +1,16 @@
-// .petsTable {
-//     border: 1px solid #4f5c78;
-//     border-collapse: collapse;
-//     font-family: 'OpenSans';
-// }
-
-// .headT td {
-//     border: 1px solid #4f5c78;
-//     font-weight: 600;
-//     width: 950px;
-//     padding-right: 17px;
-//     text-align: left;
-//     padding: 5px;
-// }
-
-.inputFields {
+.fieldsBlock {
+    
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    gap: 20px;
+    margin-bottom: 10px;
 }
 
 .Field {
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    margin-bottom: 10px;
     gap: 5px; 
 }
 
