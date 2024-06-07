@@ -5,7 +5,7 @@
     padding: 0 16px;
     height: var(--button-height);
     cursor: pointer;
-    font-weight: bold;
+    font-family: 'OpenSans', sans-serif;
 }
 
 .icon {
@@ -116,20 +116,19 @@
     background-image: url(../../assets/icons/buttons/eraser.svg);
     color: var(--color-purple-navy);
     @include hover {
-        filter: brightness(1.2);
+        filter: brightness(0.9);
     }
 }
 
 .createButton {
     height: 34px;
     width: 100px;
-    font-weight: 900;
     background-color: var(--color-purple-light);
     border-radius: var(--border-radius);
     font-size: var(--font-size-xs);
     color: var(--color-light);
     @include hover {
-        filter: brightness(1.2);
+        filter: brightness(0.9);
     }
     background-image: url(../../assets/icons/buttons/blank.svg);    
 }
@@ -144,7 +143,7 @@
     color: var(--color-purple-navy);
     text-align: center;
     @include hover {
-        filter: brightness(1.2);
+        filter: brightness(0.9);
     }
 }
 
@@ -158,7 +157,7 @@
     color: var(--color-light);
     text-align: center;
     @include hover {
-        filter: brightness(1.2);
+        filter: brightness(0.9);
     }
 }
 
@@ -172,7 +171,7 @@
     color: var(--color-purple-navy);
     text-align: center;
     @include hover {
-        filter: brightness(1.2);
+        filter: brightness(0.9);
     }
 }
 

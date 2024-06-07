@@ -16,8 +16,9 @@ const PetsPage: React.FC = () => {
   const [petType, setPetType] = useState<string>("");
   const [owner, setOwner] =  useState<string>("");
   const [birthday, setBirthday] = useState<number>(1995);
+  const [rowSelected, setRowSelected]  = useState<boolean>(false);
 
-  const head = ['Кличка', 'ID', 'Дата рождения', 'Тип Питомца'];
+  const head = ['Кличка', 'ID', 'Дата рождения', 'Тип питомца'];
 
   const clearFilterButtonClasses = classNames(
     'icon',
@@ -70,8 +71,8 @@ const PetsPage: React.FC = () => {
         </div>
         <div className={cls.fieldsBlock}>
             <Button children='Создать' classes={createButtonClasses} />
-            <Button children='Изменить' classes={editButtonClasses} />
-            <Button children='Удалить' classes={deleteButtonClasses} />
+            <Button children='Изменить' classes={editButtonClasses} disabled={rowSelected? false : true}/>
+            <Button children='Удалить' classes={deleteButtonClasses} disabled={rowSelected? false : true}/>
             <Button children='Excel' classes={excelButtonClasses}/>
         </div>
         <Table head={head} data={pets}/>
