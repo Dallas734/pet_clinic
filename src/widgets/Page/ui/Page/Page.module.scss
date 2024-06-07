@@ -13,6 +13,16 @@
     border-color: #867aeb;
 }
 
+.historyBar {
+    display: block;
+    min-width: 100vmax;
+}
+
+.historyBar .hh {
+    border: 1px solid;
+    border-color: #867aeb;
+}
+
 .content {
     width: 100%;
     //display: flex;
