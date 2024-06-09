@@ -1,34 +1,18 @@
 .page {
     min-height: 100vh;
+    width: 100%;
     display: flex;
     color: var(--color-text-theme)
 }
 
-.historyBar {
-    display: block;
-    min-width: 100vmax;
+.pageZone {
+    width: 100%;
 }
 
-.historyBar .hh {
-    border: 1px solid;
-    border-color: #867aeb;
-}
-
-.historyBar {
-    display: block;
-    min-width: 100vmax;
-}
-
-.historyBar .hh {
-    border: 1px solid;
-    border-color: #867aeb;
-}
 
 .content {
     width: 100%;
-    //display: flex;
-    // justify-content: center;
-    // align-items: center;
     flex-wrap: wrap;
-    margin-left: 10px;
+    display: flex;
+    padding: 12px;
 }
