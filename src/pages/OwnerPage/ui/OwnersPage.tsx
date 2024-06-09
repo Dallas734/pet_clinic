@@ -21,21 +21,29 @@ const OwnersPage: React.FC = () => {
 
   const createButtonClasses = classNames(
     'icon',
+    'crud',
+    'border-radius',
     'createButton'
   ).split(' ');
 
   const editButtonClasses = classNames(
     'icon',
+    'crud',
+    'border-radius',
     'editButton'
   ).split(' ');
 
   const deleteButtonClasses = classNames(
     'icon',
+    'crud',
+    'border-radius',
     'deleteButton'
   ).split(' ');
 
   const  excelButtonClasses = classNames(
     'icon',
+    'crud',
+    'border-radius',
     'excelButton'
   ).split(' ');
 

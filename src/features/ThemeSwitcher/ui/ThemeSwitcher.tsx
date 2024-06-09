@@ -9,6 +9,7 @@ export const ThemeSwitcher = memo(() => {
     const buttonClasses = classNames(
         'square-s',
         'icon-center',
+        'border-radius',
         { 'dark-theme': theme === Theme.DARK },
         { 'light-theme': theme === Theme.LIGHT }
     ).split(' ');

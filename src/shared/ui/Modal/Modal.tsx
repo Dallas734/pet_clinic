@@ -19,6 +19,7 @@ export const Modal = (props: ModalProps) => {
 
     const closeButtonClasses = classNames(
         'closeModal',
+        'transparent'
     ).split(' ');
 
     useEffect(() => {
