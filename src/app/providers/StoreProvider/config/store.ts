@@ -1,13 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit';
-import historyMapReducer from './slice/historyMapSlice';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import navReducer from '@/widgets/Page/model/slices/navSlice'
 
+
+const rootReducer = combineReducers ({
+  nav: navReducer
+})
 
 export const store = configureStore({
-  reducer: {
-    historyMap: historyMapReducer,
-  }
+  reducer: rootReducer
 });
 
 
 export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.dispatch>;
+export type RootState = ReturnType<typeof rootReducer>;
