@@ -6,7 +6,7 @@ import {
 } from "@/widgets/SideNavBar/ui/SideNavBar";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { add } from "@/app/providers/StoreProvider/config/slice/historyMapSlice";
+import { add, setCurrentPath } from "@/widgets/Page/model/slices/navSlice";
 
 interface NavDropListProps {
   ListType: NavBarListName;
@@ -27,9 +27,11 @@ export const NavDropList = (props: NavDropListProps) => {
     }
   };
 
-  const historyPath = (key :string, value : string) => {
-    dispatch(add({ name: key, path: "http://localhost:3000/" + value }));
-  };
+  const historyPath = (key: string, value: string) => {
+    dispatch(add({ name: key, path: value }));
+    dispatch(setCurrentPath(value));
+  };  
+  
 
   return (
     <div>

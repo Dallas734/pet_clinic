@@ -1,17 +1,50 @@
-.historyNav {
-    display: flex;
+@import '/src/app/styles/index.scss';
+
+.container {
+
 }
 
-.linkItem {
-    width: auto;
+.navList {
     display: flex;
-    margin-left: 15px;
+    flex-direction: row;
+    list-style: none;
+    border-bottom: 1px solid var(--color-purple);
 }
 
-.linkItem:hover {
-    width: auto;
+.listItem {
     display: flex;
-    margin-left: 15px;
-    border-bottom: 1px solid;
-    border-color: #867aeb;
+    align-items: center;
+    padding-inline: 12px;
+    border-bottom: 2px solid transparent;
+    font-weight: 500;
+    font-size: 13px;
+    transition-duration: 0s;
+
+
+    @include hover {
+        border-bottom: 2px solid var(--color-purple-light);
+        color: var(--active-nav-history-link-color);
+
+        * {
+            &::after,
+            &::before {
+                background-color: var(--active-nav-history-link-color);;
+            }
+        }
+    }
+}
+
+.itemLink{
+    height: 36px;
+    display: flex;
+    align-items: center;
+
+    &:not(:last-child) {
+        margin-right: 10px;
+    }
+}
+
+.activeLink {
+    color: var(--active-nav-history-link-color);
+    border-bottom: 2px solid var(--color-purple-light);
 }

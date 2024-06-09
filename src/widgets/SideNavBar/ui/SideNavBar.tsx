@@ -9,11 +9,13 @@ import { useGetTimeZoneString } from '@/shared/lib/hooks/useTimeZone/useTimeZone
 export interface DictionaryListLinks {
     [key: string]: string;
 }
+
 export enum NavBarListName {
     Petclinic = 'Petclinic',
     MasterData = 'Master data',
     Administration = 'Administration'
 }
+
 
 
 export const SideNavBar = memo(() => {
@@ -35,24 +37,24 @@ export const SideNavBar = memo(() => {
     //потом все что ниже в отдельный файл перенесу
 
     const Petclinic: DictionaryListLinks[] = [
-        { "Приемы": "visit" },
-        { "Питомцы": "pets" },
-        { "Владельцы": "owners" }
+        { "Приемы": "/main/visit" },
+        { "Питомцы": "/main/pets" },
+        { "Владельцы": "/main/owners" }
     ];
 
     const MasterData: DictionaryListLinks[] = [
-        { "Ветеринары": "veterinarians" },
-        { "Специальности": "specialties" },
-        { "Типы питомцев": "petTypes" },
-        { "Пользователи": "users" }
+        { "Ветеринары": "/main/veterinarians" },
+        { "Специальности": "/main/specialties" },
+        { "Типы питомцев": "/main/petTypes" },
+        { "Пользователи": "/main/users" }
     ];
 
     const Admin: DictionaryListLinks[] = [
-        { "Консоль JMX": "JMXConsole" },
-        { "Забаненные": "Locks" },
-        { "Ресурсные роли": "ResourceRoles" },
-        { "Row-level роли": "Row-levelRoles" },
-        { "Инспектор сущностей": "EntityInspector" }
+        { "Консоль JMX": "/main/JMXConsole" },
+        { "Забаненные": "/main/Locks" },
+        { "Ресурсные роли": "/main/ResourceRoles" },
+        { "Row-level роли": "/main/Row-levelRoles" },
+        { "Инспектор сущностей": "/main/EntityInspector" }
     ];
 
 
