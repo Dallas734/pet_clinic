@@ -183,7 +183,7 @@
 
 }
 
-.deleteButton {
+.crud.deleteButton {
     background-color: var(--color-button-default-red);
     color: var(--color-light);
     background-image: url(../../assets/icons/buttons/cross.svg);
@@ -201,59 +201,6 @@
 .excelButton {
     background-image: url(../../assets/icons/buttons/excel.svg);
 
-.createButton {
-    height: 34px;
-    width: 100px;
-    background-color: var(--color-purple-light);
-    border-radius: var(--border-radius);
-    font-size: var(--font-size-xs);
-    color: var(--color-light);
-    @include hover {
-        filter: brightness(0.9);
-    }
-    background-image: url(../../assets/icons/buttons/blank.svg);    
-}
-
-.editButton {
-    height: 34px;
-    width: 100px;
-    background-color: var(--color-anti-flash-white);
-    border-radius: var(--border-radius);
-    font-size: var(--font-size-xs);
-    background-image: url(../../assets/icons/buttons/pencil.svg);
-    color: var(--color-purple-navy);
-    text-align: center;
-    @include hover {
-        filter: brightness(0.9);
-    }
-}
-
-.deleteButton {
-    height: 34px;
-    width: 100px;
-    background-color: var(--color-light-red);
-    border-radius: var(--border-radius);
-    font-size: var(--font-size-xs);
-    background-image: url(../../assets/icons/buttons/cross.svg);
-    color: var(--color-light);
-    text-align: center;
-    @include hover {
-        filter: brightness(0.9);
-    }
-}
-
-.excelButton {
-    height: 34px;
-    width: 100px;
-    background-color: var(--color-anti-flash-white);
-    border-radius: var(--border-radius);
-    font-size: var(--font-size-xs);
-    background-image: url(../../assets/icons/buttons/excel.svg);
-    color: var(--color-purple-navy);
-    text-align: center;
-    @include hover {
-        filter: brightness(0.9);
-    }
 }
 
 .loginButton {
