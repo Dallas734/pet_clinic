@@ -25,10 +25,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: getRouteLogin(),
         element: <LoginPage/>,
     },
-    [AppRoutes.NOT_FOUND]: {
-        path: '*',
-        element: <NotFoundPage />,
-    },
+    //main и login всегда должны быть первыми!
     [AppRoutes.PETS]: {
         path: getRoutePets(),
         element: <PetsPage />
@@ -44,5 +41,12 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.SPECIALITIES]: {
         path: getRouteSpecialities(),
         element: <SpecialitiesPage />
-    }
+    },
+
+
+    //эта странца всегда должна быть последней!
+    [AppRoutes.NOT_FOUND]: {
+        path: '*',
+        element: <NotFoundPage />,
+    },
 };

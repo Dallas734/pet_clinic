@@ -11,8 +11,8 @@ export enum AppRoutes {
 
 export const getRouteLogin = () => '/';
 export const getRouteMain = () => '/main';
-export const getRoutePets = () => '/pets';
-export const getRouteOwners = () => '/owners';
-export const getRouteVeterinarians = () => '/veterinarians';
-export const getRouteSpecialities = () => '/specialities';
+export const getRoutePets = () => '/main/pets';
+export const getRouteOwners = () => '/main/owners';
+export const getRouteVeterinarians = () => '/main/veterinarians';
+export const getRouteSpecialities = () => '/main/specialities';
 

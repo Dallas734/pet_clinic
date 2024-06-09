@@ -3,6 +3,9 @@ import { Route, Routes } from 'react-router-dom';
 import { PageLoader } from '@/widgets/PageLoader';
 import { routeConfig } from '../config/routeConfig';
 import { AppRoutesProps } from '@/shared/types/router';
+import { Page } from '@/widgets/Page';
+import { MainPage } from '@/pages/MainPage';
+import { LoginPage } from '@/pages/LoginPage';
 
 
 const AppRouter = () => {
@@ -20,7 +23,13 @@ const AppRouter = () => {
         );
     }, []);
 
-    return <Routes>{Object.values(routeConfig).map(renderWithWrapper)}</Routes>;
+    return <Routes>
+        <Route path='/' element={<LoginPage/>}/>
+        <Route path='/main' element={<Page/>}>
+            <Route index element={<MainPage/>}/>
+            {Object.values(routeConfig).slice(2).map(renderWithWrapper)}
+        </Route>
+    </Routes>;
 };
 
 export default memo(AppRouter);

@@ -18,6 +18,7 @@ export const Modal = (props: ModalProps) => {
     const modalRef = useRef<HTMLDivElement>(null);
 
     const closeButtonClasses = classNames(
+        'closeButton',
         'closeModal',
         'transparent'
     ).split(' ');

@@ -1,24 +1,20 @@
 import { SideNavBar } from "@/widgets/SideNavBar";
 import HistoryNav from "@/widgets/HistoryNav/ui/HistoryNav";
-import { memo, ReactNode } from "react";
+import { memo } from "react";
 import cls from "./Page.module.scss";
+import { Outlet } from "react-router";
 
-interface PageProps {
-  children: ReactNode;
-  id: string;
-}
 
-export const Page = memo((props: PageProps) => {
-  const { children, id } = props;
+export const Page = memo(() => {
   return (
-    <main id={id} className={cls.page}>
+    <div className={cls.page}>
       <SideNavBar />
-      <div className={cls.historyBar}>
-        <div className={cls.hh}>
-          <HistoryNav />
-        </div>
-        <div className={cls.content}>{children}</div>
+      <div className={cls.pageZone}>
+        <HistoryNav />
+        <main className={cls.content}>
+         <Outlet/>
+        </main>
       </div>
-    </main>
+    </div>
   );
 });
