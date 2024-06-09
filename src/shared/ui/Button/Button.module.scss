@@ -4,14 +4,30 @@
     @include reset-button;
     padding: 0 16px;
     height: var(--button-height);
+    font-size: var(--font-size-xs);
+    text-align: center;
     cursor: pointer;
     font-family: 'OpenSans', sans-serif;
+
+    &:disabled {
+        cursor:unset;
+        opacity: 0.3;
+    }
+}
+
+.border-radius {
+    border-radius: var(--border-radius);
+}
+
+.transparent {
+    background-color: transparent;
 }
 
 .icon {
-    background: no-repeat 10px;
+    background-repeat: no-repeat;
+    background-position: 10px;
     background-size: 15px;
-    padding-left: 30px;
+    padding-left: 32px;
 }
 
 .icon-large {
@@ -44,6 +60,7 @@
         color: var(--button-color);
         opacity: 0.9;
     }
+
 
     &::after {
         content: '';
@@ -84,123 +101,133 @@
 .arrowLeftButton {
     background-color: var(--color-gray);
 
-    @include hover {
-        filter: brightness(1.2);
-    }
-
     &::after {
         background-image: url(../../assets/icons/buttons/arrow-left.svg);
         @include square(20px);
     }
+
+    &:not(:disabled)
+    {
+        @include hover {
+            filter: brightness(1.2);
+        }
+    }
+    
 }
 
 .leaveButton {
     background-color: var(--color-purple);
 
-    @include hover {
-        filter: brightness(1.2);
-    }
 
     &::after {
         background-image: url(../../assets/icons/buttons/leave.svg);
         @include square(25px);
     }
+
+    &:not(:disabled)
+    {
+        @include hover {
+            filter: brightness(1.2);
+        }
+    }
+
+}
+
+
+.loginButton,
+.createButton {
+    &:not(:disabled)
+    {
+        @include hover {
+            background-color: var(--color-purple);
+        }
+    }
+
+}
+
+.crud {
+    background-color: var(--theme-crud-button-color-bg);
+    transition-duration: 0s;
+    color: currentColor;
+    font-weight: 500;
+
+    &:not(:disabled)
+    {
+        @include hover {
+            background-color: var(--color-hover-crud-button-bg);
+        }
+    }
+
 }
 
 .clearFilterButton {
-    height: 34px;
-    width: 160px;
-    background-color: var(--color-anti-flash-white);
-    border-radius: var(--border-radius);
-    font-size: var(--font-size-xs);
     background-image: url(../../assets/icons/buttons/eraser.svg);
-    color: var(--color-purple-navy);
-    @include hover {
-        filter: brightness(0.9);
-    }
 }
 
 .createButton {
-    height: 34px;
-    width: 100px;
     background-color: var(--color-purple-light);
-    border-radius: var(--border-radius);
-    font-size: var(--font-size-xs);
     color: var(--color-light);
-    @include hover {
-        filter: brightness(0.9);
+    background-image: url(../../assets/icons/buttons/blank.svg);  
+
+    &:not(:disabled)
+    {
+        @include hover {
+            background-color: var(--color-purple-light);
+            filter: brightness(1.2);
+        }
     }
-    background-image: url(../../assets/icons/buttons/blank.svg);    
 }
 
 .editButton {
-    height: 34px;
-    width: 100px;
-    background-color: var(--color-anti-flash-white);
-    border-radius: var(--border-radius);
-    font-size: var(--font-size-xs);
     background-image: url(../../assets/icons/buttons/pencil.svg);
-    color: var(--color-purple-navy);
-    text-align: center;
-    @include hover {
-        filter: brightness(0.9);
-    }
+
 }
 
-.deleteButton {
-    height: 34px;
-    width: 100px;
-    background-color: var(--color-light-red);
-    border-radius: var(--border-radius);
-    font-size: var(--font-size-xs);
-    background-image: url(../../assets/icons/buttons/cross.svg);
+.crud.deleteButton {
+    background-color: var(--color-button-default-red);
     color: var(--color-light);
-    text-align: center;
-    @include hover {
-        filter: brightness(0.9);
+    background-image: url(../../assets/icons/buttons/cross.svg);
+
+    &:not(:disabled)
+    {
+        @include hover {
+            background-color: var(--color-button-default-red);
+            box-shadow: inset 0 0 100px 100px rgba(255, 0, 0, 0.5);
+        }
     }
+
 }
 
 .excelButton {
-    height: 34px;
-    width: 100px;
-    background-color: var(--color-anti-flash-white);
-    border-radius: var(--border-radius);
-    font-size: var(--font-size-xs);
     background-image: url(../../assets/icons/buttons/excel.svg);
-    color: var(--color-purple-navy);
-    text-align: center;
-    @include hover {
-        filter: brightness(0.9);
-    }
+
 }
 
 .loginButton {
     width: 200px;
     height: 40px;
     background-color: var(--color-purple-light);
-    border-radius: var(--border-radius);
     opacity: 0.85;
-    font-size: var(--font-size-xs);
+
     font-weight: 700;
     color: var(--color-light);
-
-    @include hover {
-        background-color: var(--color-purple);
-    }
 }
 
 .accountsButton {
     align-self: flex-end;
     color: var(--color-purple-light);
+    background-color: transparent;
     padding-block: 0;
     padding-right: 0;
     margin-bottom: -18px;
-    font-size: var(--font-size-xs);
     background-image: url(../../assets/icons/buttons/accent.svg);
-    @include hover {
-        opacity: 0.7;
+    &:not(:disabled)
+    {
+        @include hover {
+            opacity: 0.7;
+        }
     }
+
 
 }
 
@@ -212,19 +239,26 @@
     right: 12px;
     background-color: var(--theme-button-color);
     color: var(--color-theme);
-    border-radius: var(--border-radius);
     transition-duration: 0s;
 
-    @include hover {
-        @include square(32px);
-        border: 2px solid var(--button-accent-hover-color);
+    &:not(:disabled)
+    {
+        @include hover {
+            @include square(32px);
+            border: 2px solid var(--button-accent-hover-color);
+        }
     }
+
 }
 
 .dark-theme {
-    @include hover {
-        filter: brightness(1.2);
+    &:not(:disabled)
+    {
+        @include hover {
+            filter: brightness(1.2);
+        }
     }
+
     &::after{
         background: url('../../assets/icons/theme/light.svg') center/cover no-repeat;
     }
@@ -275,7 +309,11 @@
         rotate: -45deg;
     }
 
-    @include hover {
-        opacity: 0.7;
+    &:not(:disabled)
+    {
+        @include hover {
+            opacity: 0.7;
+        }
     }
+
 }

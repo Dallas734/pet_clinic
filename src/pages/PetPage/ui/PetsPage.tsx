@@ -22,26 +22,36 @@ const PetsPage: React.FC = () => {
 
   const clearFilterButtonClasses = classNames(
     'icon',
+    'crud',
+    'border-radius',
     'clearFilterButton'
   ).split(' ');
 
   const createButtonClasses = classNames(
     'icon',
-    'createButton'
+    'crud',
+    'border-radius',
+    'createButton',
   ).split(' ');
 
   const editButtonClasses = classNames(
     'icon',
+    'crud',
+    'border-radius',
     'editButton'
   ).split(' ');
 
   const deleteButtonClasses = classNames(
     'icon',
+    'crud',
+    'border-radius',
     'deleteButton'
   ).split(' ');
 
   const  excelButtonClasses = classNames(
     'icon',
+    'crud',
+    'border-radius',
     'excelButton'
   ).split(' ');
 

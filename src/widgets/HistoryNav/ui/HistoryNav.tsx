@@ -5,7 +5,6 @@ import cls from "./HistoryNav.module.scss";
 import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {
-  add,
   removePath,
 } from "@/app/providers/StoreProvider/config/slice/historyMapSlice";
 
