@@ -54,6 +54,7 @@ const LoginForm = memo(() => {
 
     const LoginButtonClasses = classNames(
         'loginButton',
+        'border-radius'
     ).split(' ');
 
     const AccountsListButtonClasses = classNames(
