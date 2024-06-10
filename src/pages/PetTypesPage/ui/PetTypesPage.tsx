@@ -1,18 +1,18 @@
-import { Page } from "@/widgets/Page";
 import React, { useState } from "react";
-import cls from "./SpecialitiesPage.module.scss";
-import Speciality from "@/entities/Speciality";
+import cls from "./PetTypesPage.module.scss";
+import PetType from "@/entities/PetType";
 import "react-input-range/lib/css/index.css";
 import { Button } from "@/shared/ui/Button";
 import { Table } from "@/shared/ui/Table";
 import classNames from "classnames";
 
-const SpecialitiesPage: React.FC = () => {
-  const [specialties, setSpecialities] = useState<Array<Speciality>>([]);
+const PetTypesPage: React.FC = () => {
+  const [petTypes, setPetTypes] = useState<Array<PetType>>([]);
   const [name, setName] = useState<string>("");
+  const  [color, setColor] = useState<string>("");
   const [rowSelected, setRowSelected] = useState<boolean>(false);
 
-  const head = ["Название"];
+  const head = ["Название", "Раскраска"];
 
   const createButtonClasses = classNames(
     "icon",
@@ -51,10 +51,10 @@ const SpecialitiesPage: React.FC = () => {
           disabled={rowSelected ? false : true}
         />
       </div>
-      <Table head={head} data={specialties} />
+      <Table head={head} data={petTypes} />
     </section>
     //</Page>
   );
 };
 
-export default SpecialitiesPage;
+export default PetTypesPage;
