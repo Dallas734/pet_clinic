@@ -3,15 +3,19 @@ import { MainPage } from '@/pages/MainPage';
 import { NotFoundPage } from '@/pages/NotFoundPage';
 import { OwnersPage } from '@/pages/OwnerPage';
 import PetsPage from '@/pages/PetPage/ui/PetsPage';
+import { PetTypesPage } from '@/pages/PetTypesPage';
 import { SpecialitiesPage } from '@/pages/SpecialitiesPage';
+import { UsersPage } from '@/pages/UsersPage';
 import { VeterinariansPage } from '@/pages/VeterinariansPage';
 import {
     AppRoutes,
     getRouteLogin,
     getRouteMain,
     getRouteOwners,
+    getRoutePetTypes,
     getRoutePets,
     getRouteSpecialities,
+    getRouteUsers,
     getRouteVeterinarians
 } from '@/shared/const/router';
 import { AppRoutesProps } from '@/shared/types/router';
@@ -41,6 +45,14 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.SPECIALITIES]: {
         path: getRouteSpecialities(),
         element: <SpecialitiesPage />
+    },
+    [AppRoutes.PET_TYPES]: {
+        path: getRoutePetTypes(),
+        element: <PetTypesPage />
+    },
+    [AppRoutes.USERS]: {
+        path: getRouteUsers(),
+        element: <UsersPage />
     },
 
 

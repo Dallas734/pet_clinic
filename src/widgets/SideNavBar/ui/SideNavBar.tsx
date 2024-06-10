@@ -44,7 +44,7 @@ export const SideNavBar = memo(() => {
 
     const MasterData: DictionaryListLinks[] = [
         { "Ветеринары": "/main/veterinarians" },
-        { "Специальности": "/main/specialties" },
+        { "Специальности": "/main/specialities" },
         { "Типы питомцев": "/main/petTypes" },
         { "Пользователи": "/main/users" }
     ];
