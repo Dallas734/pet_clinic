@@ -47,7 +47,7 @@ const OwnersPage: React.FC = () => {
   ).split(" ");
 
   return (
-    <section>
+    <section className={cls.container}>
       <div className={cls.fieldsBlock}>
         <Button children="Создать" classes={createButtonClasses} />
         <Button

@@ -5,12 +5,19 @@ import "react-input-range/lib/css/index.css";
 import { Button } from "@/shared/ui/Button";
 import { Table } from "@/shared/ui/Table";
 import classNames from "classnames";
+import { Input } from "@/shared/ui/Input";
+import cnBind from "classnames/bind";
+import Split from 'react-split';
+import SplitPane from 'react-split-pane';
+import { Pane, ResizablePanes } from 'resizable-panes-react';
 
 const PetTypesPage: React.FC = () => {
   const [petTypes, setPetTypes] = useState<Array<PetType>>([]);
   const [name, setName] = useState<string>("");
-  const  [color, setColor] = useState<string>("");
+  const [color, setColor] = useState<string>("");
   const [rowSelected, setRowSelected] = useState<boolean>(false);
+
+  const cn = cnBind.bind(cls);
 
   const head = ["Название", "Раскраска"];
 
@@ -35,10 +42,14 @@ const PetTypesPage: React.FC = () => {
     "deleteButton"
   ).split(" ");
 
+  const classes = ["fieldsBlock"];
+  const [sizes, setSizes] = useState([100, '30%', 'auto']);
   return (
     //<Page id="specialitiesPage">
     <section className={cls.container}>
-      <div className={cls.fieldsBlock}>
+    <ResizablePanes uniqueId="re" vertical resizerClass={cls.border} resizerSize={1}>
+        <Pane id="PO" size={4   }>
+      <div className={cls.fieldsBlock} style={{paddingRight: 10}}>
         <Button children="Создать" classes={createButtonClasses} />
         <Button
           children="Изменить"
@@ -50,8 +61,28 @@ const PetTypesPage: React.FC = () => {
           classes={deleteButtonClasses}
           disabled={rowSelected ? false : true}
         />
+        <Table head={head} data={petTypes} />
       </div>
-      <Table head={head} data={petTypes} />
+      </Pane>
+        <Pane id="P1" size={2}>
+      <div
+        className={cn(
+          ...classes.map((className) => cls[className] || className)
+        )}
+        style={{marginLeft: 10}}
+      >
+        <div className={cls.Field}>
+        <label>Название</label>
+        <Input />
+        </div>
+        <div className={cls.Field}>
+            <label>Раскраска</label>
+            <Input />
+        </div>
+
+      </div>
+      </Pane>
+      </ResizablePanes>
     </section>
     //</Page>
   );
