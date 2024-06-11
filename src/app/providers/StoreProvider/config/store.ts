@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import navReducer from '@/widgets/Page/model/slices/navSlice'
+import { PetTypes } from '../../query';
 
 
 const rootReducer = combineReducers ({
-  nav: navReducer
+  nav: navReducer,
+  [PetTypes.reducerPath]: PetTypes.reducer
 })
 
 export const store = configureStore({
