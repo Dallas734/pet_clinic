@@ -11,7 +11,13 @@ const UsersPage: React.FC = () => {
   const [name, setName] = useState<string>("");
   const [rowSelected, setRowSelected] = useState<boolean>(false);
 
-  const head = ["Логин", "Имя", "Фамилия", "Email", "Активен"];
+  const head = [
+    { index: "login", name: "Логин" },
+    { index: "name", name: "Имя" },
+    { index: "surname", name: "Фамилия" },
+    { index: "email", name: "Email" },
+    { index: "activity", name: "Активен" },
+  ];
 
   const createButtonClasses = classNames(
     "icon",

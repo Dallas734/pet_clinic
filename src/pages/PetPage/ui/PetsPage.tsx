@@ -17,7 +17,12 @@ const PetsPage: React.FC = () => {
   const [birthday, setBirthday] = useState<number>(1995);
   const [rowSelected, setRowSelected] = useState<boolean>(false);
 
-  const head = ["Кличка", "ID", "Дата рождения", "Тип питомца"];
+  const head = [
+    {index: "surname", name: "Кличка"}, 
+    {index: "id", name: "ID"}, 
+    {index: "birthday", name: "Дата рождения"}, 
+    {index: "type", name: "Тип питомца"}
+  ];
 
   const clearFilterButtonClasses = classNames(
     "icon",

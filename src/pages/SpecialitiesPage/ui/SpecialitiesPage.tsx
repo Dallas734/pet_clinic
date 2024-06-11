@@ -14,7 +14,7 @@ const SpecialitiesPage: React.FC = () => {
   const [name, setName] = useState<string>("");
   const [rowSelected, setRowSelected] = useState<boolean>(false);
 
-  const head = ["Название"];
+  const head = [{ index: "name", name: "Название" }];
 
   const createButtonClasses = classNames(
     "icon",

@@ -1,10 +1,11 @@
 import React from "react";
 import cls from "./Table.module.scss";
 import cnBind from "classnames/bind";
+import TableColumn from "./TableColumn";
 
 interface TableProps<T> {
   classes?: string[];
-  head: string[];
+  head: TableColumn[];
   data?: Array<T>;
 }
 
@@ -22,19 +23,30 @@ export const Table = <T extends Object>(props: TableProps<T>) => {
         >
           <thead>
             <tr>
-              <th style={{ width: 10 }}></th>
+              {/* <th style={{ width: 10 }}></th> */}
               {head.map((el) => (
-                <th className={cls.head} key={el}>{el}</th>
+                <th className={cls.head} key={el.index}>
+                  {el.name}
+                </th>
               ))}
-              <th style={{ width: 10 }}></th>
+              {/* <th style={{ width: 10 }}></th> */}
             </tr>
           </thead>
           <tbody>
             {data.map((el: T) => (
               <tr>
-                {Object.keys(data).map((p) => (
-                  <td>{p}</td>
-                ))}
+                {
+                  head.map((column) => {
+                    type P = keyof typeof el;
+                    const property = el[column.index as P];
+                    console.log(property);
+                    return (
+                      <td key={column.index}>
+                        <>{property}</>
+                      </td>
+                    );
+                  })
+                }
               </tr>
             ))}
           </tbody>

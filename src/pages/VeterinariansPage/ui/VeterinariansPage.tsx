@@ -13,7 +13,10 @@ const OwnersPage: React.FC = () => {
   const [lastName, setSurname] = useState<string>("");
   const [rowSelected, setRowSelected] = useState<boolean>(false);
 
-  const head = ["Имя", "Фамилия"];
+  const head = [
+    { index: "name", name: "Имя" },
+    { index: "surname", name: "Фамилия" },
+  ];
 
   const createButtonClasses = classNames(
     "icon",
