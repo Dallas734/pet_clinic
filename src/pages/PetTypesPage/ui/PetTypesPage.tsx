@@ -7,8 +7,6 @@ import { Table } from "@/shared/ui/Table";
 import classNames from "classnames";
 import { Input } from "@/shared/ui/Input";
 import cnBind from "classnames/bind";
-import Split from 'react-split';
-import SplitPane from 'react-split-pane';
 import { Pane, ResizablePanes } from 'resizable-panes-react';
 
 const PetTypesPage: React.FC = () => {
@@ -48,7 +46,7 @@ const PetTypesPage: React.FC = () => {
     //<Page id="specialitiesPage">
     <section className={cls.container}>
     <ResizablePanes uniqueId="re" vertical resizerClass={cls.border} resizerSize={1}>
-        <Pane id="PO" size={4   }>
+        <Pane id="PO" size={4}>
       <div className={cls.fieldsBlock} style={{paddingRight: 10}}>
         <Button children="Создать" classes={createButtonClasses} />
         <Button
