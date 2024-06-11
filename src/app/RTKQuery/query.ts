@@ -13,7 +13,7 @@ export const baseQuery = fetchBaseQuery({
     },
   });
 
-  export const PetTypes = createApi({
+  export const PetTypesApi = createApi({
     reducerPath: 'PetTypes',
     baseQuery: baseQuery,
     tagTypes: ['PetType'],
@@ -26,6 +26,8 @@ export const baseQuery = fetchBaseQuery({
         })
     })
   })
+
+  export const { useFetchAllPetTypesQuery } = PetTypesApi;
 
 // export const AdminPanel = createApi({
 //     reducerPath: 'AdminPanel',

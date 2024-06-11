@@ -9,19 +9,18 @@ import { Input } from "@/shared/ui/Input";
 import cnBind from "classnames/bind";
 import { Pane, ResizablePanes } from 'resizable-panes-react';
 import axios from 'axios';
+import { PetTypesApi } from "@/app/RTKQuery/query";
 
 const PetTypesPage: React.FC = () => {
-  const [petTypes, setPetTypes] = useState<PetType[]>([]);
+  // const [petTypes, setPetTypes] = useState<PetType[]>([]);
   const [name, setName] = useState<string>("");
   const [color, setColor] = useState<string>("");
   const [rowSelected, setRowSelected] = useState<boolean>(false);
+  const { data : petTypes} = PetTypesApi.useFetchAllPetTypesQuery();
 
   useEffect(() => {
-    axios.get<PetType[]>('http://localhost:8080/rest/entities/petclinic_PetType')
-    .then((response => {setPetTypes(response.data)}));
-    console.log(petTypes);
-    // setPetTypes(respone);
-  }, [petTypes]);
+    
+  }, []);
 
   const cn = cnBind.bind(cls);
 
@@ -49,7 +48,6 @@ const PetTypesPage: React.FC = () => {
   ).split(" ");
 
   const classes = ["fieldsBlock"];
-  const [sizes, setSizes] = useState([100, '30%', 'auto']);
   return (
     //<Page id="specialitiesPage">
     <section className={cls.container}>

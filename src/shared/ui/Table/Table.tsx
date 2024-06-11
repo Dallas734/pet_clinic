@@ -33,8 +33,8 @@ export const Table = <T extends Object>(props: TableProps<T>) => {
             </tr>
           </thead>
           <tbody>
-            {data.map((el: T) => (
-              <tr>
+            {data.map((el: T, index) => (
+              <tr key={index}>
                 {
                   head.map((column) => {
                     type P = keyof typeof el;
