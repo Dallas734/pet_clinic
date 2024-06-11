@@ -11,6 +11,11 @@
     margin-bottom: 10px;
 }
 
+.border {
+    border: 5px solid var(--color-primary);
+    border-radius: 10px;
+}
+
 .Field {
     display: flex;
     flex-direction: column;
