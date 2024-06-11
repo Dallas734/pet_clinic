@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import cls from "./PetTypesPage.module.scss";
 import PetType from "@/entities/PetType";
 import "react-input-range/lib/css/index.css";
@@ -8,6 +8,7 @@ import classNames from "classnames";
 import { Input } from "@/shared/ui/Input";
 import cnBind from "classnames/bind";
 import { Pane, ResizablePanes } from 'resizable-panes-react';
+import axios from 'axios';
 
 const PetTypesPage: React.FC = () => {
   const [petTypes, setPetTypes] = useState<Array<PetType>>([]);
@@ -15,9 +16,16 @@ const PetTypesPage: React.FC = () => {
   const [color, setColor] = useState<string>("");
   const [rowSelected, setRowSelected] = useState<boolean>(false);
 
+  useEffect(() => {
+    axios.get<PetType[]>('http://localhost:8080/rest/entities/petclinic_PetType')
+    .then((response => {setPetTypes(response.data)}));
+    console.log(petTypes);
+    // setPetTypes(respone);
+  }, [petTypes]);
+
   const cn = cnBind.bind(cls);
 
-  const head = ["Название", "Раскраска"];
+  const head = [{index: "name", name: "Название"}, {index: "color", name: "Раскраска"}];
 
   const createButtonClasses = classNames(
     "icon",
