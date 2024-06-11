@@ -39,7 +39,6 @@ export const Table = <T extends Object>(props: TableProps<T>) => {
                   head.map((column) => {
                     type P = keyof typeof el;
                     const property = el[column.index as P];
-                    console.log(property);
                     return (
                       <td key={column.index}>
                         <>{property}</>

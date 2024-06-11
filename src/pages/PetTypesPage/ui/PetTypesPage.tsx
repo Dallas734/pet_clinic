@@ -11,7 +11,7 @@ import { Pane, ResizablePanes } from 'resizable-panes-react';
 import axios from 'axios';
 
 const PetTypesPage: React.FC = () => {
-  const [petTypes, setPetTypes] = useState<Array<PetType>>([]);
+  const [petTypes, setPetTypes] = useState<PetType[]>([]);
   const [name, setName] = useState<string>("");
   const [color, setColor] = useState<string>("");
   const [rowSelected, setRowSelected] = useState<boolean>(false);
