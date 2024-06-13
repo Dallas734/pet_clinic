@@ -7,6 +7,7 @@ import { PetTypesPage } from '@/pages/PetTypesPage';
 import { SpecialitiesPage } from '@/pages/SpecialitiesPage';
 import { UsersPage } from '@/pages/UsersPage';
 import { VeterinariansPage } from '@/pages/VeterinariansPage';
+import { VisitPage } from '@/pages/VisitPage';
 import {
     AppRoutes,
     getRouteLogin,
@@ -16,7 +17,8 @@ import {
     getRoutePets,
     getRouteSpecialities,
     getRouteUsers,
-    getRouteVeterinarians
+    getRouteVeterinarians,
+    getRouteVisit
 } from '@/shared/const/router';
 import { AppRoutesProps } from '@/shared/types/router';
 
@@ -54,6 +56,11 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: getRouteUsers(),
         element: <UsersPage />
     },
+    [AppRoutes.VISIT]: {
+        path: getRouteVisit(),
+        element: <VisitPage />
+    },
+
 
 
     //эта странца всегда должна быть последней!

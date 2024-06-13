@@ -1,12 +1,12 @@
 import cls from "./NavDropList.module.scss";
 import { Button } from "@/shared/ui/Button";
 import {
-  DictionaryListLinks,
   NavBarListName,
 } from "@/widgets/SideNavBar/ui/SideNavBar";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { add, setCurrentPath } from "@/widgets/Page/model/slices/navSlice";
+import { DictionaryListLinks } from "@/widgets/SideNavBar/model/Links";
 
 interface NavDropListProps {
   ListType: NavBarListName;
@@ -27,9 +27,9 @@ export const NavDropList = (props: NavDropListProps) => {
     }
   };
 
-  const historyPath = (key: string, value: string) => {
-    dispatch(add({ name: key, path: value }));
-    dispatch(setCurrentPath(value));
+  const historyPath = (name: string, path: string) => {
+    dispatch(add({ name, path }));
+    dispatch(setCurrentPath(path));
   };  
   
 
@@ -41,12 +41,12 @@ export const NavDropList = (props: NavDropListProps) => {
       {isOpen && (
         <ul className={cls.navList}>
           {ListLinks.map((item) => {
-            const [key, value] = Object.entries(item)[0];
+            const {name, path} = item;
 
             return (
-              <li className={cls.listItem} key={value}>
-                <Link to={value} onClick={() => historyPath(key,value)}>
-                  {key}
+              <li className={cls.listItem} key={path}>
+                <Link to={path} onClick={() => historyPath(name,path)}>
+                  {name}
                 </Link>
               </li>
             );
