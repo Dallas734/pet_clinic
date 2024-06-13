@@ -95,7 +95,7 @@ export const Table = <T extends Object>(props: TableProps<T>) => {
     setViewData(sortMultidimensionalArrayFunc(arrayForSort, id, currentSortMethod));
   }
 
-  classes.push("Table", "table");
+  classes.push("Table");
 
   return (
     <>

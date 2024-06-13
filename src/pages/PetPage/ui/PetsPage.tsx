@@ -9,9 +9,10 @@ import { Button } from "@/shared/ui/Button";
 import { Table } from "@/shared/ui/Table";
 import classNames from "classnames";
 import TableColumn from "@/shared/ui/Table/TableColumn";
+import { PetsApi } from "@/app/RTKQuery/query";
 
 const PetsPage: React.FC = () => {
-  const [pets, setPets] = useState<Array<Pet>>([]);
+  const { data: pets } = PetsApi.useFetchAllPetsQuery();
   const [identificationNumber, setId] = useState<string>("");
   const [petType, setPetType] = useState<string>("");
   const [owner, setOwner] = useState<string>("");
@@ -21,10 +22,11 @@ const PetsPage: React.FC = () => {
 
   useEffect(() => {
     setHead([
-      {index: "surname", name: "Кличка", sortMethod: "default"}, 
-      {index: "id", name: "ID", sortMethod: "default"}, 
-      {index: "birthday", name: "Дата рождения", sortMethod: "default"}, 
-      {index: "type", name: "Тип питомца", sortMethod: "default"}
+      {index: "name", name: "Кличка", sortMethod: "default"}, 
+      {index: "identificationNumber", name: "ID", sortMethod: "default"}, 
+      {index: "birthdate", name: "Дата рождения", sortMethod: "default"}, 
+      {index: "type", name: "Тип питомца", sortMethod: "default"},
+      {index: "owner", name: "Владелец", sortMethod: "default"}
     ]);
   }, [])
   const clearFilterButtonClasses = classNames(

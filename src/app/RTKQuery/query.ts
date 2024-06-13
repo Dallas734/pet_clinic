@@ -1,4 +1,5 @@
 import PetType from "@/entities/PetType";
+import Pet from "@/entities/Pet";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // import { IBannerType } from "../../types";
 // import {baseQueryWithReauth} from "../baseQueryWithReauth"
@@ -27,7 +28,22 @@ export const baseQuery = fetchBaseQuery({
     })
   })
 
+  export const PetsApi = createApi({
+    reducerPath: 'Pets',
+    baseQuery:  baseQuery,
+    tagTypes: ['Pet'],
+    endpoints: (builder) => ({
+      fetchAllPets: builder.query<Pet[], void>({
+        query: () => ({
+          url: 'petclinic_Pet'
+        }),
+        providesTags: ['Pet']
+      })
+    })
+  })
+
   export const { useFetchAllPetTypesQuery } = PetTypesApi;
+  export const { useFetchAllPetsQuery} = PetsApi;
 
 // export const AdminPanel = createApi({
 //     reducerPath: 'AdminPanel',
