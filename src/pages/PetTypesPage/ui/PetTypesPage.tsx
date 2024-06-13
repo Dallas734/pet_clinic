@@ -10,6 +10,7 @@ import cnBind from "classnames/bind";
 import { Pane, ResizablePanes } from 'resizable-panes-react';
 import axios from 'axios';
 import { PetTypesApi } from "@/app/RTKQuery/query";
+import TableColumn from "@/shared/ui/Table/TableColumn";
 
 const PetTypesPage: React.FC = () => {
   // const [petTypes, setPetTypes] = useState<PetType[]>([]);
@@ -17,14 +18,13 @@ const PetTypesPage: React.FC = () => {
   const [color, setColor] = useState<string>("");
   const [rowSelected, setRowSelected] = useState<boolean>(false);
   const { data : petTypes} = PetTypesApi.useFetchAllPetTypesQuery();
-
-  useEffect(() => {
-    
-  }, []);
+  const [head, setHead] = useState<Array<TableColumn>>([{index: "name", name: "Название", sortMethod: "default"}, {index: "color", name: "Раскраска", sortMethod: "none"}]);
 
   const cn = cnBind.bind(cls);
 
-  const head = [{index: "name", name: "Название"}, {index: "color", name: "Раскраска"}];
+  const newHead = (head: TableColumn[]) => setHead(head);
+
+  //const head = [{index: "name", name: "Название", sortMethod: "default"}, {index: "color", name: "Раскраска", sortMethod: "default"}];
 
   const createButtonClasses = classNames(
     "icon",
@@ -65,7 +65,7 @@ const PetTypesPage: React.FC = () => {
           classes={deleteButtonClasses}
           disabled={rowSelected ? false : true}
         />
-        <Table head={head} data={petTypes} />
+        <Table head={head} data={petTypes} setHead={newHead}/>
       </div>
       </Pane>
         <Pane id="P1" size={2}>

@@ -14,8 +14,8 @@ const OwnersPage: React.FC = () => {
   const [rowSelected, setRowSelected] = useState<boolean>(false);
 
   const head = [
-    { index: "name", name: "Имя" },
-    { index: "surname", name: "Фамилия" },
+    { index: "name", name: "Имя", sortMethod: "default"},
+    { index: "surname", name: "Фамилия", sortMethod: "default"},
   ];
 
   const createButtonClasses = classNames(

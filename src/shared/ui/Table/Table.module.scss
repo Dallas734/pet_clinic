@@ -31,7 +31,79 @@
     text-align: left;
     padding: 10px;
     width: auto;
-
 }
+
+tr:hover td{
+
+    background: var(--color-select-table);/* фон строки при наведении */
+
+  }
+
+  tbody tr:nth-child(odd) {
+
+    background-color: var(--light);/* фон нечетных строк */
+
+  }
+
+  tbody tr:nth-child(even) {
+
+    background-color: var(--color-button-default-light);/* фон четных строк */
+
+  }
+  
+  .sorting{
+    overflow: hidden;
+    resize: horizontal;
+    border: 1px solid #4f5c78;
+    font-weight: bold;
+    font-size: medium;
+    padding-right: 17px;
+    text-align: left;
+    padding: 10px;
+    width: auto;
+
+    position: relative;
+    padding-right: 20px !important;
+    cursor: pointer;
+    user-select: none;
+  
+    &.is-sortASC {
+      &:before{
+        color: #333;
+      }
+    }
+  
+    &.is-sortDESC {
+      &:after{
+        color: #333;
+      }
+    }
+  
+    &:before, &:after{
+      position: absolute;
+      content: '';
+      right: 5px;
+    }
+  
+    &:before{
+      top: 50%;
+      margin-top: -5px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 5px 5px 5px;
+      border-color: transparent transparent #333 transparent;
+    }
+  
+    &:after{
+      top: 50%;
+      margin-top: 1px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 5px 5px 0 5px;
+      border-color: #333 transparent transparent transparent;
+    }
+  }
 
 
