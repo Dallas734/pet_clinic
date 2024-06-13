@@ -1,0 +1,94 @@
+@import '/src/app/styles/index';
+
+.Calendar {
+  width: 244px;
+
+  .wrapper {
+    border: 1px solid var(--Purple-Dark-color);
+    border-radius: var(--border-radius);
+    padding-block: 6px;
+    background-color: transparent;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--Calendar-color);
+    font-weight: 500;
+    font-size: 14px;
+    padding: 0;
+    padding-block: 2px 4px;
+  }
+
+  :global {
+    .react-datepicker__header {
+      padding: 0 !important;
+      border-bottom: none;
+      background-color: transparent;
+    }
+
+    .react-datepicker__header--custom {
+      padding: 0 !important;
+      border-bottom: none;
+    }
+
+    .react-datepicker__day-names {
+      * {
+        font-weight: 500;
+        color: var(--Calendar-color); 
+      }
+    }
+
+    .react-datepicker__day--outside-month {
+      color: grey;
+      @include hover {
+        color: var(--color-light);
+      }
+    }
+
+    .react-datepicker__day {
+      &.react-datepicker__day--today {
+        border: 1px solid var(--Purple-Dark-color);
+        border-radius: var(--border-radius);
+        font-weight: bold;
+        background-color: transparent;
+        color: var(--color-gray);
+
+        @include hover {
+          background-color: var(--active-nav-history-link-color);
+        }
+      }
+      &.react-datepicker__day--keyboard-selected {
+        background-color: var(--active-nav-history-link-color);
+        color: var(--color-light);
+        font-weight: 700;
+        color: var(--color-light);
+        @include hover {
+          background-color: var(--active-nav-history-link-color);
+        }
+      }
+    }
+  }
+
+  .monthOutDays {
+    color: var(--color-gray);
+    @include hover {
+      background-color: var(--active-nav-history-link-color);
+    }
+  }
+
+  .monthDays {
+    color: var(--color-theme);
+    @include hover {
+      background-color: var(--active-nav-history-link-color);
+    }
+  }
+
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
