@@ -1,22 +1,22 @@
-import { Page } from "@/widgets/Page";
 import React, { useState } from "react";
-import FilterModal from '@/widgets/FilterModal/FilterModal'
-import cls from "./VeterinariansPage.module.scss";
-import Owner from "@/entities/Owner";
+import cls from "./UsersPage.module.scss";
+import User from "@/entities/User";
 import "react-input-range/lib/css/index.css";
 import { Button } from "@/shared/ui/Button";
 import { Table } from "@/shared/ui/Table";
 import classNames from "classnames";
 
-const OwnersPage: React.FC = () => {
-  const [veterinarians, setVeterinarians] = useState<Array<Owner>>([]);
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setSurname] = useState<string>("");
+const UsersPage: React.FC = () => {
+  const [users, setUsers] = useState<Array<User>>([]);
+  const [name, setName] = useState<string>("");
   const [rowSelected, setRowSelected] = useState<boolean>(false);
 
   const head = [
+    { index: "login", name: "Логин", sortMethod: "default"},
     { index: "name", name: "Имя", sortMethod: "default"},
     { index: "surname", name: "Фамилия", sortMethod: "default"},
+    { index: "email", name: "Email", sortMethod: "default"},
+    { index: "activity", name: "Активен", sortMethod: "default"},
   ];
 
   const createButtonClasses = classNames(
@@ -41,6 +41,7 @@ const OwnersPage: React.FC = () => {
   ).split(" ");
 
   return (
+    //<Page id="specialitiesPage">
     <section className={cls.container}>
       <div className={cls.fieldsBlock}>
         <Button children="Создать" classes={createButtonClasses} />
@@ -55,9 +56,10 @@ const OwnersPage: React.FC = () => {
           disabled={rowSelected ? false : true}
         />
       </div>
-      <Table head={head} data={veterinarians} />
+      <Table head={head} data={users} />
     </section>
+    //</Page>
   );
 };
 
-export default OwnersPage;
+export default UsersPage;

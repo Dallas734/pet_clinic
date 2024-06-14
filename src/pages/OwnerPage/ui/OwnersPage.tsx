@@ -16,7 +16,13 @@ const OwnersPage: React.FC = () => {
   const [phone, setPhone] = useState<string>("");
   const [rowSelected, setRowSelected] = useState<boolean>(false);
 
-  const head = ["Имя", "Фамилия", "Адрес", "Город", "Email", "Телефон"];
+  const head = [
+    {index: "name", name: "Имя", sortMethod: "default"}, 
+    {index: "surname", name: "Фамилия", sortMethod: "default"}, 
+    {index: "address", name: "Адрес", sortMethod: "default"}, 
+    {index: "city", name: "Город", sortMethod: "default"}, 
+    {index: "email", name: "Email", sortMethod: "default"}, 
+    {index: "phone", name: "Телефон", sortMethod: "default"}];
 
   const createButtonClasses = classNames(
     "icon",
@@ -47,7 +53,7 @@ const OwnersPage: React.FC = () => {
   ).split(" ");
 
   return (
-    <section>
+    <section className={cls.container}>
       <div className={cls.fieldsBlock}>
         <Button children="Создать" classes={createButtonClasses} />
         <Button

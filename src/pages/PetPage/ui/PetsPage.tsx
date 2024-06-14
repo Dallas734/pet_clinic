@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import cls from "./PetsPage.module.scss";
 import Pet from "@/entities/Pet";
 import { Input } from "@/shared/ui/Input";
@@ -8,17 +8,27 @@ import { Select } from "@/shared/ui/Select";
 import { Button } from "@/shared/ui/Button";
 import { Table } from "@/shared/ui/Table";
 import classNames from "classnames";
+import TableColumn from "@/shared/ui/Table/TableColumn";
+import { PetsApi } from "@/app/RTKQuery/query";
 
 const PetsPage: React.FC = () => {
-  const [pets, setPets] = useState<Array<Pet>>([]);
+  const { data: pets } = PetsApi.useFetchAllPetsQuery();
   const [identificationNumber, setId] = useState<string>("");
   const [petType, setPetType] = useState<string>("");
   const [owner, setOwner] = useState<string>("");
   const [birthday, setBirthday] = useState<number>(1995);
   const [rowSelected, setRowSelected] = useState<boolean>(false);
+  const [head, setHead] =  useState<TableColumn[]>([]);
 
-  const head = ["Кличка", "ID", "Дата рождения", "Тип питомца"];
-
+  useEffect(() => {
+    setHead([
+      {index: "name", name: "Кличка", sortMethod: "default"}, 
+      {index: "identificationNumber", name: "ID", sortMethod: "default"}, 
+      {index: "birthdate", name: "Дата рождения", sortMethod: "default"}, 
+      {index: "type", name: "Тип питомца", sortMethod: "default"},
+      {index: "owner", name: "Владелец", sortMethod: "default"}
+    ]);
+  }, [])
   const clearFilterButtonClasses = classNames(
     "icon",
     "crud",

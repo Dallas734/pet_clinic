@@ -87,6 +87,11 @@
     }
 }
 
+.square-xs {
+    padding: 0;
+    @include square(24px);
+}
+
 .square-s {
     padding: 0;
     @include square(32px);
@@ -318,6 +323,111 @@
 
 }
 
+.arrowButton {
+    @include square(20px);
+
+    position: relative;
+    padding: 5px;
+    transition-duration: var(--transition-duration);
+
+    &::before,
+    &::after {
+        content: "";
+        @include abs-center;
+        translate: -50% 75%;
+        width: 40%;
+        height: 2px;
+        background-color: var(--color-gray);
+        border-radius: 5px;
+    }
+
+    &:not(:disabled)
+    {
+        @include hover {
+            &::before,
+            &::after {
+                background-color: var(--color-purple);
+            }
+        }
+    }
+
+}
+
+.rightButton {
+    &::before {
+        rotate: 45deg;
+        top: 25%
+    }
+
+    &::after {
+        rotate: -45deg;
+    }
+}
+
+.rightButtonDouble {
+
+    &:not(:disabled)
+    {
+        @include hover {
+            &::before {
+                box-shadow: -3px 3px var(--color-purple);
+            }
+
+            &::after {
+                box-shadow: -3px -3px var(--color-purple);
+            }
+        }
+    }
+
+    &::before {
+        rotate: 45deg;
+        top: 25%;
+        box-shadow: -3px 3px var(--color-gray);
+    }
+
+    &::after {
+        rotate: -45deg;
+        box-shadow: -3px -3px var(--color-gray);
+    }
+}
+
+.leftButton {
+    &::before {
+        rotate: -45deg;
+        top: 25%
+    }
+
+    &::after {
+        rotate: 45deg;
+    }
+}
+
+.leftButtonDouble {
+    &:not(:disabled)
+    {
+        @include hover {
+            &::before {
+                box-shadow: 3px 3px var(--color-purple);
+            }
+
+            &::after {
+                box-shadow: 3px -3px var(--color-purple);
+            }
+        }
+    }
+
+    &::before {
+        rotate: -45deg;
+        top: 25%;
+        box-shadow: 3px 3px var(--color-gray);
+    }
+
+    &::after {
+        rotate: 45deg;
+        box-shadow: 3px -3px var(--color-gray);
+    }
+}
+
 .closeModal {
     align-self: flex-end;
     margin-top: -15px;
@@ -335,5 +445,10 @@
     {
         background-color: var(--active-nav-history-link-color);
     }
+}
 
+
+
+.currentColor {
+    color: currentColor;
 }

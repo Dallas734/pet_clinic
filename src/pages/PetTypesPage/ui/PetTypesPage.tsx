@@ -1,20 +1,28 @@
-import { Page } from "@/widgets/Page";
 import React, { useState } from "react";
-import cls from "./SpecialitiesPage.module.scss";
-import Speciality from "@/entities/Speciality";
+import cls from "./PetTypesPage.module.scss";
 import "react-input-range/lib/css/index.css";
 import { Button } from "@/shared/ui/Button";
 import { Table } from "@/shared/ui/Table";
 import classNames from "classnames";
-import { Pane, ResizablePanes } from "resizable-panes-react";
 import { Input } from "@/shared/ui/Input";
+import cnBind from "classnames/bind";
+import { Pane, ResizablePanes } from "resizable-panes-react";
+import { PetTypesApi } from "@/app/RTKQuery/query";
+import TableColumn from "@/shared/ui/Table/TableColumn";
 
-const SpecialitiesPage: React.FC = () => {
-  const [specialties, setSpecialities] = useState<Array<Speciality>>([]);
+const PetTypesPage: React.FC = () => {
   const [name, setName] = useState<string>("");
+  const [color, setColor] = useState<string>("");
   const [rowSelected, setRowSelected] = useState<boolean>(false);
+  const { data: petTypes } = PetTypesApi.useFetchAllPetTypesQuery();
+  const [head, setHead] = useState<Array<TableColumn>>([
+    { index: "name", name: "Название", sortMethod: "default" },
+    { index: "color", name: "Раскраска", sortMethod: "default" },
+  ]);
 
-  const head = [{ index: "name", name: "Название", sortMethod: "default"}];
+  const cn = cnBind.bind(cls);
+
+  const newHead = (head: TableColumn[]) => setHead(head);
 
   const createButtonClasses = classNames(
     "icon",
@@ -37,6 +45,7 @@ const SpecialitiesPage: React.FC = () => {
     "deleteButton"
   ).split(" ");
 
+  const classes = ["fieldsBlock"];
   return (
     //<Page id="specialitiesPage">
     <section className={cls.container}>
@@ -59,13 +68,22 @@ const SpecialitiesPage: React.FC = () => {
               classes={deleteButtonClasses}
               disabled={rowSelected ? false : true}
             />
-            <Table head={head} data={specialties} />
+            <Table head={head} data={petTypes} setHead={newHead} />
           </div>
         </Pane>
         <Pane id="P1" size={2}>
-          <div className={cls.fieldsBlock} style={{ marginLeft: 10 }}>
+          <div
+            className={cn(
+              ...classes.map((className) => cls[className] || className)
+            )}
+            style={{ marginLeft: 10 }}
+          >
             <div className={cls.Field}>
               <label>Название</label>
+              <Input />
+            </div>
+            <div className={cls.Field}>
+              <label>Раскраска</label>
               <Input />
             </div>
           </div>
@@ -76,4 +94,4 @@ const SpecialitiesPage: React.FC = () => {
   );
 };
 
-export default SpecialitiesPage;
+export default PetTypesPage;

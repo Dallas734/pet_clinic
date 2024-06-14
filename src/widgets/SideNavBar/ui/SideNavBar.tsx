@@ -5,10 +5,7 @@ import classNames from 'classnames';
 import { NavDropList } from '@/shared/ui/NavDropList';
 import { Link } from 'react-router-dom';
 import { useGetTimeZoneString } from '@/shared/lib/hooks/useTimeZone/useTimeZone';
-
-export interface DictionaryListLinks {
-    [key: string]: string;
-}
+import { Admin, MasterData, Petclinic } from '../model/Links';
 
 export enum NavBarListName {
     Petclinic = 'Petclinic',
@@ -20,7 +17,6 @@ export enum NavBarListName {
 
 export const SideNavBar = memo(() => {
 
-    //а это надо будет в стор перенести когда он будет чтобы не закрывалось при октрытии другой страницы
     const [openNavLists, setOpenNavLists] = useState({
         [NavBarListName.Petclinic]: false,
         [NavBarListName.MasterData]: false,
@@ -34,30 +30,6 @@ export const SideNavBar = memo(() => {
         }));
     };
     
-    //потом все что ниже в отдельный файл перенесу
-
-    const Petclinic: DictionaryListLinks[] = [
-        { "Приемы": "/main/visit" },
-        { "Питомцы": "/main/pets" },
-        { "Владельцы": "/main/owners" }
-    ];
-
-    const MasterData: DictionaryListLinks[] = [
-        { "Ветеринары": "/main/veterinarians" },
-        { "Специальности": "/main/specialties" },
-        { "Типы питомцев": "/main/petTypes" },
-        { "Пользователи": "/main/users" }
-    ];
-
-    const Admin: DictionaryListLinks[] = [
-        { "Консоль JMX": "/main/JMXConsole" },
-        { "Забаненные": "/main/Locks" },
-        { "Ресурсные роли": "/main/ResourceRoles" },
-        { "Row-level роли": "/main/Row-levelRoles" },
-        { "Инспектор сущностей": "/main/EntityInspector" }
-    ];
-
-
 
     const CloseClassesButton = classNames(
         'square-m',

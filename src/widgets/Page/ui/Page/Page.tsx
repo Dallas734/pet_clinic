@@ -4,7 +4,6 @@ import { memo } from "react";
 import cls from "./Page.module.scss";
 import { Outlet } from "react-router";
 
-
 export const Page = memo(() => {
   return (
     <div className={cls.page}>
@@ -12,7 +11,7 @@ export const Page = memo(() => {
       <div className={cls.pageZone}>
         <HistoryNav />
         <main className={cls.content}>
-         <Outlet/>
+          <Outlet />
         </main>
       </div>
     </div>

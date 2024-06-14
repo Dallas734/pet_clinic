@@ -1,5 +1,8 @@
+
 .container {
     width: 100%;
+    display: flex;
+    gap: 10px;
 }
 
 .fieldsBlock {
@@ -9,6 +12,11 @@
     width: 100%;
     gap: 20px;
     margin-bottom: 10px;
+}
+
+.border {
+    border: 5px solid var(--color-primary);
+    border-radius: 10px;
 }
 
 .Field {

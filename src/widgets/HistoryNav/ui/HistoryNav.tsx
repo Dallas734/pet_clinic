@@ -1,15 +1,18 @@
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { Button } from "@/shared/ui/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import cls from "./HistoryNav.module.scss";
 import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { removePath, reorderHistoryMap, setCurrentPath } from "@/widgets/Page/model/slices/navSlice";
+import { removePath, reorderHistoryMap, setCurrentPath, add } from "@/widgets/Page/model/slices/navSlice";
 import { RootState } from "@/app/providers/StoreProvider/config/store";
 import classNames from "classnames";
 import cnBind from 'classnames/bind';
+import { Admin, MasterData, Petclinic } from "@/widgets/SideNavBar/model/Links";
+
 
 const HistoryNav = memo(() => {
+  const location = useLocation();
   const cn = cnBind.bind(cls);
   const navigate = useNavigate();
   const historyPaths = useAppSelector((state: RootState) => state.nav.historyMap);
@@ -17,6 +20,29 @@ const HistoryNav = memo(() => {
   const dispatch = useAppDispatch();
 
   const [currentLink, setCurrentLink] = useState<null | { name: string; path: string; }>(null);
+
+  useEffect(()=> {
+    const dictionaries = [Petclinic, MasterData, Admin];
+
+    const findPathInDictionaries = (path:string) => {
+      for (let dictionary of dictionaries) {
+        const foundItem = dictionary.find(item => item.path === path);
+        if (foundItem) {
+          return foundItem;
+        }
+      }
+      return null;
+    };
+
+    const foundItem = findPathInDictionaries(location.pathname);
+
+    if (foundItem) {
+      dispatch(add({ name: foundItem.name , path: foundItem.path }));
+      dispatch(setCurrentPath(foundItem.path));
+    } else {
+      console.log("путь не найден файл historyNav ", location.pathname);
+    }
+  }, [])
 
   const onRemoveClick = (name:string,path:string) => {
     const indexToRemove = historyPaths.findIndex(item => item.path === path);
