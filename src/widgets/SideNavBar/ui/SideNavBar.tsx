@@ -6,7 +6,6 @@ import { NavDropList } from '@/shared/ui/NavDropList';
 import { Link } from 'react-router-dom';
 import { useGetTimeZoneString } from '@/shared/lib/hooks/useTimeZone/useTimeZone';
 import { Admin, MasterData, Petclinic } from '../model/Links';
-import { DictionaryListLinks } from '../model/Links';
 
 export enum NavBarListName {
     Petclinic = 'Petclinic',
@@ -31,30 +30,6 @@ export const SideNavBar = memo(() => {
         }));
     };
     
-    //потом все что ниже в отдельный файл перенесу
-
-    const Petclinic: DictionaryListLinks[] = [
-        { "Приемы": "/main/visit" },
-        { "Питомцы": "/main/pets" },
-        { "Владельцы": "/main/owners" }
-    ];
-
-    const MasterData: DictionaryListLinks[] = [
-        { "Ветеринары": "/main/veterinarians" },
-        { "Специальности": "/main/specialities" },
-        { "Типы питомцев": "/main/petTypes" },
-        { "Пользователи": "/main/users" }
-    ];
-
-    const Admin: DictionaryListLinks[] = [
-        { "Консоль JMX": "/main/JMXConsole" },
-        { "Забаненные": "/main/Locks" },
-        { "Ресурсные роли": "/main/ResourceRoles" },
-        { "Row-level роли": "/main/Row-levelRoles" },
-        { "Инспектор сущностей": "/main/EntityInspector" }
-    ];
-
-
 
     const CloseClassesButton = classNames(
         'square-m',
