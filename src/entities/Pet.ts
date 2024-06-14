@@ -5,7 +5,7 @@ interface Pet {
     name: string,
     identificationNumber: string,
     birthdate: Date
-    type: string,
+    type: PetType,
     owner: Owner
 }
 

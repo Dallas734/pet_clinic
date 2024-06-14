@@ -21,14 +21,15 @@ const PetsPage: React.FC = () => {
   const [head, setHead] =  useState<TableColumn[]>([]);
 
   useEffect(() => {
+    if(pets !== undefined) console.log(pets[0]['type']['name']);
     setHead([
       {index: "name", name: "Кличка", sortMethod: "default"}, 
       {index: "identificationNumber", name: "ID", sortMethod: "default"}, 
       {index: "birthdate", name: "Дата рождения", sortMethod: "default"}, 
-      {index: "type", name: "Тип питомца", sortMethod: "default"},
+      {index: "type.name", name: "Тип питомца", sortMethod: "default"},
       {index: "owner", name: "Владелец", sortMethod: "default"}
     ]);
-  }, [])
+  }, [pets])
   const clearFilterButtonClasses = classNames(
     "icon",
     "crud",
