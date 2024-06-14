@@ -1,5 +1,6 @@
 import { Page } from "@/widgets/Page";
 import React, { useState } from "react";
+import FilterModal from '@/widgets/FilterModal/FilterModal'
 import cls from "./VeterinariansPage.module.scss";
 import Owner from "@/entities/Owner";
 import "react-input-range/lib/css/index.css";
@@ -38,6 +39,7 @@ const OwnersPage: React.FC = () => {
 
   return (
     <section>
+      <FilterModal></FilterModal>
       <div className={cls.fieldsBlock}>
         <Button children="Создать" classes={createButtonClasses} />
         <Button

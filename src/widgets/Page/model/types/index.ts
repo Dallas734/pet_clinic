@@ -9,3 +9,6 @@ export interface navigationSliceProps
     historyMap: lastPath[];
     currentUrl: string
 }
+export interface filterProps{
+    name: string
+}

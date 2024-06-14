@@ -1,0 +1,35 @@
+@import "/src/app/styles/index.scss";
+
+.props {
+  display: block;
+  align-items: center;
+  padding-inline: 12px;
+  border-bottom: 2px solid transparent;
+  font-weight: 500;
+  font-size: 13px;
+  transition-duration: 0s;
+}
+
+.propsWithButton {
+    border: 2px solid var(--color-purple-light);
+    border-radius:  5%;
+}
+
+.props .propItem {
+  @include hover {
+    border: 2px solid var(--color-purple-light);
+    background-color: var(--active-nav-history-link-color);
+
+    * {
+      &::after,
+      &::before {
+        background-color: var(--active-nav-history-link-color);
+      }
+    }
+  }
+}
+
+.activeProp {
+  border: 2px solid var(--color-purple-light);
+  background-color: var(--active-nav-history-link-color);
+}
