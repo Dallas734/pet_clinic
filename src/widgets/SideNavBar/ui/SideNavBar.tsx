@@ -6,6 +6,7 @@ import { NavDropList } from '@/shared/ui/NavDropList';
 import { Link } from 'react-router-dom';
 import { useGetTimeZoneString } from '@/shared/lib/hooks/useTimeZone/useTimeZone';
 import { Admin, MasterData, Petclinic } from '../model/Links';
+import { DictionaryListLinks } from '../model/Links';
 
 export enum NavBarListName {
     Petclinic = 'Petclinic',
