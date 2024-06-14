@@ -60,14 +60,14 @@ var sortMultidimensionalArrayFunc = <T extends Object>(
 const getProperty = (indexes: String[], i: number, el: Object) => {
   type P = keyof typeof el;
   let newProperty;
-  //console.log(Object.getPrototypeOf(el));
+  console.log(Object.getPrototypeOf(el));
   if (Object.getPrototypeOf(el) !== String) {
     newProperty = el[indexes[i] as P];
-    // console.log(newProperty);
-    if (indexes[i + 1] !== undefined && newProperty) {
-      i++;
-      getProperty(indexes, i, newProperty);
-    }
+  }
+  // console.log(newProperty);
+  if (indexes[i + 1] !== undefined && newProperty) {
+    i++;
+    getProperty(indexes, i, newProperty);
   } else {
     console.log(newProperty);
     //console.log(indexes);
@@ -158,7 +158,7 @@ export const Table = <T extends Object>(props: TableProps<T>) => {
                 {head.map((column) => {
                   const indexes = column.index.split(".");
                   const property = getProperty(indexes, 0, el);
-                  console.log(property);
+                  console.log(property)
                   return (
                     <td key={indexes[0]}>
                       <>{property}</>
