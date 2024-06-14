@@ -1,5 +1,6 @@
-
-.containerOption {
-    padding: 12px;
+.content {
+    width: 100%;
+    max-height: calc(100vh - 100px);
+    overflow: scroll;
+    scroll-snap-type: mandatory y;
 }
-
