@@ -61,8 +61,6 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         element: <VisitPage />
     },
 
-
-
     //эта странца всегда должна быть последней!
     [AppRoutes.NOT_FOUND]: {
         path: '*',

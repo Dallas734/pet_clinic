@@ -17,12 +17,12 @@ const OwnersPage: React.FC = () => {
   const [rowSelected, setRowSelected] = useState<boolean>(false);
 
   const head = [
-    {index: "name", name: "Имя"}, 
-    {index: "surname", name: "Фамилия"}, 
-    {index: "address", name: "Адрес"}, 
-    {index: "city", name: "Город"}, 
-    {index: "email", name: "Email"}, 
-    {index: "phone", name: "Телефон"}];
+    {index: "name", name: "Имя", sortMethod: "default"}, 
+    {index: "surname", name: "Фамилия", sortMethod: "default"}, 
+    {index: "address", name: "Адрес", sortMethod: "default"}, 
+    {index: "city", name: "Город", sortMethod: "default"}, 
+    {index: "email", name: "Email", sortMethod: "default"}, 
+    {index: "phone", name: "Телефон", sortMethod: "default"}];
 
   const createButtonClasses = classNames(
     "icon",

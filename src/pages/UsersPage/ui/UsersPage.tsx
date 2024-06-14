@@ -12,11 +12,11 @@ const UsersPage: React.FC = () => {
   const [rowSelected, setRowSelected] = useState<boolean>(false);
 
   const head = [
-    { index: "login", name: "Логин" },
-    { index: "name", name: "Имя" },
-    { index: "surname", name: "Фамилия" },
-    { index: "email", name: "Email" },
-    { index: "activity", name: "Активен" },
+    { index: "login", name: "Логин", sortMethod: "default"},
+    { index: "name", name: "Имя", sortMethod: "default"},
+    { index: "surname", name: "Фамилия", sortMethod: "default"},
+    { index: "email", name: "Email", sortMethod: "default"},
+    { index: "activity", name: "Активен", sortMethod: "default"},
   ];
 
   const createButtonClasses = classNames(

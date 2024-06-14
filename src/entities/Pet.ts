@@ -4,8 +4,8 @@ import PetType from "./PetType";
 interface Pet {
     name: string,
     identificationNumber: string,
-    birthday: Date
-    type: PetType,
+    birthdate: Date
+    type: string,
     owner: Owner
 }
 
