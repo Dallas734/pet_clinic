@@ -17,7 +17,7 @@ const CalendarVisitPageMode: React.FC = () => {
           <div className={cls.option}>
             <h3 className={cls.title}>Цель посещения</h3>
             <ul className={cls.visitTypeList}>
-                
+                {/* //тут нужны данные */}
             </ul>
           </div>
         </section>
