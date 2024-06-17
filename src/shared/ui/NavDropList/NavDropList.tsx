@@ -35,7 +35,7 @@ export const NavDropList = (props: NavDropListProps) => {
 
   return (
     <div>
-      <Button type={"submit"} classes={classes} onClick={handleClick}>
+      <Button classes={classes} onClick={handleClick}>
         {title}
       </Button>
       {isOpen && (
