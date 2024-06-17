@@ -1,0 +1,68 @@
+@import '/src/app/styles/index.scss';
+
+
+.table {
+
+    font-weight: 500;
+    font-size: 14px;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: transparent;
+    }
+
+    thead, tbody {
+        background-color: transparent;
+    }
+
+    tbody {
+        margin-top: 20px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 1px;
+        background-color: var(--bg-color);
+    }
+
+    .timeColumn {
+        width: 60px;
+        text-align: center;
+    }
+
+    .dayColumn {
+        text-align: center;
+        vertical-align: top;
+        height: 25px;
+        color: var(--color-theme);
+        border-bottom: 3px solid var(--color-purple-light);
+    }
+    
+    .eventsContainer {
+        position: relative;
+        height: 19px;
+    }
+
+    .house {
+        &::after {
+            @include abs-center;
+            content: '';
+            width: 100%;
+            height: 1px;
+            border-bottom: 1px solid var(--color-gray);
+        }
+    }
+
+    .halfHouse {
+        &::after {
+            @include abs-center;
+            content: '';
+            width: 100%;
+            height: 1px;
+            border-bottom: 1px dotted var(--color-gray);
+        }
+    }
+
+}
+
