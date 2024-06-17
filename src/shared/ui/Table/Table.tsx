@@ -13,6 +13,9 @@ var sortMultidimensionalArrayFunc = <T extends Object>(
     inIndex.length > 1 && inIndex !== undefined ? inIndex : "";
   var orderBy = inOrderBy;
 
+  const indexes = index.split(".");
+  var len = indexes.length;
+
   if (process.env.NODE_ENV !== "production") {
     var classof = function classof(obj: Object) {
       return Object.prototype.toString.call(obj).slice(8, -1);
@@ -27,20 +30,35 @@ var sortMultidimensionalArrayFunc = <T extends Object>(
     }
   }
 
-  function asc(firstArray: T, secondArray: T) {
-    if (firstArray[index as keyof T] > secondArray[index as keyof T]) {
+  function asc(firstArray: Object, secondArray: Object) {
+    var i = 0;
+    while (i < len) {
+      firstArray = firstArray[indexes[i] as keyof Object];
+      secondArray = secondArray[indexes[i] as keyof Object];
+      i++;
+    }
+    i--;
+    console.log(firstArray);
+    if (firstArray > secondArray) {
       return 1;
-    } else if (firstArray[index as keyof T] < secondArray[index as keyof T]) {
+    } else if (firstArray < secondArray) {
       return -1;
     }
 
     return 0;
   }
 
-  function desc(firstArray: T, secondArray: T) {
-    if (firstArray[index as keyof T] < secondArray[index as keyof T]) {
+  function desc(firstArray: Object, secondArray: Object) {
+    var i = 0;
+    while (i < len) {
+      firstArray = firstArray[indexes[i] as keyof Object];
+      secondArray = secondArray[indexes[i] as keyof Object];
+      i++;
+    }
+    i--;
+    if (firstArray < secondArray) {
       return 1;
-    } else if (firstArray[index as keyof T] > secondArray[index as keyof T]) {
+    } else if (firstArray > secondArray) {
       return -1;
     }
 
@@ -57,25 +75,20 @@ var sortMultidimensionalArrayFunc = <T extends Object>(
   }
 };
 
-const getProperty = (indexes: String[], i: number, el: Object) => {
+const getProperty = (
+  indexes: String[],
+  i: number,
+  el: Object,
+  arr: Object[]
+) => {
   type P = keyof typeof el;
-  let newProperty;
-  console.log(Object.getPrototypeOf(el));
-  if (Object.getPrototypeOf(el) !== String) {
-    newProperty = el[indexes[i] as P];
-  }
-  // console.log(newProperty);
-  if (indexes[i + 1] !== undefined && newProperty) {
+  var newProperty = el[indexes[i] as P];
+
+  if (indexes[i + 1] !== undefined) {
     i++;
-    getProperty(indexes, i, newProperty);
+    getProperty(indexes, i, newProperty, arr);
   } else {
-    console.log(newProperty);
-    //console.log(indexes);
-    //console.log(el[indexes[i - 1] as P])
-    return newProperty;
-    // if (Object.getPrototypeOf(el) === String) {
-    //   return newProperty;
-    // } else return el[indexes[i] as P];
+    arr[0] = newProperty;
   }
 };
 
@@ -120,6 +133,7 @@ export const Table = <T extends Object>(props: TableProps<T>) => {
     if (setHead) setHead(head);
 
     let arrayForSort = [...viewData];
+    // console.log(arrayForSort);
     setViewData(
       sortMultidimensionalArrayFunc(arrayForSort, id, currentSortMethod)
     );
@@ -157,11 +171,11 @@ export const Table = <T extends Object>(props: TableProps<T>) => {
               <tr key={index}>
                 {head.map((column) => {
                   const indexes = column.index.split(".");
-                  const property = getProperty(indexes, 0, el);
-                  console.log(property)
+                  let arr: Object[] = [];
+                  getProperty(indexes, 0, el, arr);
                   return (
                     <td key={indexes[0]}>
-                      <>{property}</>
+                      <>{arr[0]}</>
                     </td>
                   );
                 })}
