@@ -1,16 +1,20 @@
-import { useState } from "react";
+import { memo, useEffect } from "react";
 import cnBind from "classnames/bind";
 import cls from "./Calendar.module.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Button } from "../../../../shared/ui/Button";
 import classNames from "classnames";
+import { CalendarProps } from "../model/type";
 
 const cn = cnBind.bind(cls);
 
-export const Calendar = () => {
-  const startDate = new Date();
-  const [selectedDate, setSelectedDate] = useState<Date>(startDate);
+export const Calendar: React.FC<CalendarProps> = memo(({ selectedDate, setSelectedDate }) => {
+
+  useEffect(()=> {
+    console.log(selectedDate)
+  }, [selectedDate])
+
 
   const MonthIncButton = classNames("arrowButton", "rightButton").split(" ");
 
@@ -34,6 +38,8 @@ export const Calendar = () => {
     const newDate = new Date(date);
     newDate.setMonth(date.getMonth() + 1);
     setSelectedDate(newDate);
+
+    console.log(date === selectedDate);
   };
 
   const decrYear = (date: Date) => {
@@ -44,7 +50,7 @@ export const Calendar = () => {
 
   const incYear = (date: Date) => {
     const newDate = new Date(date);
-    newDate.setFullYear(date.getFullYear() - 1);
+    newDate.setFullYear(date.getFullYear() + 1);
     setSelectedDate(newDate);
   };
 
@@ -57,18 +63,11 @@ export const Calendar = () => {
     <div className={cls.Calendar}>
       <DatePicker
         calendarClassName={cls.wrapper}
-        dayClassName={(date) => {
-          if (selectedDate && date.getTime() === selectedDate.getTime()) {
-            return cls.selectedDay;
-          }
-          return date.getMonth() !== selectedDate.getMonth()
-            ? cls.monthOutDays
-            : cls.monthDays;
-        }}
         onChange={(date) => handleDateChange(date as Date)}
         inline
+        selected={selectedDate}
         renderCustomHeader={({
-          date,
+          date = selectedDate,
           decreaseMonth,
           increaseMonth,
           decreaseYear,
@@ -134,4 +133,4 @@ export const Calendar = () => {
       />
     </div>
   );
-};
+});

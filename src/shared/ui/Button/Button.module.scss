@@ -40,9 +40,19 @@
     position: relative;
     &::after {
         content: '';
-        position: absolute;
         @include square(14px);
         @include abs-center;
+        background-repeat: no-repeat;
+    }
+}
+
+.icon-center-xs {
+    position: relative;
+    &::after {
+        content: '';
+        @include square(5px);
+        @include abs-center;
+        background-repeat: no-repeat;
     }
 }
 
@@ -447,8 +457,36 @@
     }
 }
 
-
-
 .currentColor {
     color: currentColor;
+}
+
+.arrow-right {
+    &::after {
+        background-image: url(../../assets/icons/dropArrow/drop-right.svg);
+    }
+}
+
+.arrow-left {
+    &::after {
+        background-image: url(../../assets/icons/dropArrow/drop-left.svg);
+    }
+}
+
+.home-icon {
+    &::after {
+        background: url('../../assets/icons/calendar/home.svg') center/cover no-repeat;
+    }
+}
+
+.hover-button-purple-light {
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+    @include hover {
+        border-color: var(--color-purple-light);
+    };
+
+    &:active {
+        border-color: var(--color-purple);
+    }
 }
