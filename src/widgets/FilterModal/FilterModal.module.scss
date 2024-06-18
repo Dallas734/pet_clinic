@@ -30,6 +30,31 @@
 }
 
 .activeProp {
-  border: 2px solid var(--color-purple-light);
-  background-color: var(--active-nav-history-link-color);
+  border: 4px solid var(--active-nav-history-link-color);
+  background-color: var(--color-purple-light);
 }
+
+.dropListButton {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  color: var(--color-light);
+  font-weight: 500;
+  font-size: 15px;
+  transition-duration: 0s;
+  border-bottom: 1px solid transparent;
+
+
+  &::before {
+      content: '';
+      position: absolute;
+      @include square(14px);
+      top: calc(var(--button-height) /2);
+      left: 100%;
+      translate: -100% -50%;
+      background-image: url(../../shared/assets/icons/dropArrow/drop-down.svg);
+  }
+}
+
+
+

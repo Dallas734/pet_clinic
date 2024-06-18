@@ -2,22 +2,22 @@ import { memo, useState } from "react";
 import { Button } from "@/shared/ui/Button";
 import { Input } from "@/shared/ui/Input";
 import { Modal } from "@/shared/ui/Modal";
-import Dropdown from "react-bootstrap/Dropdown";
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import { Link, useNavigate } from "react-router-dom";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
 import cls from "./FilterModal.module.scss";
-import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { addProp, removeProp } from "@/widgets/Page/model/slices/propSlice";
-import { RootState } from "@/app/providers/StoreProvider/config/store";
+import { addProp } from "@/widgets/Page/model/slices/propSlice";
 import classNames from "classnames";
-import cnBind from "classnames/bind";
 
-const HistoryNav = memo(() => {
-  const cn = cnBind.bind(cls);
-  const currentUrl = useAppSelector((state: RootState) => state.nav.currentUrl);
+export enum NavBarListName {
+  Petclinic = "Petclinic",
+  MasterData = "Master data",
+  Administration = "Administration",
+}
+
+const FilterModal = memo(() => {
   const dispatch = useAppDispatch();
-  const [selected, selectProp] = useState('');
+  const [selected, selectProp] = useState("");
   const [isOpen, changeOpen] = useState(false);
 
   const Properties = [
@@ -33,28 +33,23 @@ const HistoryNav = memo(() => {
     "Version",
   ];
 
-  const selectButton=classNames(
+  const selectButton = classNames(
     "icon",
     "crud",
     "border-radius",
     "createButton"
   ).split(" ");
 
-  const canselButton=classNames(
+  const canselButton = classNames(
     "icon",
     "crud",
     "border-radius",
-    "closeButton"
+    "closeModal"
   ).split(" ");
-  // const selectedProps = [];
 
   const openProp = () => {
-    changeOpen(true);
+    isOpen === true ? changeOpen(false) : changeOpen(true);
   };
-
-  // const newProp = (name:string) => {
-  //   selectProp(name);
-  // };
 
   const acceptProp = () => {
     dispatch(addProp({ name: selected }));
@@ -63,14 +58,16 @@ const HistoryNav = memo(() => {
 
   const PropertiesList = (
     <div className={cls.propsWithButton}>
-      <Button type={"submit"} onClick={openProp}>
+      <Button type={"submit"} classes={classNames([cls.activeProp],[cls.dropListButton], {'navDropListOpen': !isOpen}, {'navDrop': isOpen}).split(" ")} onClick={openProp}>
         Properties
       </Button>
       {isOpen && (
         <ul className={cls.props}>
           {Properties.map((item: string) => {
             return (
-              <li className={classNames({'activeProp' : item === selected})}>
+              <li
+                className={classNames({ [cls.activeProp]: item === selected })}
+              >
                 <Button onClick={() => selectProp(item)}>{item}</Button>
               </li>
             );
@@ -81,7 +78,7 @@ const HistoryNav = memo(() => {
   );
 
   const [modalIsOpen, setIsOpen] = useState(false);
-  // Properties.find(element => element.name=selected)=undefined ? cls.propItem : propItemClick
+
 
   function openModal() {
     setIsOpen(true);
@@ -91,28 +88,30 @@ const HistoryNav = memo(() => {
     setIsOpen(false);
   }
 
+  const options = ["Create Property condition", "Create JPQL condition", "CReate Group condition"];
+  const defaultOption = "Create";
+
   const ModalContent = (
     <div>
-      <Input placeholder="Search..."></Input><br/>
-      <Dropdown>
-        <Dropdown.Toggle variant="success" id="dropdown-basic">
-          Dropdown Button
-        </Dropdown.Toggle>
-
-        <Dropdown.Menu>
-          <Dropdown.Item href="#/action-1">
-            Create Property condition
-          </Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Create JPQL condition</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">
-            Create Group condition
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-      <br/>
+      <Input placeholder="Search..."></Input>
+      <br />
+      <Dropdown
+        options={options}
+        value={defaultOption}
+        placeholder="Select an option"
+      />
+      <br />
+      <nav className={cls.nav}>
+        <div className={cls.navList}>
+        </div>
+      </nav>
       {PropertiesList}
-      <Button classes={selectButton} onClick={acceptProp}>Select</Button>
-      <Button classes={canselButton} onClick={closeModal}>Cancel</Button>
+      <Button classes={selectButton} onClick={acceptProp}>
+        Select
+      </Button>
+      <Button classes={canselButton} onClick={closeModal}>
+        Cancel
+      </Button>
     </div>
   );
 
@@ -121,13 +120,11 @@ const HistoryNav = memo(() => {
       <Button type={"submit"} onClick={openModal}>
         Add search condition
       </Button>
-      <Modal
-        isOpen={modalIsOpen}
-        title={'Add Condition'}
-        onClose={closeModal}
-      >{ModalContent}</Modal>
+      <Modal isOpen={modalIsOpen} title={"Add Condition"} onClose={closeModal}>
+        {ModalContent}
+      </Modal>
     </div>
   );
 });
 
-export default HistoryNav;
+export default FilterModal;
