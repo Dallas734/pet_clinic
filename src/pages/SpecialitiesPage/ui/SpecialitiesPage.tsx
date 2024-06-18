@@ -8,6 +8,7 @@ import { Table } from "@/shared/ui/Table";
 import classNames from "classnames";
 import { Pane, ResizablePanes } from "resizable-panes-react";
 import { Input } from "@/shared/ui/Input";
+import FilterModal from '@/widgets/FilterModal/FilterModal';
 
 const SpecialitiesPage: React.FC = () => {
   const [specialties, setSpecialities] = useState<Array<Speciality>>([]);
@@ -39,39 +40,39 @@ const SpecialitiesPage: React.FC = () => {
 
   return (
     //<Page id="specialitiesPage">
-    <section className={cls.container}>
-      <ResizablePanes
-        uniqueId="re"
-        vertical
-        resizerClass={cls.border}
-        resizerSize={1}
-      >
-        <Pane id="PO" size={4}>
-          <div className={cls.fieldsBlock} style={{ paddingRight: 10 }}>
-            <Button children="Создать" classes={createButtonClasses} />
-            <Button
-              children="Изменить"
-              classes={editButtonClasses}
-              disabled={rowSelected ? false : true}
-            />
-            <Button
-              children="Удалить"
-              classes={deleteButtonClasses}
-              disabled={rowSelected ? false : true}
-            />
-            <Table head={head} data={specialties} />
-          </div>
-        </Pane>
-        <Pane id="P1" size={2}>
-          <div className={cls.fieldsBlock} style={{ marginLeft: 10 }}>
-            <div className={cls.Field}>
-              <label>Название</label>
-              <Input />
+    <>
+      <FilterModal></FilterModal>
+      <section className={cls.container}>
+        <ResizablePanes
+          uniqueId="re"
+          vertical
+          resizerClass={cls.border}
+          resizerSize={1}
+        >
+          <Pane id="PO" size={4}>
+            <div className={cls.fieldsBlock} style={{ paddingRight: 10 }}>
+              <Button children="Создать" classes={createButtonClasses} />
+              <Button
+                children="Изменить"
+                classes={editButtonClasses}
+                disabled={rowSelected ? false : true} />
+              <Button
+                children="Удалить"
+                classes={deleteButtonClasses}
+                disabled={rowSelected ? false : true} />
+              <Table head={head} data={specialties} />
             </div>
-          </div>
-        </Pane>
-      </ResizablePanes>
-    </section>
+          </Pane>
+          <Pane id="P1" size={2}>
+            <div className={cls.fieldsBlock} style={{ marginLeft: 10 }}>
+              <div className={cls.Field}>
+                <label>Название</label>
+                <Input />
+              </div>
+            </div>
+          </Pane>
+        </ResizablePanes>
+      </section></>
     //</Page>
   );
 };
