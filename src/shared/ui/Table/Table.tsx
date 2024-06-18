@@ -148,7 +148,7 @@ export const Table = <T extends Object>(props: TableProps<T>) => {
           className={cn(...classes.map((clsName) => cls[clsName] || clsName))}
         >
           <thead>
-            <tr>
+            <tr className={cls.fixed}>
               {head.map((el, index) => (
                 <th
                   className={cls.sorting}

@@ -6,6 +6,7 @@
     font-family: 'OpenSans', sans-serif;
     width: 100%;
     position: sticky;
+    overflow-y: scroll;
 }
 
 .table-wrapper {
@@ -17,7 +18,9 @@
 
  .container {
      width: 100%;
-     overflow: scroll;
+     height: 550px;
+     overflow: hidden;
+     overflow-y: scroll;
  }
 
 .head {  
@@ -30,6 +33,10 @@
     text-align: left;
     padding: 10px;
     width: auto;
+}
+
+td {
+  padding: 10px;
 }
 
 tr:hover td{
@@ -49,6 +56,14 @@ tr:hover td{
     background-color: var(--color-button-default-light);/* фон четных строк */
 
   }
+
+  .fixed {
+    top: 0;
+    z-index: 2;
+    position: -webkit-sticky;
+    position: sticky;
+    background-color: white;
+  }
   
   .sorting{
     overflow: hidden;
@@ -61,7 +76,13 @@ tr:hover td{
     padding: 10px;
     width: auto;
 
-    position: relative;
+    top: -3px;
+    z-index: 2;
+    position: -webkit-sticky;
+    position: sticky;
+    background-color: white;
+
+    //position: relative;
     padding-right: 20px !important;
     cursor: pointer;
     user-select: none;

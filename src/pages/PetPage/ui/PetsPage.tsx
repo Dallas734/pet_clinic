@@ -4,18 +4,18 @@ import Pet from "@/entities/Pet";
 import { Input } from "@/shared/ui/Input";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
-import { Select } from "@/shared/ui/Select";
+import { Select, Option } from "@/shared/ui/Select";
 import { Button } from "@/shared/ui/Button";
 import { Table } from "@/shared/ui/Table";
 import classNames from "classnames";
 import TableColumn from "@/shared/ui/Table/TableColumn";
-import { PetsApi } from "@/app/RTKQuery/query";
+import { OwnersApi, PetTypesApi, PetsApi } from "@/app/RTKQuery/query";
 
 const PetsPage: React.FC = () => {
   const { data: pets } = PetsApi.useFetchAllPetsQuery();
   const [identificationNumber, setId] = useState<string>("");
-  const [petType, setPetType] = useState<string>("");
-  const [owner, setOwner] = useState<string>("");
+  const { data: petTypes } = PetTypesApi.useFetchAllPetTypesQuery();
+  const { data: owners } = OwnersApi.useFetchAllOwnersQuery();
   const [birthday, setBirthday] = useState<number>(1995);
   const [rowSelected, setRowSelected] = useState<boolean>(false);
   const [head, setHead] =  useState<TableColumn[]>([]);
@@ -30,6 +30,10 @@ const PetsPage: React.FC = () => {
       {index: "owner.firstName", name: "Владелец", sortMethod: "default"}
     ]);
   }, [pets])
+
+  const petTypeOptions: Option[] = petTypes?.map((el) => ({value: el.id, label: el.name})) as Option[];
+  const ownerOptions: Option[] = owners?.map((el) => ({value: el.id, label: el.firstName})) as Option[];
+
   const clearFilterButtonClasses = classNames(
     "icon",
     "crud",
@@ -74,11 +78,11 @@ const PetsPage: React.FC = () => {
         </div>
         <div className={cls.Field}>
           <label>Тип питомца</label>
-          <Select />
+          <Select data={petTypeOptions} />
         </div>
         <div className={cls.Field}>
           <label>Владелец</label>
-          <Select />
+          <Select data={ownerOptions}/>
         </div>
         <div className={cls.Field}>
           <label>Родился после</label>
