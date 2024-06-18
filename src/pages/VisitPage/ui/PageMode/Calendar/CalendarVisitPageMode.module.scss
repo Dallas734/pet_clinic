@@ -1,6 +1,21 @@
 
 .container {
     padding: 12px;
+    padding-bottom: 0;
+}
+
+.border {
+    border: 2px solid var(--color-purple);
+    border-radius: 10px;
+}
+
+.activeBorder {
+    border: 2px solid var(--color-purple);
+    border-radius: 10px;
+}
+
+.CalendarPanel {
+    padding: 12px;
 }
 
 .containerOption {
