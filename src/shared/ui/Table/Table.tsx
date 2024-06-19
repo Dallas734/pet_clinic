@@ -102,6 +102,7 @@ interface TableProps<T> {
 export const Table = <T extends Object>(props: TableProps<T>) => {
   const { classes = [], head = [], data = [], setHead = null } = props;
   const [viewData, setViewData] = useState<Array<T>>(data);
+  const [activeId, setActiveId ] = useState<number>();
   const cn = cnBind.bind(cls);
 
   useEffect(() => {
@@ -168,7 +169,7 @@ export const Table = <T extends Object>(props: TableProps<T>) => {
           </thead>
           <tbody>
             {viewData.map((el: T, index) => (
-              <tr key={index}>
+              <tr key={index} onClick={() => setActiveId(index)} className={activeId === index ? cls.active : ""}>
                 {head.map((column) => {
                   const indexes = column.index.split(".");
                   let arr: Object[] = [];
