@@ -6,7 +6,7 @@ import { Table } from "@/shared/ui/Table";
 import classNames from "classnames";
 import { Input } from "@/shared/ui/Input";
 import cnBind from "classnames/bind";
-import { Pane, ResizablePanes } from "resizable-panes-react";
+import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { PetTypesApi } from "@/app/RTKQuery/query";
 import TableColumn from "@/shared/ui/Table/TableColumn";
 
@@ -47,15 +47,11 @@ const PetTypesPage: React.FC = () => {
 
   const classes = ["fieldsBlock"];
   return (
-    //<Page id="specialitiesPage">
     <section className={cls.container}>
-      <ResizablePanes
-        uniqueId="re"
-        vertical
-        resizerClass={cls.border}
-        resizerSize={1}
+      <PanelGroup
+        direction="horizontal"
       >
-        <Pane id="PO" size={4}>
+        <Panel id="PO" defaultSize={4}>
           <div className={cls.fieldsBlock} style={{ paddingRight: 10 }}>
             <Button children="Создать" classes={createButtonClasses} />
             <Button
@@ -70,8 +66,9 @@ const PetTypesPage: React.FC = () => {
             />
             <Table head={head} data={petTypes} setHead={newHead} />
           </div>
-        </Pane>
-        <Pane id="P1" size={2}>
+        </Panel>
+        <PanelResizeHandle className={cls.border}></PanelResizeHandle>
+        <Panel id="P1" defaultSize={2}>
           <div
             className={cn(
               ...classes.map((className) => cls[className] || className)
@@ -87,10 +84,9 @@ const PetTypesPage: React.FC = () => {
               <Input />
             </div>
           </div>
-        </Pane>
-      </ResizablePanes>
+        </Panel>
+      </PanelGroup>
     </section>
-    //</Page>
   );
 };
 
