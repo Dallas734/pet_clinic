@@ -15,24 +15,31 @@ const PetsPage: React.FC = () => {
   const { data: pets } = PetsApi.useFetchAllPetsQuery();
   const [identificationNumber, setId] = useState<string>("");
   const { data: petTypes } = PetTypesApi.useFetchAllPetTypesQuery();
+  const [deletePet, result] = PetsApi.useDeletePetMutation();
   const { data: owners } = OwnersApi.useFetchAllOwnersQuery();
   const [birthday, setBirthday] = useState<number>(1995);
   const [rowSelected, setRowSelected] = useState<boolean>(false);
-  const [head, setHead] =  useState<TableColumn[]>([]);
+  const [head, setHead] = useState<TableColumn[]>([]);
+  const [selectedPet, setSelectedPet] = useState<Pet>();
 
   useEffect(() => {
-    //if(pets !== undefined) console.log(pets[0]['type']['name']);
     setHead([
-      {index: "name", name: "Кличка", sortMethod: "default"}, 
-      {index: "identificationNumber", name: "ID", sortMethod: "default"}, 
-      {index: "birthdate", name: "Дата рождения", sortMethod: "default"}, 
-      {index: "type.name", name: "Тип питомца", sortMethod: "default"},
-      {index: "owner.firstName", name: "Владелец", sortMethod: "default"}
+      { index: "name", name: "Кличка", sortMethod: "default" },
+      { index: "identificationNumber", name: "ID", sortMethod: "default" },
+      { index: "birthdate", name: "Дата рождения", sortMethod: "default" },
+      { index: "type.name", name: "Тип питомца", sortMethod: "default" },
+      { index: "owner.firstName", name: "Владелец", sortMethod: "default" },
     ]);
-  }, [pets])
+  }, [pets]);
 
-  const petTypeOptions: Option[] = petTypes?.map((el) => ({value: el.id, label: el.name})) as Option[];
-  const ownerOptions: Option[] = owners?.map((el) => ({value: el.id, label: el.firstName})) as Option[];
+  const petTypeOptions: Option[] = petTypes?.map((el) => ({
+    value: el.id,
+    label: el.name,
+  })) as Option[];
+  const ownerOptions: Option[] = owners?.map((el) => ({
+    value: el.id,
+    label: el.firstName,
+  })) as Option[];
 
   const clearFilterButtonClasses = classNames(
     "icon",
@@ -69,6 +76,11 @@ const PetsPage: React.FC = () => {
     "excelButton"
   ).split(" ");
 
+  const handleDeleteButton = () => {
+    if (selectedPet) deletePet(selectedPet?.id);
+    setSelectedPet(undefined);
+  };
+
   return (
     <section className={cls.container}>
       <div className={cls.fieldsBlock}>
@@ -82,7 +94,7 @@ const PetsPage: React.FC = () => {
         </div>
         <div className={cls.Field}>
           <label>Владелец</label>
-          <Select data={ownerOptions}/>
+          <Select data={ownerOptions} />
         </div>
         <div className={cls.Field}>
           <label>Родился после</label>
@@ -107,16 +119,17 @@ const PetsPage: React.FC = () => {
         <Button
           children="Изменить"
           classes={editButtonClasses}
-          disabled={rowSelected ? false : true}
+          disabled={selectedPet ? false : true}
         />
         <Button
           children="Удалить"
           classes={deleteButtonClasses}
-          disabled={rowSelected ? false : true}
+          disabled={selectedPet ? false : true}
+          onClick={handleDeleteButton}
         />
         <Button children="Excel" classes={excelButtonClasses} />
       </div>
-      <Table head={head} data={pets} />
+      <Table head={head} data={pets} setSelectedElement={setSelectedPet} />
     </section>
   );
 };

@@ -97,12 +97,19 @@ interface TableProps<T> {
   head: TableColumn[];
   data?: Array<T>;
   setHead?: (arr: TableColumn[]) => void;
+  setSelectedElement?: (el: T) => void;
 }
 
 export const Table = <T extends Object>(props: TableProps<T>) => {
-  const { classes = [], head = [], data = [], setHead = null } = props;
+  const {
+    classes = [],
+    head = [],
+    data = [],
+    setHead = null,
+    setSelectedElement = null,
+  } = props;
   const [viewData, setViewData] = useState<Array<T>>(data);
-  const [activeId, setActiveId ] = useState<number>();
+  const [activeId, setActiveId] = useState<number>();
   const cn = cnBind.bind(cls);
 
   useEffect(() => {
@@ -134,7 +141,7 @@ export const Table = <T extends Object>(props: TableProps<T>) => {
     if (setHead) setHead(head);
 
     let arrayForSort = [...viewData];
-    // console.log(arrayForSort);
+
     setViewData(
       sortMultidimensionalArrayFunc(arrayForSort, id, currentSortMethod)
     );
@@ -169,7 +176,14 @@ export const Table = <T extends Object>(props: TableProps<T>) => {
           </thead>
           <tbody>
             {viewData.map((el: T, index) => (
-              <tr key={index} onClick={() => setActiveId(index)} className={activeId === index ? cls.active : ""}>
+              <tr
+                key={index}
+                onClick={() => {
+                  setActiveId(index);
+                  if (setSelectedElement) setSelectedElement(el);
+                }}
+                className={activeId === index ? cls.active : ""}
+              >
                 {head.map((column) => {
                   const indexes = column.index.split(".");
                   let arr: Object[] = [];

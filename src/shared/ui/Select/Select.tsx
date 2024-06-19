@@ -22,9 +22,9 @@ export const Select = (props: SelectProps) => {
             <select
             className={cn(...classes.map(clsName => cls[clsName] || clsName))}
             >
-                <option value={""}></option>
+                <option value={""} key={""}></option>
                 {data.map((el, index) => {
-                    return (<option value={el.value}>{el.label}</option>)
+                    return (<option value={el.value} key={index}>{el.label}</option>)
                 })}
             </select>
         </>
