@@ -1,6 +1,7 @@
 import PetType from "@/entities/PetType";
 import Pet from "@/entities/Pet";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import Owner from "@/entities/Owner";
 // import { IBannerType } from "../../types";
 // import {baseQueryWithReauth} from "../baseQueryWithReauth"
 
@@ -38,12 +39,43 @@ export const baseQuery = fetchBaseQuery({
           url: 'petclinic_Pet'
         }),
         providesTags: ['Pet']
+      }),
+      deletePet: builder.mutation<void, string | undefined>({
+        query: (id) => ({
+          url: `petclinic_Pet/${id}`,
+          method: 'DELETE'
+        }),
+        invalidatesTags: ['Pet']
+      }),
+      createPet: builder.mutation<Pet, Pet>({
+        query: (pet) => ({
+          url: 'petclinic_Pet',
+          method: 'POST',
+          body: pet
+        })
+      })
+    })
+  })
+
+  export const OwnersApi = createApi({
+    reducerPath: 'Owners',
+    baseQuery: baseQuery,
+    tagTypes: ['Owner'],
+    endpoints: (builder) => ({
+      fetchAllOwners: builder.query<Owner[], void>({
+        query: () => ({
+          url: 'petclinic_Owner'
+        }),
+        providesTags: ['Owner']
       })
     })
   })
 
   export const { useFetchAllPetTypesQuery } = PetTypesApi;
   export const { useFetchAllPetsQuery} = PetsApi;
+  export const { useDeletePetMutation } = PetsApi;
+  export const { useCreatePetMutation } = PetsApi;
+  export const { useFetchAllOwnersQuery } = OwnersApi;
 
 // export const AdminPanel = createApi({
 //     reducerPath: 'AdminPanel',

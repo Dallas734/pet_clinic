@@ -19,7 +19,7 @@ export const Modal = (props: ModalProps) => {
 
     const closeButtonClasses = classNames(
         'closeButton',
-        'closeModal',
+        'closeModalCross',
         'transparent'
     ).split(' ');
 
@@ -95,8 +95,8 @@ export const Modal = (props: ModalProps) => {
                 
             </div> */}
             <Button classes={closeButtonClasses} onClick={onClose}/>
+            <span className={cls.modalHead}>{title}</span>
             <div className={cls.content}>
-                <span>{title}</span>
                 <div>
                     {children}
                 </div>

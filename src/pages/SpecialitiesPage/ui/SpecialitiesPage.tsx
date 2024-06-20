@@ -8,6 +8,7 @@ import { Table } from "@/shared/ui/Table";
 import classNames from "classnames";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { Input } from "@/shared/ui/Input";
+import FilterModal from '@/widgets/FilterModal/FilterModal';
 
 const SpecialitiesPage: React.FC = () => {
   const [specialties, setSpecialities] = useState<Array<Speciality>>([]);
@@ -69,6 +70,7 @@ const SpecialitiesPage: React.FC = () => {
           </div>
         </Panel>
       </PanelGroup>
+      <FilterModal></FilterModal>
     </section>
     //</Page>
   );
