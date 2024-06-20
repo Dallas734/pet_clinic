@@ -2,7 +2,7 @@ import VisitType from "@/entities/Visit/Visit";
 import cls from "./CalendarDay.module.scss";
 import { useDraggable } from "@dnd-kit/core";
 import {CSS} from "@dnd-kit/utilities"
-import { useState } from "react";
+
 
 export interface DayEventProps {
     visit: VisitType,
@@ -10,12 +10,12 @@ export interface DayEventProps {
     durationPixels: number,
     groupSize: number,
     index: number,
-    exactPosition: number
+    exactPosition: number,
+    changeOpenHandler: any
 }
 
-export const DayEvent: React.FC<DayEventProps> = ({visit, paddingEvent, durationPixels, groupSize, index, exactPosition}) => {
-  const [disabledDnD, setDisabledDnD] = useState(true);
-  const {attributes, listeners, setNodeRef, transform, isDragging} = useDraggable({id: visit.id, disabled: disabledDnD})
+export const DayEvent: React.FC<DayEventProps> = ({visit, paddingEvent, durationPixels, groupSize, index, exactPosition, changeOpenHandler}) => {
+  const {attributes, listeners, setNodeRef, transform, isDragging} = useDraggable({id: visit.id})
 
   const dateTimeString = visit.visitStart;
   const dateTime = new Date(dateTimeString);
@@ -26,25 +26,18 @@ export const DayEvent: React.FC<DayEventProps> = ({visit, paddingEvent, duration
   const time = `${hours}:${minutes}`;
 
   const handleClick = () => {
-    setDisabledDnD(true)
-    console.log(disabledDnD)
-    console.log('click');
+    changeOpenHandler();
   };
 
-  const activeDnDHandler = () => {
-    setDisabledDnD(false)
-    console.log(disabledDnD)
-  }
 
   return (
   <div
     key={`visit-${visit.id}`}
     ref={setNodeRef}
     {...attributes}
-    {...(disabledDnD ? {} : listeners)}
+    {...listeners}
     data-id={visit.id}
-    onMouseUp={handleClick}
-    onMouseDown={activeDnDHandler}
+    onClick={handleClick}
     
     style={{
       backgroundColor: `var(--${visit.typeStyle})`,
