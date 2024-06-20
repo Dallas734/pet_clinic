@@ -4,7 +4,8 @@ export interface VisitType {
     visitEnd: Date,
     description: string,
     type: string,
-    typeStyle: string
+    typeStyle: string,
+    petName: string
 }
 
 export default VisitType;
