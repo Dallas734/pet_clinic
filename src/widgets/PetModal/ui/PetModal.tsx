@@ -60,16 +60,13 @@ const PetModal = memo((props: ModalProps) => {
         owner: owners?.filter((el) => el.id === ownerId)[0],
         type: petTypes?.filter((el) => el.id === petTypeId)[0]
     }
-    console.log(newPet);
-    console.log(ownerId);
-    console.log(petTypeId);
     createPet(newPet);
     setIsOpen(false);
   };
 
   const ModalContent = (
     <div className={cls.modal}>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className={cls.petName}>
           <label>Кличка</label>
           <Input onChange={setPetName} />
@@ -93,7 +90,7 @@ const PetModal = memo((props: ModalProps) => {
           </div>
         </div>
         <div className={cls.buttons}>
-          <Button children={"OK"} classes={okButtonClasses} onClick={handleSubmit} />
+          <Button children={"OK"} classes={okButtonClasses} type="submit" />
           <Button
             children={"Закрыть"}
             onClick={closeModal}
