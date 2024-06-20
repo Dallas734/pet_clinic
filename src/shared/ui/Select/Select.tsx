@@ -9,18 +9,24 @@ export interface Option {
 
 interface SelectProps {
     classes?: string[],
-    data?: Array<Option> 
+    data?: Array<Option>,
+    onChange?: (value: string) => void
 }
 export const Select = (props: SelectProps) => {
 
     const cn = cnBind.bind(cls);
-    const { classes = [], data = [] } = props;
+    const { classes = [], data = [], onChange } = props;
+
+    const onChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        onChange?.(e.target.value)
+    }
 
     classes.push('Select');
     return (
         <>
             <select
             className={cn(...classes.map(clsName => cls[clsName] || clsName))}
+            onChange={onChangeHandler}
             >
                 <option value={""} key={""}></option>
                 {data.map((el, index) => {

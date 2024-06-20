@@ -10,19 +10,24 @@ import { Table } from "@/shared/ui/Table";
 import classNames from "classnames";
 import TableColumn from "@/shared/ui/Table/TableColumn";
 import { OwnersApi, PetTypesApi, PetsApi } from "@/app/RTKQuery/query";
+import PetType from "@/entities/PetType";
 
 const PetsPage: React.FC = () => {
   const { data: pets } = PetsApi.useFetchAllPetsQuery();
-  const [identificationNumber, setId] = useState<string>("");
+  const [tableData, setTableData] = useState<Pet[]>();
+  const [id, setId] = useState<string>("");
+  const [selectedTypeId, setSelectedTypeId] = useState<string>("");
+  const [selectedOwnerId, setSelectedOwnerId] = useState<string>("");
+  const [selectedBirthday, setSelectedBirthday] = useState<number>(1995);
   const { data: petTypes } = PetTypesApi.useFetchAllPetTypesQuery();
   const [deletePet, result] = PetsApi.useDeletePetMutation();
   const { data: owners } = OwnersApi.useFetchAllOwnersQuery();
-  const [birthday, setBirthday] = useState<number>(1995);
   const [rowSelected, setRowSelected] = useState<boolean>(false);
   const [head, setHead] = useState<TableColumn[]>([]);
   const [selectedPet, setSelectedPet] = useState<Pet>();
 
   useEffect(() => {
+    setTableData(pets);
     setHead([
       { index: "name", name: "Кличка", sortMethod: "default" },
       { index: "identificationNumber", name: "ID", sortMethod: "default" },
@@ -31,6 +36,25 @@ const PetsPage: React.FC = () => {
       { index: "owner.firstName", name: "Владелец", sortMethod: "default" },
     ]);
   }, [pets]);
+
+  useEffect(() => {
+    const filter = () => {
+      setTableData(
+        pets?.filter(
+          (el) =>
+            el.identificationNumber.startsWith(id) &&
+            el.type.id.startsWith(selectedTypeId) &&
+            el.owner.id.startsWith(selectedOwnerId) &&
+            Number(
+              el.birthdate
+                .toString()
+                .substring(0, el.birthdate.toString().indexOf("-"))
+            ) > selectedBirthday
+        )
+      );
+    };
+    filter();
+  }, [id, selectedTypeId, selectedOwnerId, pets, selectedBirthday]);
 
   const petTypeOptions: Option[] = petTypes?.map((el) => ({
     value: el.id,
@@ -78,8 +102,16 @@ const PetsPage: React.FC = () => {
 
   const handleDeleteButton = () => {
     if (selectedPet) deletePet(selectedPet?.id);
+
     setSelectedPet(undefined);
   };
+
+  const handleClearFilterButton = () => {
+    setId('');
+    setSelectedTypeId('');
+    setSelectedOwnerId('');
+    setSelectedBirthday(1995);
+  }
 
   return (
     <section className={cls.container}>
@@ -90,20 +122,20 @@ const PetsPage: React.FC = () => {
         </div>
         <div className={cls.Field}>
           <label>Тип питомца</label>
-          <Select data={petTypeOptions} />
+          <Select data={petTypeOptions} onChange={setSelectedTypeId} />
         </div>
         <div className={cls.Field}>
           <label>Владелец</label>
-          <Select data={ownerOptions} />
+          <Select data={ownerOptions} onChange={setSelectedOwnerId} />
         </div>
         <div className={cls.Field}>
           <label>Родился после</label>
           <InputRange
             maxValue={2005}
             minValue={1995}
-            value={birthday}
+            value={selectedBirthday}
             step={1}
-            onChange={(e) => setBirthday(Number(e.toString()))}
+            onChange={(e) => setSelectedBirthday(Number(e.toString()))}
           />
         </div>
         <div className={cls.Field}>
@@ -111,6 +143,7 @@ const PetsPage: React.FC = () => {
           <Button
             children="Очистить фильтр"
             classes={clearFilterButtonClasses}
+            onClick={handleClearFilterButton}
           />
         </div>
       </div>
@@ -129,7 +162,7 @@ const PetsPage: React.FC = () => {
         />
         <Button children="Excel" classes={excelButtonClasses} />
       </div>
-      <Table head={head} data={pets} setSelectedElement={setSelectedPet} />
+      <Table head={head} data={tableData} setSelectedElement={setSelectedPet} />
     </section>
   );
 };
