@@ -1,13 +1,14 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import navReducer from '@/widgets/Page/model/slices/navSlice'
-import { PetTypesApi, PetsApi } from '../../../RTKQuery/query';
+import { OwnersApi, PetTypesApi, PetsApi } from '../../../RTKQuery/query';
 import { VisitApi } from '@/entities/Visit/api/VisitApi';
 
 const rootReducer = combineReducers ({
   nav: navReducer,
   [PetTypesApi.reducerPath]: PetTypesApi.reducer,
   [PetsApi.reducerPath]: PetsApi.reducer,
-  [VisitApi.reducerPath]: VisitApi.reducer
+  [VisitApi.reducerPath]: VisitApi.reducer,
+  [OwnersApi.reducerPath]: OwnersApi.reducer
 })
 
 export const store = configureStore({
@@ -16,6 +17,7 @@ export const store = configureStore({
   .concat(PetTypesApi.middleware)
   .concat(PetsApi.middleware)
   .concat(VisitApi.middleware)
+  .concat(OwnersApi.middleware)
 });
 
 export type AppDispatch = typeof store.dispatch;

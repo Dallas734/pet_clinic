@@ -2,21 +2,36 @@ import './Select.module.scss'
 import cnBind from 'classnames/bind';
 import cls from './Select.module.scss';
 
+export interface Option {
+    value: string | number | readonly string[] | undefined,
+    label: string
+}
+
 interface SelectProps {
-    classes?: string[] 
+    classes?: string[],
+    data?: Array<Option>,
+    onChange?: (value: string) => void
 }
 export const Select = (props: SelectProps) => {
 
     const cn = cnBind.bind(cls);
-    const { classes = [] } = props;
+    const { classes = [], data = [], onChange } = props;
+
+    const onChangeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        onChange?.(e.target.value)
+    }
 
     classes.push('Select');
     return (
         <>
             <select
             className={cn(...classes.map(clsName => cls[clsName] || clsName))}
+            onChange={onChangeHandler}
             >
-
+                <option value={""} key={""}></option>
+                {data.map((el, index) => {
+                    return (<option value={el.value} key={index}>{el.label}</option>)
+                })}
             </select>
         </>
     );
