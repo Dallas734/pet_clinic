@@ -1,11 +1,12 @@
 import cls from "./CalendarDay.module.scss";
 import "react-datepicker/dist/react-datepicker.css";
-import { memo} from "react";
+import { memo, useState} from "react";
 import { CalendarDayProps } from "../model/type";
 import VisitType from "@/entities/Visit/Visit";
-import {DndContext, closestCenter} from '@dnd-kit/core';
+import {DndContext, PointerSensor, closestCenter, useSensor, useSensors} from '@dnd-kit/core';
 import { DayEvent } from "./DayEvent";
 import { DayEventContainer } from "./DayEventContainer";
+import { Modal } from "@/shared/ui/Modal";
 
 
 
@@ -14,6 +15,20 @@ export const CalendarDay: React.FC<CalendarDayProps> = memo(({ selectedDate, Day
   const paddingEvent = rowHeight / 2;
   const startHour = 5;
   const PixelsInOneMinutes = rowHeight / 30;
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const changeOpenHandler = () => {
+    setIsModalOpen(prev => !prev)
+  };
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      }
+    })
+  )
 
   const formattedDate = new Intl.DateTimeFormat('ru-RU', {
     weekday: 'long',
@@ -164,7 +179,7 @@ export const CalendarDay: React.FC<CalendarDayProps> = memo(({ selectedDate, Day
         const cellId = `${startCell}`;
         acc[cellId] = acc[cellId] || [];
         acc[cellId].push(
-          <DayEvent visit={visit} paddingEvent={paddingEvent} durationPixels={durationPixels} groupSize={groupSize} index={index} exactPosition={exactPosition}/>
+          <DayEvent changeOpenHandler={changeOpenHandler} visit={visit} paddingEvent={paddingEvent} durationPixels={durationPixels} groupSize={groupSize} index={index} exactPosition={exactPosition}/>
         );
       });
       return acc;
@@ -172,6 +187,8 @@ export const CalendarDay: React.FC<CalendarDayProps> = memo(({ selectedDate, Day
   };
 
   const visits = renderVisits();
+
+
 
   return (
     <div className={cls.table}>
@@ -183,7 +200,7 @@ export const CalendarDay: React.FC<CalendarDayProps> = memo(({ selectedDate, Day
           </tr>
         </thead>
         <tbody>
-          <DndContext onDragEnd={handleDrop} collisionDetection={closestCenter}>
+          <DndContext onDragEnd={handleDrop} collisionDetection={closestCenter} sensors={sensors}>
             {Array.from({ length: 32 }, (_, i) => {
               const hour = Math.floor(i / 2) + 5;
               const isHalfHour = i % 2 === 1;
@@ -202,6 +219,7 @@ export const CalendarDay: React.FC<CalendarDayProps> = memo(({ selectedDate, Day
           </DndContext>
         </tbody>
       </table>
+      <Modal isOpen={isModalOpen} onClose={changeOpenHandler} title="тест">{'вместо этого сделайте тут модальное окно пожалуйста пока я делаю остальные календари'}</Modal>
     </div>
   );
 });
