@@ -45,8 +45,8 @@ const PetsPage: React.FC = () => {
         pets?.filter(
           (el) =>
             el.identificationNumber.startsWith(id) &&
-            el.type.id.startsWith(selectedTypeId) &&
-            el.owner.id.startsWith(selectedOwnerId) &&
+            el.type?.id.startsWith(selectedTypeId) &&
+            el.owner?.id.startsWith(selectedOwnerId) &&
             Number(
               el.birthdate
                 .toString()
