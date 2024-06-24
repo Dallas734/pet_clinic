@@ -141,7 +141,6 @@ export const Table = <T extends Object>(props: TableProps<T>) => {
     if (setHead) setHead(head);
 
     let arrayForSort = [...viewData];
-
     setViewData(
       sortMultidimensionalArrayFunc(arrayForSort, id, currentSortMethod)
     );

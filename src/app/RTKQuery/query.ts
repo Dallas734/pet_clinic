@@ -40,12 +40,19 @@ export const baseQuery = fetchBaseQuery({
         }),
         providesTags: ['Pet']
       }),
-      deletePet: builder.mutation<void, string>({
+      deletePet: builder.mutation<void, string | undefined>({
         query: (id) => ({
           url: `petclinic_Pet/${id}`,
           method: 'DELETE'
         }),
         invalidatesTags: ['Pet']
+      }),
+      createPet: builder.mutation<Pet, Pet>({
+        query: (pet) => ({
+          url: 'petclinic_Pet',
+          method: 'POST',
+          body: pet
+        })
       })
     })
   })
@@ -67,6 +74,7 @@ export const baseQuery = fetchBaseQuery({
   export const { useFetchAllPetTypesQuery } = PetTypesApi;
   export const { useFetchAllPetsQuery} = PetsApi;
   export const { useDeletePetMutation } = PetsApi;
+  export const { useCreatePetMutation } = PetsApi;
   export const { useFetchAllOwnersQuery } = OwnersApi;
 
 // export const AdminPanel = createApi({

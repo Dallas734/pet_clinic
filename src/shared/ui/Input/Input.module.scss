@@ -2,7 +2,7 @@
 
 .Input {
   height: var(--input-height);
-  width: 272px;
+  width: 100%;
   padding: 4px 6px;
   border: 1px solid var(--Input-border-color);
   border-radius: var(--border-radius);
@@ -31,6 +31,23 @@
   }
   
   &:not(:checked) + .emulatorCheckBox::after {
+    display: none;
+  }
+  
+}
+
+.radio {
+  width: 30px;
+  display: flex;
+  align-items: center;
+  column-gap: 14px;
+  transition-duration: var(--transition-duration);
+
+  &:checked + .emulatorRadioButton::after {
+    display: inline-block;
+  }
+  
+  &:not(:checked) + .emulatorRadioButton::after {
     display: none;
   }
   
@@ -79,6 +96,24 @@
       @include square(15px);
       content: '';
       background: url(/shared/assets/icons/inputs/comboBoxChecked.svg) center/cover no-repeat
+  }
+}
+
+.emulatorRadioButton {
+  @include flex-center;
+  @include square(25px);
+
+  position: relative;
+  background-color: transparent;
+  border: 2px solid var(--Input-border-color);
+  border-radius: 50%;
+
+  &::after {
+      @include abs-center;
+      @include square(15px);
+      content: '';
+      background-color: var(--color-purple-light);
+      border-radius: 50%;
   }
 }
 

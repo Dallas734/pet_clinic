@@ -19,6 +19,14 @@
     gap: 5px; 
 }
 
+.InputField {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    gap: 5px; 
+    width: 272px;
+}
+
 .inputFields label {
     font-family: 'OpenSans';
 }

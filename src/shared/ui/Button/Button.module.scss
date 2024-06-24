@@ -438,9 +438,13 @@
     }
 }
 
-.closeModal {
+.closeModalCross {
     align-self: flex-end;
     margin-top: -15px;
+}
+
+.closeModalBtn {
+    background-image: url(../../assets/icons/buttons/circle-crossed.svg);
 }
 
 .closeButton-small {
@@ -489,4 +493,10 @@
     &:active {
         border-color: var(--color-purple);
     }
+}
+
+.okButton {
+    background-color: var(--color-purple-light);
+    color: var(--color-light);
+    background-image: url(../../assets/icons/buttons/check-tick-svgrepo-com.svg);  
 }

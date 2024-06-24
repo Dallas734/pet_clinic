@@ -19,6 +19,8 @@ interface InputProps extends HTMLInputProps {
     autofocus?: boolean;
     readonly?: boolean;
     required?: boolean;
+    checked?: boolean;
+    name?:string;
     id?: string;
 }
 
@@ -34,6 +36,8 @@ export const Input = memo((props: InputProps) => {
         autofocus,
         readonly,
         required,
+        checked,
+        name,
         id
     } = props;
 
@@ -63,8 +67,11 @@ export const Input = memo((props: InputProps) => {
         className={cn(...classes.map(clsName => cls[clsName] || clsName))}
         readOnly={readonly}
         required={required}
+        checked={checked}
+        name={name}
         />
         {type === 'checkbox' && <span className={cls.emulatorCheckBox}></span>}
+        {type === 'radio' && <span className={cls.emulatorRadioButton}></span>}
         </>
     );
 });

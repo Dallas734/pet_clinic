@@ -62,7 +62,7 @@ const FilterModal = memo(() => {
     "icon",
     "crud",
     "border-radius",
-    "closeModal",
+    "closeModalBtn",
     [cls.canselModal]
   ).split(" ");
 
