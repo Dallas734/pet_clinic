@@ -1,24 +1,23 @@
-import { MouseEventHandler, ReactNode } from 'react';
+import { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from 'react';
 import cnBind from 'classnames/bind';
 import cls from './Button.module.scss';
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     children?: ReactNode;
     classes?: string[];
     type?: "button" | "submit" | "reset";
-    onClick?: MouseEventHandler<HTMLButtonElement>;
     disabled?: boolean;
 }
 
 export const Button = (props: ButtonProps) => {
-    const {children, classes = [], onClick, type = 'button', disabled = false} = props;
+    const {children, classes = [], type = 'button', disabled = false, ...otherProps} = props;
     const cn = cnBind.bind(cls);
     return (
         <button
             type={type}
             className={cn(cls.Button, ...classes.map(clsName => cls[clsName] || clsName))}
-            onClick={onClick}
             disabled={disabled}
+            {...otherProps}
         >
             {children}
         </button>
