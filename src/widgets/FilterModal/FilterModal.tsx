@@ -2,7 +2,6 @@ import { memo, useState } from "react";
 import { Button } from "@/shared/ui/Button";
 import { Input } from "@/shared/ui/Input";
 import { Modal } from "@/shared/ui/Modal";
-import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import cls from "./FilterModal.module.scss";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
@@ -21,6 +20,11 @@ const FilterModal = memo(() => {
   const [isOpen, changeOpen] = useState(false);
   const [value, setValue] = useState("");
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [panelIsOpen, setPanelIsOpen] = useState(false);
+  // const [openCreateProps, setPropIsOpen] = useState(false);
+  // const [openCreateJPQL, setJPQLIsOpen] = useState(false);
+  // const [openCreateGroup, setPGroupIsOpen] = useState(false);
+  const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
   const [props, setProps] = useState([
     "Created at",
     "Created date",
@@ -34,12 +38,6 @@ const FilterModal = memo(() => {
     "Version",
   ]);
 
-  const options = [
-    "Create Property condition",
-    "Create JPQL condition",
-    "CReate Group condition",
-  ];
-  const defaultOption = "Create";
   const Properties = [
     "Created at",
     "Created date",
@@ -68,6 +66,21 @@ const FilterModal = memo(() => {
     [cls.canselModal]
   ).split(" ");
 
+  const searchButton = classNames("icon", "crud", "border-radius", [
+    cls.search,
+  ]).split(" ");
+
+  const optionsButton = classNames("icon", "border-radius", [
+    cls.optionsButton,
+  ]).split(" ");
+
+  const filterPropButton = classNames(
+    [cls.resetFilter],
+    "icon",
+    "crud",
+    "border-radius"
+  ).split(" ");
+
   function openModal() {
     setIsOpen(true);
   }
@@ -78,6 +91,16 @@ const FilterModal = memo(() => {
 
   const openProp = () => {
     isOpen === true ? changeOpen(false) : changeOpen(true);
+  };
+
+  const setPanel = () => {
+    panelIsOpen === true ? setPanelIsOpen(false) : setPanelIsOpen(true);
+  };
+
+  const setDropdown = () => {
+    dropdownIsOpen === true
+      ? setDropdownIsOpen(false)
+      : setDropdownIsOpen(true);
   };
 
   const acceptProp = () => {
@@ -137,12 +160,31 @@ const FilterModal = memo(() => {
         placeholder="Search..."
       ></Input>
       <br />
-      <Dropdown
-        className={cls.dropdown}
-        options={options}
-        value={defaultOption}
-        placeholder="Select an option"
-      />
+      <div>
+        <Button
+          classes={classNames("icon", "crud", "createButton", "border-radius", [
+            cls.dropdown,
+          ]).split(" ")}
+          onClick={setDropdown}
+        >
+          Create
+        </Button>
+        <div className={cls.dropdownData}>
+          {dropdownIsOpen && (
+            <div>
+              <Button classes={classNames([cls.optionUp]).split(" ")}>
+                Create Property condition
+              </Button>
+              <Button classes={classNames([cls.option]).split(" ")}>
+                Create JPQL condition
+              </Button>
+              <Button classes={classNames([cls.optionDown]).split(" ")}>
+                Create Group condition
+              </Button>
+            </div>
+          )}
+        </div>
+      </div>
       <br />
       <nav className={cls.nav}>
         <div className={cls.navList}></div>
@@ -160,13 +202,41 @@ const FilterModal = memo(() => {
   );
 
   return (
-    <div>
-      <Button type={"submit"} onClick={openModal}>
-        Add search condition
-      </Button>
-      <Modal isOpen={modalIsOpen} title={"Add Condition"} onClose={closeModal}>
-        {ModalContent}
-      </Modal>
+    <div className={panelIsOpen ? cls.openedPanel : cls.closedPanel}>
+      <div className={cls.filterPanel}>
+        <Button
+          classes={classNames(
+            { [cls.filterButtonOpen]: panelIsOpen },
+            { [cls.filterButtonClosed]: !panelIsOpen }
+          ).split(" ")}
+          onClick={setPanel}
+        ></Button>
+        <p>Filter</p>
+      </div>
+      {panelIsOpen && (
+        <div className={cls.filterDownPanel}>
+          <Button classes={searchButton}>Search</Button>
+          <Button classes={filterPropButton}></Button>
+          <Button
+            type={"submit"}
+            classes={classNames([cls.conditionButton]).split(" ")}
+            onClick={openModal}
+          >
+            Add search condition
+          </Button>
+          <Button
+            classes={optionsButton}
+          ></Button>
+          <Modal
+            classes={classNames([cls.modalOptions]).split(" ")}
+            isOpen={modalIsOpen}
+            title={"Add Condition"}
+            onClose={closeModal}
+          >
+            {ModalContent}
+          </Modal>
+        </div>
+      )}
     </div>
   );
 });
