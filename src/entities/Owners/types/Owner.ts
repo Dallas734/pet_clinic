@@ -6,5 +6,3 @@ export interface Owner {
     firstName: string,
     email: string
 }
-
-export default Owner;

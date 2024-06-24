@@ -1,6 +1,6 @@
 import { baseQuery } from "@/app/RTKQuery/query";
 import { createApi } from "@reduxjs/toolkit/query/react";
-import VisitType from "../Visit";
+import {VisitType} from "../types/Visit";
 
 
 

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import cls from "./OwnersPage.module.scss";
-import Owner from "@/entities/Owner";
 import "react-input-range/lib/css/index.css";
 import { Button } from "@/shared/ui/Button";
 import { Table } from "@/shared/ui/Table";
 import classNames from "classnames";
+import { Owner } from "@/entities/Owners";
 
 const OwnersPage: React.FC = () => {
   const [owners, setPets] = useState<Array<Owner>>([]);

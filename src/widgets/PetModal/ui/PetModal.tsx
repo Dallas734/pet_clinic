@@ -1,12 +1,13 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useState } from "react";
 import cls from "./PetModal.module.scss";
 import { Input } from "@/shared/ui/Input";
 import { Modal } from "@/shared/ui/Modal";
 import { Button } from "@/shared/ui/Button";
 import classNames from "classnames";
 import { Select, Option } from "@/shared/ui/Select";
-import { OwnersApi, PetTypesApi, PetsApi } from "@/app/RTKQuery/query";
-import Pet from "@/entities/Pet";
+import {Pet, PetsApi} from "@/entities/Pet";
+import { PetTypesApi } from "@/entities/PetType";
+import { OwnersApi } from "@/entities/Owners";
 
 interface ModalProps {
   isOpen: boolean;

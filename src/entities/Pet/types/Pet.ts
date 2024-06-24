@@ -1,7 +1,7 @@
-import Owner from "./Owner";
-import PetType from "./PetType";
+import { Owner } from "@/entities/Owners";
+import { PetType } from "@/entities/PetType";
 
-interface Pet {
+export interface Pet {
     id?: string,
     name: string,
     identificationNumber: string,
@@ -9,6 +9,4 @@ interface Pet {
     type?: PetType,
     owner?: Owner
 }
-
-export default Pet;
 

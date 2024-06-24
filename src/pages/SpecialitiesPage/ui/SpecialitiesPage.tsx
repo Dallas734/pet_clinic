@@ -1,7 +1,6 @@
 import { Page } from "@/widgets/Page";
 import React, { useState } from "react";
 import cls from "./SpecialitiesPage.module.scss";
-import Speciality from "@/entities/Speciality";
 import "react-input-range/lib/css/index.css";
 import { Button } from "@/shared/ui/Button";
 import { Table } from "@/shared/ui/Table";
@@ -9,6 +8,7 @@ import classNames from "classnames";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { Input } from "@/shared/ui/Input";
 import FilterModal from '@/widgets/FilterModal/FilterModal';
+import { Speciality } from "@/entities/Speciality";
 
 const SpecialitiesPage: React.FC = () => {
   const [specialties, setSpecialities] = useState<Array<Speciality>>([]);

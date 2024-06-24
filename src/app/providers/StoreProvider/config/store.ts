@@ -1,7 +1,9 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import navReducer from '@/widgets/Page/model/slices/navSlice'
-import { OwnersApi, PetTypesApi, PetsApi } from '../../../RTKQuery/query';
 import { VisitApi } from '@/entities/Visit/api/VisitApi';
+import { PetTypesApi } from '@/entities/PetType';
+import { PetsApi } from '@/entities/Pet';
+import { OwnersApi } from '@/entities/Owners';
 
 const rootReducer = combineReducers ({
   nav: navReducer,

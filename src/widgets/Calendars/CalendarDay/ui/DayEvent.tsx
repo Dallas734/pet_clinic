@@ -1,4 +1,5 @@
-import VisitType from "@/entities/Visit/Visit";
+
+import { VisitType } from "@/entities/Visit";
 import cls from "./CalendarDay.module.scss";
 import { useDraggable } from "@dnd-kit/core";
 import {CSS} from "@dnd-kit/utilities"

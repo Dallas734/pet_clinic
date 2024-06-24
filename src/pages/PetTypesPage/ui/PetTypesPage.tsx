@@ -7,8 +7,8 @@ import classNames from "classnames";
 import { Input } from "@/shared/ui/Input";
 import cnBind from "classnames/bind";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
-import { PetTypesApi } from "@/app/RTKQuery/query";
 import TableColumn from "@/shared/ui/Table/TableColumn";
+import { PetTypesApi } from "@/entities/PetType";
 
 const PetTypesPage: React.FC = () => {
   const [name, setName] = useState<string>("");
