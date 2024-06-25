@@ -12,7 +12,6 @@ const MainPage = () => {
                     <img width={64} height={64} className={cls.logo} src="petclinic_logo.svg" alt="petclinic logo" />
                     <h2 className={`${cls.title} h4`}>Добро пожаловать в Jmix Petclinic!</h2>
                     <LoginForm/>
-                    <Link to={'/main'}>просто войти</Link>
                 </div>
                 <div className={cls.bg}></div>
             </section>

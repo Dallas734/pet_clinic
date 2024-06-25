@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from "react";
+import { memo, useCallback, useContext, useState } from "react";
 import classNames from "classnames";
 import { Button } from "@/shared/ui/Button";
 import { Input } from "@/shared/ui/Input";
@@ -6,34 +6,62 @@ import { Input } from "@/shared/ui/Input";
 import cls from './LoginForm.module.scss';
 import { Text } from '@/shared/ui/Text';
 import { Modal } from '@/shared/ui/Modal';
+import { useAuthMutation } from "@/entities/User/api/userApi";
+import { AuthContext } from "@/shared/lib/context/AuthContext";
+import { useNavigate } from "react-router";
 
 
 
 const LoginForm = memo(() => {
-  //const dispatch = useAppDispatch();
-
+    const { isAuth, setIsAuth } = useContext(AuthContext)
     const [username, setUsername] = useState('admin');
-    const [password, setPassword] = useState('admin')
+    const [password, setPassword] = useState('admin');
+    const [remember, setRemember] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
+    const [auth, { isLoading, error }] = useAuthMutation();
 
-  const error = false; //потом из апи ошибку будем брать
+    const navigate = useNavigate();
 
-    const onLoginClick = () => {
-        //что произойдет после отправки формы
+
+  const onLoginClick = async (e:any) => {
+    e.preventDefault();
+    try {
+        const data = await auth({username, password}).unwrap();
+        console.log('Login successful:', data);
+
+        setIsAuth && setIsAuth(true);
+
+        if (remember) {
+            localStorage.setItem('accessToken', data.access_token);
+            localStorage.setItem('refreshToken', data.refresh_token);
+        }
+        else {
+            sessionStorage.setItem('accessToken', data.access_token);
+            sessionStorage.setItem('refreshToken', data.refresh_token);
+        }
+
+        navigate("/");
+        
+    } catch (err) {
+        console.error('Failed to login:', err);
     }
+};
 
     const onModalButtonClick = () => {
         setModalOpen(prev => !prev);
     }
 
-  const onChangeUsername = useCallback((value: string) => {
-    setUsername(value);
-  }, []);
+    const onChangeUsername = useCallback((value: string) => {
+        setUsername(value);
+    }, []);
 
     const onChangePassword = useCallback((value: string) => {
         setPassword(value);
     }, []);
 
+    const onChangeRemember = useCallback(() => {
+        setRemember(prev => !prev);
+    }, []);
 
     const InputClassesUser = classNames(
         'input-m',
@@ -100,7 +128,8 @@ const LoginForm = memo(() => {
                         id='remember'
                         type="checkbox"
                         classes={CheckBoxClasses}
-                        required={true}
+                        onChange={onChangeRemember}
+                        checked={remember}
                     />
                         Запомнить меня
                 </label>

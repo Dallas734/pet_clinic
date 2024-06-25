@@ -4,13 +4,15 @@ import { VisitApi } from '@/entities/Visit/api/VisitApi';
 import { PetTypesApi } from '@/entities/PetType';
 import { PetsApi } from '@/entities/Pet';
 import { OwnersApi } from '@/entities/Owners';
+import { UserApi } from '@/entities/User/api/userApi';
 
 const rootReducer = combineReducers ({
   nav: navReducer,
   [PetTypesApi.reducerPath]: PetTypesApi.reducer,
   [PetsApi.reducerPath]: PetsApi.reducer,
   [VisitApi.reducerPath]: VisitApi.reducer,
-  [OwnersApi.reducerPath]: OwnersApi.reducer
+  [OwnersApi.reducerPath]: OwnersApi.reducer,
+  [UserApi.reducerPath]: UserApi.reducer
 })
 
 export const store = configureStore({
@@ -20,6 +22,7 @@ export const store = configureStore({
   .concat(PetsApi.middleware)
   .concat(VisitApi.middleware)
   .concat(OwnersApi.middleware)
+  .concat(UserApi.middleware)
 });
 
 export type AppDispatch = typeof store.dispatch;
