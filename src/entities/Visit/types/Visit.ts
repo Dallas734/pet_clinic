@@ -7,5 +7,3 @@ export interface VisitType {
     typeStyle: string,
     petName: string
 }
-
-export default VisitType;

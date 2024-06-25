@@ -7,8 +7,7 @@ import React, {
 import cnBind from 'classnames/bind';
 import cls from './Input.module.scss';
 
-type HTMLInputProps = Omit<
-    InputHTMLAttributes<HTMLInputElement>,
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>,
     'value' | 'onChange' | 'readOnly'
 >;
 
@@ -18,10 +17,6 @@ interface InputProps extends HTMLInputProps {
     onChange?: (value: string) => void;
     autofocus?: boolean;
     readonly?: boolean;
-    required?: boolean;
-    checked?: boolean;
-    name?:string;
-    id?: string;
 }
 
 export const Input = memo((props: InputProps) => {
@@ -35,10 +30,7 @@ export const Input = memo((props: InputProps) => {
         placeholder,
         autofocus,
         readonly,
-        required,
-        checked,
-        name,
-        id
+        ...otherProps
     } = props;
 
     const ref = useRef<HTMLInputElement>(null);
@@ -53,22 +45,17 @@ export const Input = memo((props: InputProps) => {
         onChange?.(e.target.value);
     };
     
-    classes.push('Input')
-    
     return (
         <>
         <input
-        id={id}
         ref={ref}
         type={type}
         value={value}
         placeholder={placeholder}
         onChange={onChangeHandler}
-        className={cn(...classes.map(clsName => cls[clsName] || clsName))}
+        className={cn(cls.Input, ...classes.map(clsName => cls[clsName] || clsName))}
         readOnly={readonly}
-        required={required}
-        checked={checked}
-        name={name}
+        {...otherProps}
         />
         {type === 'checkbox' && <span className={cls.emulatorCheckBox}></span>}
         {type === 'radio' && <span className={cls.emulatorRadioButton}></span>}

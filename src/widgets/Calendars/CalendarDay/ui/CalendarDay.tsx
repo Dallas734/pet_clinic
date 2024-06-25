@@ -2,7 +2,7 @@ import cls from "./CalendarDay.module.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import { memo, useState} from "react";
 import { CalendarDayProps } from "../model/type";
-import VisitType from "@/entities/Visit/Visit";
+import {VisitType} from "@/entities/Visit";
 import {DndContext, PointerSensor, closestCenter, useSensor, useSensors} from '@dnd-kit/core';
 import { DayEvent } from "./DayEvent";
 import { DayEventContainer } from "./DayEventContainer";

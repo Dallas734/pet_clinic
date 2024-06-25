@@ -1,4 +1,4 @@
-import VisitType from "@/entities/Visit/Visit";
+import {VisitType} from "@/entities/Visit";
 
 export interface CalendarDayProps {
     selectedDate: Date;

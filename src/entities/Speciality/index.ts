@@ -1,0 +1,1 @@
+export type {Speciality} from './types/Speciality'

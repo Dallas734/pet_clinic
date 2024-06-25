@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import cls from "./UsersPage.module.scss";
-import User from "@/entities/User";
+import {User} from "@/entities/User";
 import "react-input-range/lib/css/index.css";
 import { Button } from "@/shared/ui/Button";
 import { Table } from "@/shared/ui/Table";
@@ -58,7 +58,6 @@ const UsersPage: React.FC = () => {
       </div>
       <Table head={head} data={users} />
     </section>
-    //</Page>
   );
 };
 

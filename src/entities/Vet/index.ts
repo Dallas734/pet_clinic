@@ -1,0 +1,1 @@
+export type {Vet} from './types/Vet'

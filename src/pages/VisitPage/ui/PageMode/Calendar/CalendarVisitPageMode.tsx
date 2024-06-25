@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import cls from "./CalendarVisitPageMode.module.scss";
 
-import { VisitApi } from "@/entities/Visit/api/VisitApi";
 import { Calendar } from "@/widgets/Calendars/CalendarMini";
 import { CalendarTopNav } from "@/widgets/Calendars/CalendarTopNav";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { Input } from "@/shared/ui/Input";
 import classNames from "classnames";
 import { CalendarDay } from "@/widgets/Calendars/CalendarDay";
-import VisitType from "@/entities/Visit/Visit";
+import { VisitApi, VisitType } from "@/entities/Visit";
+
 
 const CalendarVisitPageMode: React.FC = () => {
   const [calendarType, setCalendarType] = useState<string>("day");

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import cls from "./PetsPage.module.scss";
-import Pet from "@/entities/Pet";
+import {Pet, PetsApi} from "@/entities/Pet";
 import { Input } from "@/shared/ui/Input";
 import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
@@ -9,9 +9,9 @@ import { Button } from "@/shared/ui/Button";
 import { Table } from "@/shared/ui/Table";
 import classNames from "classnames";
 import TableColumn from "@/shared/ui/Table/TableColumn";
-import { OwnersApi, PetTypesApi, PetsApi } from "@/app/RTKQuery/query";
-import PetType from "@/entities/PetType";
 import PetModal from "@/widgets/PetModal/ui/PetModal";
+import { PetTypesApi } from "@/entities/PetType";
+import { OwnersApi } from "@/entities/Owners";
 
 const PetsPage: React.FC = () => {
   const { data: pets } = PetsApi.useFetchAllPetsQuery();
