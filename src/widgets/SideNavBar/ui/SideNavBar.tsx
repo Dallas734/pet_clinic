@@ -1,11 +1,12 @@
-import { memo, useState } from 'react';
+import { memo, useContext, useState } from 'react';
 import cls from './SideNavBar.module.scss';
 import { Button } from '@/shared/ui/Button';
 import classNames from 'classnames';
 import { NavDropList } from '@/shared/ui/NavDropList';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useGetTimeZoneString } from '@/shared/lib/hooks/useTimeZone/useTimeZone';
 import { Admin, MasterData, Petclinic } from '../model/Links';
+import { AuthContext } from '@/shared/lib/context/AuthContext';
 
 export enum NavBarListName {
     Petclinic = 'Petclinic',
@@ -16,6 +17,9 @@ export enum NavBarListName {
 
 
 export const SideNavBar = memo(() => {
+
+    const { setIsAuth } = useContext(AuthContext)
+    const navigate = useNavigate();
 
     const [openNavLists, setOpenNavLists] = useState({
         [NavBarListName.Petclinic]: false,
@@ -28,6 +32,15 @@ export const SideNavBar = memo(() => {
             ...prev,
             [listName]: !prev[listName]
         }));
+    };
+
+    const logOut = () => {
+        localStorage.removeItem('accessToken');
+        sessionStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        sessionStorage.removeItem('refreshToken');
+        setIsAuth && setIsAuth(false);
+        navigate('/login')
     };
     
 
@@ -89,7 +102,7 @@ export const SideNavBar = memo(() => {
                     <Button classes={CloseClassesButton}>
                         <span className="sr-only">скрыть меню навигации</span>
                     </Button>
-                    <Button classes={LeaveClassesButton}>
+                    <Button onClick={logOut} classes={LeaveClassesButton}>
                         <span className='sr-only'>выйти из аккаунта</span>
                     </Button>
                 </div>

@@ -68,7 +68,7 @@ const HistoryNav = memo(() => {
     else 
     {
       dispatch(setCurrentPath(''));
-      navigate('/main');
+      navigate('/');
     }
     
   };
@@ -79,7 +79,6 @@ const HistoryNav = memo(() => {
 
 
   const dragStartHandler = (e: React.DragEvent<HTMLLIElement>, item: { name: string; path: string }) => {
-    console.log('drag ', item);
     setCurrentLink(item);
   }
 

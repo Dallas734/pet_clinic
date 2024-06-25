@@ -18,14 +18,14 @@ const AppRouter = () => {
             <Route
                 key={route.path}
                 path={route.path}
-                element={element} //тут потом будет проверка на необходимость авторизации для доступа к странице
+                element={element}
             />
         );
     }, []);
 
     return <Routes>
-        <Route path='/' element={<LoginPage/>}/>
-        <Route path='/main' element={<Page/>}>
+        <Route path='/login' element={<LoginPage/>}/>
+        <Route path='/' element={<Page/>}>
             <Route index element={<MainPage/>}/>
             {Object.values(routeConfig).slice(2).map(renderWithWrapper)}
         </Route>
