@@ -1,22 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import cls from "./UsersPage.module.scss";
 import {User} from "@/entities/User";
 import "react-input-range/lib/css/index.css";
 import { Button } from "@/shared/ui/Button";
 import { Table } from "@/shared/ui/Table";
 import classNames from "classnames";
+import { CRUDUserApi, UserApi } from "@/entities/User/api/userApi";
 
 const UsersPage: React.FC = () => {
-  const [users, setUsers] = useState<Array<User>>([]);
+  const {data: users} = CRUDUserApi.useFetchAllUsersQuery();
   const [name, setName] = useState<string>("");
   const [rowSelected, setRowSelected] = useState<boolean>(false);
+  useEffect(() => {
+    console.log(users);
+  }, [users])
 
   const head = [
-    { index: "login", name: "Логин", sortMethod: "default"},
-    { index: "name", name: "Имя", sortMethod: "default"},
-    { index: "surname", name: "Фамилия", sortMethod: "default"},
+    { index: "username", name: "Логин", sortMethod: "default"},
+    { index: "firstName", name: "Имя", sortMethod: "default"},
+    { index: "lastName", name: "Фамилия", sortMethod: "default"},
     { index: "email", name: "Email", sortMethod: "default"},
-    { index: "activity", name: "Активен", sortMethod: "default"},
+    { index: "active", name: "Активен", sortMethod: "default"},
   ];
 
   const createButtonClasses = classNames(

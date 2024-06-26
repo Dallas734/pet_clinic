@@ -5,24 +5,25 @@ import { Button } from "@/shared/ui/Button";
 import { Table } from "@/shared/ui/Table";
 import classNames from "classnames";
 import { Owner } from "@/entities/Owners";
+import { OwnersApi } from "@/entities/Owners";
 
 const OwnersPage: React.FC = () => {
-  const [owners, setPets] = useState<Array<Owner>>([]);
+  const {data: owners} = OwnersApi.useFetchAllOwnersQuery();
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setSurname] = useState<string>("");
   const [address, setAddress] = useState<string>("");
   const [city, setCity] = useState<string>("");
   const [email, setEmail] = useState<string>("");
-  const [phone, setPhone] = useState<string>("");
+  const [telephone, setTelephone] = useState<string>("");
   const [rowSelected, setRowSelected] = useState<boolean>(false);
 
   const head = [
-    {index: "name", name: "Имя", sortMethod: "default"}, 
-    {index: "surname", name: "Фамилия", sortMethod: "default"}, 
+    {index: "firstName", name: "Имя", sortMethod: "default"}, 
+    {index: "lastName", name: "Фамилия", sortMethod: "default"}, 
     {index: "address", name: "Адрес", sortMethod: "default"}, 
     {index: "city", name: "Город", sortMethod: "default"}, 
     {index: "email", name: "Email", sortMethod: "default"}, 
-    {index: "phone", name: "Телефон", sortMethod: "default"}];
+    {index: "telephone", name: "Телефон", sortMethod: "default"}];
 
   const createButtonClasses = classNames(
     "icon",

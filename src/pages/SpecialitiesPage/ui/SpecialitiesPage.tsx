@@ -9,9 +9,10 @@ import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { Input } from "@/shared/ui/Input";
 import FilterModal from '@/widgets/FilterModal/FilterModal';
 import { Speciality } from "@/entities/Speciality";
+import { SpecialityApi } from "@/entities/Speciality/api/SpecialityApi";
 
 const SpecialitiesPage: React.FC = () => {
-  const [specialties, setSpecialities] = useState<Array<Speciality>>([]);
+  const {data: specialties } = SpecialityApi.useFetchAllSpecialitiesQuery();
   const [name, setName] = useState<string>("");
   const [rowSelected, setRowSelected] = useState<boolean>(false);
 

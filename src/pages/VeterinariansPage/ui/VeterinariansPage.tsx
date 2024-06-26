@@ -7,16 +7,17 @@ import { Button } from "@/shared/ui/Button";
 import { Table } from "@/shared/ui/Table";
 import classNames from "classnames";
 import { Owner } from "@/entities/Owners";
+import { VetApi } from "@/entities/Vet/api/VetApi";
 
 const OwnersPage: React.FC = () => {
-  const [veterinarians, setVeterinarians] = useState<Array<Owner>>([]);
+  const {data: veterinarians} = VetApi.useFetchAllVetsQuery();
   const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setSurname] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
   const [rowSelected, setRowSelected] = useState<boolean>(false);
 
   const head = [
-    { index: "name", name: "Имя", sortMethod: "default"},
-    { index: "surname", name: "Фамилия", sortMethod: "default"},
+    { index: "firstName", name: "Имя", sortMethod: "default"},
+    { index: "lastName", name: "Фамилия", sortMethod: "default"},
   ];
 
   const createButtonClasses = classNames(

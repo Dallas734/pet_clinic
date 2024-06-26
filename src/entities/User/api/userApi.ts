@@ -1,6 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { LoginSchema, authSchema } from "@/features/AuthByUsername";
-import { baseAuth } from "@/app/RTKQuery/query";
+import { baseAuth, baseQuery } from "@/app/RTKQuery/query";
+import { User } from "../types/User";
 
 
 
@@ -21,4 +22,19 @@ export const UserApi = createApi({
     })
 })
 
+export const CRUDUserApi = createApi({
+  reducerPath: 'Users',
+    baseQuery:  baseQuery,
+    tagTypes: ['User'],
+    endpoints: (builder) => ({
+      fetchAllUsers: builder.query<User[], void>({
+        query: () => ({
+          url: 'petclinic_User'
+        }),
+        providesTags: ['User']
+      }),
+    })
+})
+
 export const { useAuthMutation } = UserApi;
+export const { useFetchAllUsersQuery } = CRUDUserApi;

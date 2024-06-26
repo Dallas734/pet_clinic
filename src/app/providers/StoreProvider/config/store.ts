@@ -4,7 +4,9 @@ import { VisitApi } from '@/entities/Visit/api/VisitApi';
 import { PetTypesApi } from '@/entities/PetType';
 import { PetsApi } from '@/entities/Pet';
 import { OwnersApi } from '@/entities/Owners';
-import { UserApi } from '@/entities/User/api/userApi';
+import { CRUDUserApi, UserApi } from '@/entities/User/api/userApi';
+import { VetApi } from '@/entities/Vet/api/VetApi';
+import { SpecialityApi } from '@/entities/Speciality/api/SpecialityApi';
 
 const rootReducer = combineReducers ({
   nav: navReducer,
@@ -12,7 +14,10 @@ const rootReducer = combineReducers ({
   [PetsApi.reducerPath]: PetsApi.reducer,
   [VisitApi.reducerPath]: VisitApi.reducer,
   [OwnersApi.reducerPath]: OwnersApi.reducer,
-  [UserApi.reducerPath]: UserApi.reducer
+  [UserApi.reducerPath]: UserApi.reducer,
+  [VetApi.reducerPath]: VetApi.reducer,
+  [SpecialityApi.reducerPath]: SpecialityApi.reducer,
+  [CRUDUserApi.reducerPath]: CRUDUserApi.reducer
 })
 
 export const store = configureStore({
@@ -23,6 +28,9 @@ export const store = configureStore({
   .concat(VisitApi.middleware)
   .concat(OwnersApi.middleware)
   .concat(UserApi.middleware)
+  .concat(VetApi.middleware)
+  .concat(SpecialityApi.middleware)
+  .concat(CRUDUserApi.middleware)
 });
 
 export type AppDispatch = typeof store.dispatch;
