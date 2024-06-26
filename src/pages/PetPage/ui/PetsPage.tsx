@@ -26,7 +26,8 @@ const PetsPage: React.FC = () => {
   const [rowSelected, setRowSelected] = useState<boolean>(false);
   const [head, setHead] = useState<TableColumn[]>([]);
   const [selectedPet, setSelectedPet] = useState<Pet>();
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [queryType, setQueryType] = useState<string>('');
 
   useEffect(() => {
     setTableData(pets);
@@ -44,12 +45,11 @@ const PetsPage: React.FC = () => {
       setTableData(
         pets?.filter(
           (el) =>
-            el.identificationNumber.startsWith(id) &&
+            el.identificationNumber?.startsWith(id) &&
             el.type?.id.startsWith(selectedTypeId) &&
             el.owner?.id.startsWith(selectedOwnerId) &&
             Number(
-              el.birthdate
-                .toString()
+              el.birthdate?.toString()
                 .substring(0, el.birthdate.toString().indexOf("-"))
             ) > selectedBirthday
         )
@@ -115,12 +115,18 @@ const PetsPage: React.FC = () => {
   };
 
   const handleCreateButton = () => {
+    setQueryType('CREATE');
     setModalIsOpen(true);
+  }
+
+  const handleUpdateButton = () => {
+    setQueryType('UPDATE');
+    setModalIsOpen(true)
   }
 
   return (
     <>
-      <PetModal isOpen={modalIsOpen} setIsOpen={setModalIsOpen}/>
+      <PetModal isOpen={modalIsOpen} setIsOpen={setModalIsOpen} pet={selectedPet} queryType={queryType}/>
       <section className={cls.container}>
         <div className={cls.fieldsBlock}>
           <div className={cls.Field}>
@@ -160,6 +166,7 @@ const PetsPage: React.FC = () => {
             children="Изменить"
             classes={editButtonClasses}
             disabled={selectedPet ? false : true}
+            onClick={handleUpdateButton}
           />
           <Button
             children="Удалить"

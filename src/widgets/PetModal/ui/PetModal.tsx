@@ -1,29 +1,43 @@
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import cls from "./PetModal.module.scss";
 import { Input } from "@/shared/ui/Input";
 import { Modal } from "@/shared/ui/Modal";
 import { Button } from "@/shared/ui/Button";
 import classNames from "classnames";
 import { Select, Option } from "@/shared/ui/Select";
-import {Pet, PetsApi} from "@/entities/Pet";
+import { Pet, PetsApi } from "@/entities/Pet";
 import { PetTypesApi } from "@/entities/PetType";
 import { OwnersApi } from "@/entities/Owners";
 
 interface ModalProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  pet?: Pet | undefined;
+  queryType: string;
 }
 
 const PetModal = memo((props: ModalProps) => {
-  const { isOpen, setIsOpen } = props;
-  const [petName, setPetName] = useState<string>("");
-  const [id, setId] = useState<string>("");
-  const [birthdate, setBirthdate] = useState<string>("");
-  const [ownerId, setOwnerId] = useState<string>("");
-  const [petTypeId, setPetTypeId] = useState<string>("");
+  const { isOpen, setIsOpen, pet, queryType } = props;
+  const [petName, setPetName] = useState<string | undefined>(pet?.name);
+  const [id, setId] = useState<string | undefined>(pet?.identificationNumber);
+  const [birthdate, setBirthdate] = useState<string | undefined>(
+    pet?.birthdate
+  );
+  const [ownerId, setOwnerId] = useState<string | undefined>(pet?.owner?.id);
+  const [petTypeId, setPetTypeId] = useState<string | undefined>(pet?.type?.id);
   const { data: petTypes } = PetTypesApi.useFetchAllPetTypesQuery();
   const { data: owners } = OwnersApi.useFetchAllOwnersQuery();
-  const [createPet, result] = PetsApi.useCreatePetMutation();
+  const [createPet] = PetsApi.useCreatePetMutation();
+  const [updatePet] = PetsApi.useUpdatePetMutation();
+
+  useEffect(() => {
+    //console.log(pet)
+    setPetName(pet?.name);
+    setId(pet?.identificationNumber);
+    setBirthdate(pet?.birthdate);
+    setOwnerId(pet?.owner?.id);
+    setPetTypeId(pet?.type?.id);
+  }, [pet]);
 
   const petTypeOptions: Option[] = petTypes?.map((el) => ({
     value: el.id,
@@ -54,14 +68,29 @@ const PetModal = memo((props: ModalProps) => {
   ).split(" ");
 
   const handleSubmit = () => {
-    const newPet: Pet = {
-        identificationNumber: id,
-        name: petName,
-        birthdate: birthdate,
-        owner: owners?.filter((el) => el.id === ownerId)[0],
-        type: petTypes?.filter((el) => el.id === petTypeId)[0]
+    switch (queryType) {
+      case "CREATE":
+        const newPet: Pet = {
+            identificationNumber: id,
+            name: petName,
+            birthdate: birthdate,
+            owner: owners?.filter((el) => el.id === ownerId)[0],
+            type: petTypes?.filter((el) => el.id === petTypeId)[0],
+          };
+        createPet(newPet);
+        break;
+      case "UPDATE":
+        const newPetUp: Pet = {
+            id: pet?.id,
+            identificationNumber: id,
+            name: petName,
+            birthdate: birthdate,
+            owner: owners?.filter((el) => el.id === ownerId)[0],
+            type: petTypes?.filter((el) => el.id === petTypeId)[0],
+          };
+        updatePet(newPetUp);  
+        break;
     }
-    createPet(newPet);
     setIsOpen(false);
   };
 
@@ -70,24 +99,28 @@ const PetModal = memo((props: ModalProps) => {
       <form onSubmit={handleSubmit}>
         <div className={cls.petName}>
           <label>Кличка</label>
-          <Input onChange={setPetName} />
+          <Input onChange={setPetName} value={petName} />
         </div>
         <div className={cls.block}>
           <div className={cls.field}>
             <label>Тип питомца</label>
-            <Select data={petTypeOptions} onChange={setPetTypeId} />
+            <Select
+              data={petTypeOptions}
+              onChange={setPetTypeId}
+              value={petTypeId}
+            />
           </div>
           <div className={cls.field}>
             <label>Владелец</label>
-            <Select data={ownerOptions} onChange={setOwnerId} />
+            <Select data={ownerOptions} onChange={setOwnerId} value={ownerId} />
           </div>
           <div className={cls.field}>
             <label>ID</label>
-            <Input onChange={setId} />
+            <Input onChange={setId} value={id} />
           </div>
           <div className={cls.field}>
             <label>Дата рождения</label>
-            <Input type="date" onChange={setBirthdate}/>
+            <Input type="date" onChange={setBirthdate} value={birthdate} />
           </div>
         </div>
         <div className={cls.buttons}>

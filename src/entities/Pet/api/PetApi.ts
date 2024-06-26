@@ -26,6 +26,14 @@ export const PetsApi = createApi({
           method: 'POST',
           body: pet
         })
+      }),
+      updatePet: builder.mutation<Pet, Pet>({
+        query: (pet) => ({
+          url: `petclinic_Pet/${pet.id}`,
+          method: 'PUT',
+          body: pet
+        }),
+        invalidatesTags: ['Pet']
       })
     })
 })
@@ -33,3 +41,4 @@ export const PetsApi = createApi({
 export const { useFetchAllPetsQuery} = PetsApi;
 export const { useDeletePetMutation } = PetsApi;
 export const { useCreatePetMutation } = PetsApi;
+export const { useUpdatePetMutation } = PetsApi;
