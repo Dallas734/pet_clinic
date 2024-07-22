@@ -14,5 +14,9 @@
 
 ### `sudo docker run -p 3000:3000 react-app`
 
+### Запуск на Windows
+
+Ввод комманд на Windows производится в PowerShell без sudo
+
 Запускает приложение в режиме разработки.
 Откройте [http://localhost:3000](http://localhost:3000), чтобы просмотреть его в браузере.
